@@ -1,0 +1,526 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="onecardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“onecard.dbo.CardRecord”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="CardRecord">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StationID" Type="int" />
+          <Property Name="Room" Type="int" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="ChkTime" Type="datetime" />
+          <Property Name="time1" Type="int" />
+          <Property Name="time2" Type="int" />
+          <Property Name="time3" Type="int" />
+          <Property Name="time4" Type="int" />
+          <Property Name="Package1" Type="int" />
+          <Property Name="package2" Type="int" />
+          <Property Name="yes" Type="int" />
+          <Property Name="no" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“onecard.dbo.CardRecord_His”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="CardRecord_His">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StationID" Type="int" />
+          <Property Name="Room" Type="int" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="ChkTime" Type="datetime" />
+          <Property Name="time1" Type="int" />
+          <Property Name="time2" Type="int" />
+          <Property Name="time3" Type="int" />
+          <Property Name="time4" Type="int" />
+          <Property Name="package1" Type="int" />
+          <Property Name="package2" Type="int" />
+          <Property Name="yes" Type="int" />
+          <Property Name="no" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“onecard.dbo.ExFloor_Record”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="ExFloor_Record">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StationID" Type="int" />
+          <Property Name="Room" Type="int" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="ChkTime" Type="datetime" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“onecard.dbo.ExFloor_Record24”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="ExFloor_Record24">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StationID" Type="int" />
+          <Property Name="Room" Type="int" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="ChkTime" Type="datetime" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“onecard.dbo.Fitness”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Fitness">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StationID" Type="int" />
+          <Property Name="Room" Type="int" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="ChkTime" Type="datetime" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“onecard.dbo.Fitness24”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Fitness24">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StationID" Type="int" />
+          <Property Name="Room" Type="int" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="ChkTime" Type="datetime" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“onecard.dbo.ZaoCanIn”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="ZaoCanIn">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Room" Type="int" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="Num" Type="int" />
+          <Property Name="InTime" Type="datetime" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vip" Type="int" />
+          <Property Name="Pax" Type="int" />
+          <Property Name="Package" Type="nchar" MaxLength="10" />
+          <Property Name="ChineseName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“onecard.dbo.ZaoCanIn24”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="ZaoCanIn24">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Room" Type="int" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="Num" Type="int" />
+          <Property Name="InTime" Type="datetime" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vip" Type="int" />
+          <Property Name="Pax" Type="int" />
+          <Property Name="Package" Type="nchar" MaxLength="10" />
+          <Property Name="ChineseName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="onecardModelStoreContainer">
+          <EntitySet Name="CardRecord" EntityType="Self.CardRecord" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[CardRecord].[id] AS [id], 
+[CardRecord].[StationID] AS [StationID], 
+[CardRecord].[Room] AS [Room], 
+[CardRecord].[StartTime] AS [StartTime], 
+[CardRecord].[EndTime] AS [EndTime], 
+[CardRecord].[ChkTime] AS [ChkTime], 
+[CardRecord].[time1] AS [time1], 
+[CardRecord].[time2] AS [time2], 
+[CardRecord].[time3] AS [time3], 
+[CardRecord].[time4] AS [time4], 
+[CardRecord].[Package1] AS [Package1], 
+[CardRecord].[package2] AS [package2], 
+[CardRecord].[yes] AS [yes], 
+[CardRecord].[no] AS [no]
+FROM [dbo].[CardRecord] AS [CardRecord]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CardRecord_His" EntityType="Self.CardRecord_His" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[CardRecord_His].[id] AS [id], 
+[CardRecord_His].[StationID] AS [StationID], 
+[CardRecord_His].[Room] AS [Room], 
+[CardRecord_His].[StartTime] AS [StartTime], 
+[CardRecord_His].[EndTime] AS [EndTime], 
+[CardRecord_His].[ChkTime] AS [ChkTime], 
+[CardRecord_His].[time1] AS [time1], 
+[CardRecord_His].[time2] AS [time2], 
+[CardRecord_His].[time3] AS [time3], 
+[CardRecord_His].[time4] AS [time4], 
+[CardRecord_His].[package1] AS [package1], 
+[CardRecord_His].[package2] AS [package2], 
+[CardRecord_His].[yes] AS [yes], 
+[CardRecord_His].[no] AS [no]
+FROM [dbo].[CardRecord_His] AS [CardRecord_His]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ExFloor_Record" EntityType="Self.ExFloor_Record" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ExFloor_Record].[id] AS [id], 
+[ExFloor_Record].[StationID] AS [StationID], 
+[ExFloor_Record].[Room] AS [Room], 
+[ExFloor_Record].[StartTime] AS [StartTime], 
+[ExFloor_Record].[EndTime] AS [EndTime], 
+[ExFloor_Record].[ChkTime] AS [ChkTime]
+FROM [dbo].[ExFloor_Record] AS [ExFloor_Record]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ExFloor_Record24" EntityType="Self.ExFloor_Record24" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ExFloor_Record24].[id] AS [id], 
+[ExFloor_Record24].[StationID] AS [StationID], 
+[ExFloor_Record24].[Room] AS [Room], 
+[ExFloor_Record24].[StartTime] AS [StartTime], 
+[ExFloor_Record24].[EndTime] AS [EndTime], 
+[ExFloor_Record24].[ChkTime] AS [ChkTime]
+FROM [dbo].[ExFloor_Record24] AS [ExFloor_Record24]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Fitness" EntityType="Self.Fitness" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Fitness].[id] AS [id], 
+[Fitness].[StationID] AS [StationID], 
+[Fitness].[Room] AS [Room], 
+[Fitness].[StartTime] AS [StartTime], 
+[Fitness].[EndTime] AS [EndTime], 
+[Fitness].[ChkTime] AS [ChkTime]
+FROM [dbo].[Fitness] AS [Fitness]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Fitness24" EntityType="Self.Fitness24" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Fitness24].[id] AS [id], 
+[Fitness24].[StationID] AS [StationID], 
+[Fitness24].[Room] AS [Room], 
+[Fitness24].[StartTime] AS [StartTime], 
+[Fitness24].[EndTime] AS [EndTime], 
+[Fitness24].[ChkTime] AS [ChkTime]
+FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ZaoCanIn" EntityType="Self.ZaoCanIn" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ZaoCanIn].[id] AS [id], 
+[ZaoCanIn].[Room] AS [Room], 
+[ZaoCanIn].[StartTime] AS [StartTime], 
+[ZaoCanIn].[EndTime] AS [EndTime], 
+[ZaoCanIn].[Num] AS [Num], 
+[ZaoCanIn].[InTime] AS [InTime], 
+[ZaoCanIn].[FullName] AS [FullName], 
+[ZaoCanIn].[Vip] AS [Vip], 
+[ZaoCanIn].[Pax] AS [Pax], 
+[ZaoCanIn].[Package] AS [Package], 
+[ZaoCanIn].[ChineseName] AS [ChineseName]
+FROM [dbo].[ZaoCanIn] AS [ZaoCanIn]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ZaoCanIn24" EntityType="Self.ZaoCanIn24" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ZaoCanIn24].[id] AS [id], 
+[ZaoCanIn24].[Room] AS [Room], 
+[ZaoCanIn24].[StartTime] AS [StartTime], 
+[ZaoCanIn24].[EndTime] AS [EndTime], 
+[ZaoCanIn24].[Num] AS [Num], 
+[ZaoCanIn24].[InTime] AS [InTime], 
+[ZaoCanIn24].[FullName] AS [FullName], 
+[ZaoCanIn24].[Vip] AS [Vip], 
+[ZaoCanIn24].[Pax] AS [Pax], 
+[ZaoCanIn24].[Package] AS [Package], 
+[ZaoCanIn24].[ChineseName] AS [ChineseName]
+FROM [dbo].[ZaoCanIn24] AS [ZaoCanIn24]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="onecardModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CardRecord">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StationID" Type="Int32" />
+          <Property Name="Room" Type="Int32" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="ChkTime" Type="DateTime" Precision="3" />
+          <Property Name="time1" Type="Int32" />
+          <Property Name="time2" Type="Int32" />
+          <Property Name="time3" Type="Int32" />
+          <Property Name="time4" Type="Int32" />
+          <Property Name="Package1" Type="Int32" />
+          <Property Name="package2" Type="Int32" />
+          <Property Name="yes" Type="Int32" />
+          <Property Name="no" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CardRecord_His">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StationID" Type="Int32" />
+          <Property Name="Room" Type="Int32" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="ChkTime" Type="DateTime" Precision="3" />
+          <Property Name="time1" Type="Int32" />
+          <Property Name="time2" Type="Int32" />
+          <Property Name="time3" Type="Int32" />
+          <Property Name="time4" Type="Int32" />
+          <Property Name="package1" Type="Int32" />
+          <Property Name="package2" Type="Int32" />
+          <Property Name="yes" Type="Int32" />
+          <Property Name="no" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ExFloor_Record">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StationID" Type="Int32" />
+          <Property Name="Room" Type="Int32" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="ChkTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ExFloor_Record24">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StationID" Type="Int32" />
+          <Property Name="Room" Type="Int32" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="ChkTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Fitness">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StationID" Type="Int32" />
+          <Property Name="Room" Type="Int32" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="ChkTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Fitness24">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StationID" Type="Int32" />
+          <Property Name="Room" Type="Int32" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="ChkTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ZaoCanIn">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Room" Type="Int32" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="Num" Type="Int32" />
+          <Property Name="InTime" Type="DateTime" Precision="3" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vip" Type="Int32" />
+          <Property Name="Pax" Type="Int32" />
+          <Property Name="Package" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ChineseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ZaoCanIn24">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Room" Type="Int32" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="Num" Type="Int32" />
+          <Property Name="InTime" Type="DateTime" Precision="3" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vip" Type="Int32" />
+          <Property Name="Pax" Type="Int32" />
+          <Property Name="Package" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ChineseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="onecardEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CardRecord" EntityType="Self.CardRecord" />
+          <EntitySet Name="CardRecord_His" EntityType="Self.CardRecord_His" />
+          <EntitySet Name="ExFloor_Record" EntityType="Self.ExFloor_Record" />
+          <EntitySet Name="ExFloor_Record24" EntityType="Self.ExFloor_Record24" />
+          <EntitySet Name="Fitness" EntityType="Self.Fitness" />
+          <EntitySet Name="Fitness24" EntityType="Self.Fitness24" />
+          <EntitySet Name="ZaoCanIn" EntityType="Self.ZaoCanIn" />
+          <EntitySet Name="ZaoCanIn24" EntityType="Self.ZaoCanIn24" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="onecardModelStoreContainer" CdmEntityContainer="onecardEntities">
+          <EntitySetMapping Name="CardRecord">
+            <EntityTypeMapping TypeName="onecardModel.CardRecord">
+              <MappingFragment StoreEntitySet="CardRecord">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="ChkTime" ColumnName="ChkTime" />
+                <ScalarProperty Name="time1" ColumnName="time1" />
+                <ScalarProperty Name="time2" ColumnName="time2" />
+                <ScalarProperty Name="time3" ColumnName="time3" />
+                <ScalarProperty Name="time4" ColumnName="time4" />
+                <ScalarProperty Name="Package1" ColumnName="Package1" />
+                <ScalarProperty Name="package2" ColumnName="package2" />
+                <ScalarProperty Name="yes" ColumnName="yes" />
+                <ScalarProperty Name="no" ColumnName="no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CardRecord_His">
+            <EntityTypeMapping TypeName="onecardModel.CardRecord_His">
+              <MappingFragment StoreEntitySet="CardRecord_His">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="ChkTime" ColumnName="ChkTime" />
+                <ScalarProperty Name="time1" ColumnName="time1" />
+                <ScalarProperty Name="time2" ColumnName="time2" />
+                <ScalarProperty Name="time3" ColumnName="time3" />
+                <ScalarProperty Name="time4" ColumnName="time4" />
+                <ScalarProperty Name="package1" ColumnName="package1" />
+                <ScalarProperty Name="package2" ColumnName="package2" />
+                <ScalarProperty Name="yes" ColumnName="yes" />
+                <ScalarProperty Name="no" ColumnName="no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExFloor_Record">
+            <EntityTypeMapping TypeName="onecardModel.ExFloor_Record">
+              <MappingFragment StoreEntitySet="ExFloor_Record">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="ChkTime" ColumnName="ChkTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExFloor_Record24">
+            <EntityTypeMapping TypeName="onecardModel.ExFloor_Record24">
+              <MappingFragment StoreEntitySet="ExFloor_Record24">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="ChkTime" ColumnName="ChkTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fitness">
+            <EntityTypeMapping TypeName="onecardModel.Fitness">
+              <MappingFragment StoreEntitySet="Fitness">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="ChkTime" ColumnName="ChkTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fitness24">
+            <EntityTypeMapping TypeName="onecardModel.Fitness24">
+              <MappingFragment StoreEntitySet="Fitness24">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="ChkTime" ColumnName="ChkTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZaoCanIn">
+            <EntityTypeMapping TypeName="onecardModel.ZaoCanIn">
+              <MappingFragment StoreEntitySet="ZaoCanIn">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="InTime" ColumnName="InTime" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Vip" ColumnName="Vip" />
+                <ScalarProperty Name="Pax" ColumnName="Pax" />
+                <ScalarProperty Name="Package" ColumnName="Package" />
+                <ScalarProperty Name="ChineseName" ColumnName="ChineseName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZaoCanIn24">
+            <EntityTypeMapping TypeName="onecardModel.ZaoCanIn24">
+              <MappingFragment StoreEntitySet="ZaoCanIn24">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="InTime" ColumnName="InTime" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Vip" ColumnName="Vip" />
+                <ScalarProperty Name="Pax" ColumnName="Pax" />
+                <ScalarProperty Name="Package" ColumnName="Package" />
+                <ScalarProperty Name="ChineseName" ColumnName="ChineseName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
