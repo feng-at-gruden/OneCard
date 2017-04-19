@@ -4,12 +4,20 @@
     ViewBag.Title = "登录";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title  </h1>
+                <h2>Login</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+
 
 <section id="loginForm">
-<h2>使用本地帐户登录。</h2>
 @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -41,8 +49,8 @@
 </section>
 
 <section class="social" id="socialLoginForm">
-    <h2>使用其他服务登录。</h2>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+    <h2> </h2>
+    
 </section>
 
 @section Scripts {

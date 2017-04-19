@@ -9,9 +9,9 @@ body {
     border-top: solid 10px #000;
     color: #333;
     font-size: .85em;
-    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
+    font-family:"宋体" Arial;
 }
 
 a {
@@ -85,10 +85,10 @@ h5, h6 {
     font-size: 1em;
 }
 
-    h5 a:link, h5 a:visited, h5 a:active {
-        padding: 0;
-        text-decoration: none;
-    }
+h5 a:link, h5 a:visited, h5 a:active {
+    padding: 0;
+    text-decoration: none;
+}
 
 
 /* main layout
@@ -130,9 +130,9 @@ footer {
 ----------------------------------------------------------*/
 .site-title {
     color: #c8c8c8;
-    font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
     font-size: 2.3em;
     margin: 0;
+    font-weight:bold;
 }
 
 .site-title a, .site-title a:hover, .site-title a:active {
@@ -531,14 +531,15 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     margin-top: 0.75em;
-    border: 0 none;
+    border: 1px solid #999;
 }
 
 th {
-    font-size: 1.2em;
-    text-align: left;
-    border: none 0px;
-    padding-left: 0;
+    font-size: 1.1em;
+    text-align: center;
+    border: 1px solid #999;
+    padding:5px;
+    background-color:#c7d1d6;
 }
 
     th a {
@@ -578,8 +579,8 @@ th {
     }
 
 td {
-    padding: 0.25em 2em 0.25em 0em;
-    border: 0 none;
+    padding: 5px;
+    border: 1px solid #999;
 }
 
 tr.pager td {

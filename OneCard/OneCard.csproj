@@ -184,7 +184,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -208,6 +210,7 @@
     <Compile Include="Models\Fitness24.cs">
       <DependentUpon>OneCardModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HistoryViewModel.cs" />
     <Compile Include="Models\OneCardModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -223,6 +226,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OneCardModels.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\RoomDataViewModel.cs" />
     <Compile Include="Models\ZaoCanIn.cs">
       <DependentUpon>OneCardModels.tt</DependentUpon>
     </Compile>
@@ -359,6 +363,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Report\DailyReport.cshtml" />
+    <Content Include="Views\Report\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
