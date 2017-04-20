@@ -187,6 +187,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\ToolController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1182,6 +1183,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Report\DailyReport.cshtml" />
     <Content Include="Views\Report\History.cshtml" />
+    <Content Include="Views\Tool\Import.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

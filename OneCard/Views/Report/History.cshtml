@@ -23,7 +23,9 @@
             {
                 @Html.AntiForgeryToken()
                 
-                @Html.TextBox("StartTime", null, new { @class = "TotalCostCash", placehoder="起始时间" })
+                @Html.TextBox("StartTime", null, new { @class = "TotalCostCash", placeholder="起始时间" })
+                @Html.TextBox("EndTime", null, new { @class = "TotalCostCash", placeholder="截至时间" })
+                @Html.TextBox("room", null, new { @class = "TotalCostCash", placeholder="房间号" })
                 
                 <button type="submit" class="btn btn-success">确认</button>
             }
@@ -68,7 +70,7 @@ else
                             @foreach (var item in Model)
                             {
                                 <tr class="odd">
-                                    <td style="text-align: center;">@Html.DisplayFor(modelItem => item.RoomNumber)</td>
+                                    <td style="text-align: center; font-weight:bold;">@Html.DisplayFor(modelItem => item.RoomNumber)</td>
                                     <td style="text-align: center;">@Html.DisplayFor(modelItem => item.Count1)</td>
                                     <td style="text-align: center;">@Html.DisplayFor(modelItem => item.Count2)</td>
                                     <td style="text-align: center;">@Html.DisplayFor(modelItem => item.Count3)</td>

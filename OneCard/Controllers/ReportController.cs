@@ -33,6 +33,7 @@ namespace OneCard.Controllers
 
 
 
+
         public ActionResult History()
         {
             return View();
@@ -41,10 +42,12 @@ namespace OneCard.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult History(String StartTime)
+        public ActionResult History(String StartTime, String EndTime, int? room)
         {
-
-            IEnumerable<RoomDataViewModel> model = from row in db.CardRecord
+            DateTime stTime = DateTime.Parse(StartTime);
+            DateTime edTime = DateTime.Parse(EndTime);
+            IEnumerable<RoomDataViewModel> model = from row in db.CardRecord_His
+                                                   where row.ChkTime >= stTime
                                                    group row by new { row.Room } into b
                                                    orderby b.Key.Room
                                                    select new RoomDataViewModel
@@ -55,8 +58,9 @@ namespace OneCard.Controllers
                                                        Count3 = b.Sum(c => c.time3),
                                                        Count4 = b.Sum(c => c.time4),
                                                    };
-
-            ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
+            if (room.HasValue)
+                model = model.Where(m => m.RoomNumber == room);
+            ViewBag.Date = stTime.ToString("yyyy-M-d") + "至" + edTime.ToString("yyyy-M-d");
             return View(model);
         }
 
