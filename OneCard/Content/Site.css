@@ -111,7 +111,7 @@ h5 a:link, h5 a:visited, h5 a:active {
     }
 
     .featured + .main-content {
-        background: url("../Images/heroAccent.png") no-repeat;
+        background: url("../Images/heroAccent.png") 20px 0 no-repeat;
     }
 
 header .content-wrapper {
@@ -754,4 +754,8 @@ tr.pager td {
         footer p {
             margin: 0;
         }
+}
+
+.center{
+    text-align:center
 }

@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "当日数据汇总";
-    int total = 0;
+    int total = Model.Sum(m=>m.Count);
 }
 
 @section featured {
@@ -19,7 +19,10 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="dataTable_wrapper">
-            <table class="table table-striped table-bordered table-hover" id="dataTables-example" style="width:640px;">
+            <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
+                <span>共<b>@Model.Count()</b>间客房 用餐<b>@total</b>次    日期:<b>@ViewBag.Date</b></span>
+            </div>
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr>
                         <th>房间号</th>
@@ -43,9 +46,6 @@
                         </tr>
                         total += item.Count;
                     }
-                    <tr>
-                        <td colspan="6" style="text-align:right"><b>@Model.Count()/@total |  @ViewBag.Date</b></td>
-                    </tr>
                 </tbody>
             </table>
             
@@ -58,3 +58,14 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').DataTable({
+            "responsive": true,
+            "paging": true,
+            "ordering": true,
+            "info": false,
+            "searching": false,
+        });
+    });
+</script>

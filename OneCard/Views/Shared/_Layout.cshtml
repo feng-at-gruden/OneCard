@@ -7,8 +7,32 @@
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
-       
+        <!-- DataTables CSS -->
+        @Styles.Render("~/Content/css/bootstrap.min.css")
+        @Styles.Render("~/Content/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css")
         @Scripts.Render("~/bundles/modernizr")
+
+        <!-- jQuery -->
+        @Scripts.Render("~/Content/bower_components/jquery/dist/jquery.min.js")
+        @Scripts.Render("~/Content/js/jquery-ui.min.js") <!-- jQuery UI -->
+        @Scripts.Render("~/Content/js/jquery.easing.1.3.js") <!-- jQuery Easing - Requirred for Lightbox + Pie Charts-->
+        <!-- Bootstrap -->
+        @Scripts.Render("~/Content/js/bootstrap.min.js")
+
+        <!-- Charts -->
+        @Scripts.Render("~/Content/js/charts/jquery.flot.js") <!-- Flot Main -->
+        @Scripts.Render("~/Content/js/charts/jquery.flot.time.js") <!-- Flot sub -->
+        @Scripts.Render("~/Content/js/charts/jquery.flot.animator.min.js") <!-- Flot sub -->
+        @Scripts.Render("~/Content/js/charts/jquery.flot.resize.min.js") <!-- Flot sub - for repaint when resizing the screen -->
+        @Scripts.Render("~/Content/bower_components/jquery.cookie.js")
+
+        <!-- DataTables JavaScript -->
+        @Scripts.Render("~/Content/bower_components/datatables/media/js/jquery.dataTables.js")
+        @Scripts.Render("~/Content/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js")
+
+        @Scripts.Render("~/Content/js/sparkline.min.js") <!-- Sparkline - Tiny charts -->
+        @Scripts.Render("~/Content/js/easypiechart.js") <!-- EasyPieChart - Animated Pie Charts -->
+        @Scripts.Render("~/Content/js/charts.js") <!-- All the above chart related functions -->
     </head>
     <body>
         <header>
@@ -40,13 +64,12 @@
         </div>
         <footer>
             <div class="content-wrapper">
-                <div class="float-left">
+                <div class="center">
+                    <br/>
                     <p>&copy; @DateTime.Now.Year - 酒店一卡通查询系统</p>
                 </div>
             </div>
         </footer>
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
     </body>
 </html>
