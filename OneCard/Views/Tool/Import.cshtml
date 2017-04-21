@@ -7,19 +7,31 @@
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>@ViewBag.Title  </h1>
-                <h2>IMPORT DATA</h2>
             </hgroup>
         </div>
     </section>
 }
 
 <div class="panel panel-default">
+    <div class="panel-heading">
+        IMPORT DATA
+    </div>
     <div class="panel-body">
-        @using (Html.BeginForm("History", "Report", FormMethod.Post, new { role = "form" }))
+        @if(!ViewData.ModelState.IsValid)
+        {
+        <div class="alert alert-danger">
+            @Html.ValidationSummary()
+        </div>
+        }
+
+        @using (Html.BeginForm("Import", "Tool", FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
-            <button type="submit" class="btn btn-success">确认</button>
+            <div class="col-md-10">
+                <input type="file" name="file" />
+            </div>
+            <button type="submit" class="btn btn-success">导 入</button>
         }
     </div>
     <!-- /.panel-body -->
@@ -27,3 +39,8 @@
         &nbsp;
     </div>
 </div>
+
+<script type="text/javascript">
+
+
+</script>

@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         <!-- DataTables CSS -->
-        @Styles.Render("~/Content/css/bootstrap.min.css")
+        @Styles.Render("~/Content/bower_components/bootstrap/dist/css/bootstrap.min.css")
         @Styles.Render("~/Content/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css")
         @Scripts.Render("~/bundles/modernizr")
 
@@ -17,7 +17,7 @@
         @Scripts.Render("~/Content/js/jquery-ui.min.js") <!-- jQuery UI -->
         @Scripts.Render("~/Content/js/jquery.easing.1.3.js") <!-- jQuery Easing - Requirred for Lightbox + Pie Charts-->
         <!-- Bootstrap -->
-        @Scripts.Render("~/Content/js/bootstrap.min.js")
+        @Scripts.Render("~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js")
 
         <!-- Charts -->
         @Scripts.Render("~/Content/js/charts/jquery.flot.js") <!-- Flot Main -->
@@ -33,6 +33,10 @@
         @Scripts.Render("~/Content/js/sparkline.min.js") <!-- Sparkline - Tiny charts -->
         @Scripts.Render("~/Content/js/easypiechart.js") <!-- EasyPieChart - Animated Pie Charts -->
         @Scripts.Render("~/Content/js/charts.js") <!-- All the above chart related functions -->
+
+        <!-- DatePicker-->
+        @Scripts.Render("~/Content/bower_components/datepicker/bootstrap-datepicker.js")
+        @Styles.Render("~/Content/bower_components/datepicker/datepicker.css")
     </head>
     <body>
         <header>
@@ -49,8 +53,7 @@
                             <li>@Html.ActionLink("主页", "Index", "Home")</li>
                             <li>@Html.ActionLink("早餐数据导入", "Import", "Tool")</li>
                             <li>@Html.ActionLink("当日数据汇总", "DailyReport", "Report")</li>
-                            <li>@Html.ActionLink("按房间查询", "RoomReport", "Report")</li>
-                            <li>@Html.ActionLink("历史数据", "History", "Report")</li>
+                            <li>@Html.ActionLink("历史数据查询", "History", "Report")</li>
                         </ul>
                     </nav>
                 </div>

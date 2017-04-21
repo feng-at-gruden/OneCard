@@ -42,12 +42,18 @@ namespace OneCard.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult History(String StartTime, String EndTime, int? room)
+        public ActionResult History(string StartTime, string EndTime, int? room)
         {
+            if (string.IsNullOrWhiteSpace(StartTime) || string.IsNullOrWhiteSpace(EndTime))
+            {
+                ModelState.AddModelError("", "请输入查询起止时间");
+                return View();
+            }
+            
             DateTime stTime = DateTime.Parse(StartTime);
             DateTime edTime = DateTime.Parse(EndTime);
             IEnumerable<RoomDataViewModel> model = from row in db.CardRecord_His
-                                                   where row.ChkTime >= stTime
+                                                   where row.ChkTime >= stTime && row.ChkTime <= edTime
                                                    group row by new { row.Room } into b
                                                    orderby b.Key.Room
                                                    select new RoomDataViewModel

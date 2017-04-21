@@ -759,3 +759,9 @@ tr.pager td {
 .center{
     text-align:center
 }
+
+.panel-heading{
+    font-weight:bold;
+    color: #999;
+    font-style: italic;
+}
