@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="onecardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="onecardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--生成过程中发现错误:
 警告 6002: 表/视图“onecard.dbo.CardRecord”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="CardRecord">
@@ -99,8 +99,6 @@
           <Property Name="EndTime" Type="datetime" />
           <Property Name="ChkTime" Type="datetime" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“onecard.dbo.ZaoCanIn”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="ZaoCanIn">
           <Key>
             <PropertyRef Name="id" />
@@ -117,8 +115,6 @@
           <Property Name="Package" Type="nchar" MaxLength="10" />
           <Property Name="ChineseName" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“onecard.dbo.ZaoCanIn24”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="ZaoCanIn24">
           <Key>
             <PropertyRef Name="id" />
@@ -136,6 +132,8 @@
           <Property Name="ChineseName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="onecardModelStoreContainer">
+          <EntitySet Name="ZaoCanIn" EntityType="Self.ZaoCanIn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZaoCanIn24" EntityType="Self.ZaoCanIn24" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CardRecord" EntityType="Self.CardRecord" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [CardRecord].[id] AS [id], 
@@ -212,39 +210,8 @@ FROM [dbo].[Fitness] AS [Fitness]</DefiningQuery>
 [Fitness24].[ChkTime] AS [ChkTime]
 FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="ZaoCanIn" EntityType="Self.ZaoCanIn" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[ZaoCanIn].[id] AS [id], 
-[ZaoCanIn].[Room] AS [Room], 
-[ZaoCanIn].[StartTime] AS [StartTime], 
-[ZaoCanIn].[EndTime] AS [EndTime], 
-[ZaoCanIn].[Num] AS [Num], 
-[ZaoCanIn].[InTime] AS [InTime], 
-[ZaoCanIn].[FullName] AS [FullName], 
-[ZaoCanIn].[Vip] AS [Vip], 
-[ZaoCanIn].[Pax] AS [Pax], 
-[ZaoCanIn].[Package] AS [Package], 
-[ZaoCanIn].[ChineseName] AS [ChineseName]
-FROM [dbo].[ZaoCanIn] AS [ZaoCanIn]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="ZaoCanIn24" EntityType="Self.ZaoCanIn24" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[ZaoCanIn24].[id] AS [id], 
-[ZaoCanIn24].[Room] AS [Room], 
-[ZaoCanIn24].[StartTime] AS [StartTime], 
-[ZaoCanIn24].[EndTime] AS [EndTime], 
-[ZaoCanIn24].[Num] AS [Num], 
-[ZaoCanIn24].[InTime] AS [InTime], 
-[ZaoCanIn24].[FullName] AS [FullName], 
-[ZaoCanIn24].[Vip] AS [Vip], 
-[ZaoCanIn24].[Pax] AS [Pax], 
-[ZaoCanIn24].[Package] AS [Package], 
-[ZaoCanIn24].[ChineseName] AS [ChineseName]
-FROM [dbo].[ZaoCanIn24] AS [ZaoCanIn24]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="onecardModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
