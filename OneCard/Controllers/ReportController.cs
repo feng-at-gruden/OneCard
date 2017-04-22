@@ -50,8 +50,8 @@ namespace OneCard.Controllers
                 return View();
             }
             
-            DateTime stTime = DateTime.Parse(StartTime);
-            DateTime edTime = DateTime.Parse(EndTime);
+            DateTime stTime = DateTime.Parse(StartTime + " 00:00:00");
+            DateTime edTime = DateTime.Parse(EndTime + " 23:59:59");
             IEnumerable<RoomDataViewModel> model = from row in db.CardRecord_His
                                                    where row.ChkTime >= stTime && row.ChkTime <= edTime
                                                    group row by new { row.Room } into b

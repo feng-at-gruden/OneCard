@@ -42,7 +42,7 @@
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("酒店一卡通查询系统", "Index", "Home")</p>
+                    <p class="site-title">@Html.ActionLink("酒店一卡通", "Index", "Home")</p>
                 </div>
                 <div class="float-right">
                     <section id="login">
@@ -50,10 +50,12 @@
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                            <li>@Html.ActionLink("早餐数据导入", "Import", "Tool")</li>
-                            <li>@Html.ActionLink("当日数据汇总", "DailyReport", "Report")</li>
-                            <li>@Html.ActionLink("历史数据查询", "History", "Report")</li>
+                            <li>@Html.ActionLink("客房数据导入", "Import", "Tool")</li>
+                            <li>@Html.ActionLink("当日客房数据", "Import", "Tool")</li>
+                            <li>@Html.ActionLink("历史客房数据", "Import", "Tool")</li>
+                            <li>|</li>
+                            <li>@Html.ActionLink("当日就餐数据", "DailyReport", "Report")</li>
+                            <li>@Html.ActionLink("历史就餐数据", "History", "Report")</li>
                         </ul>
                     </nav>
                 </div>

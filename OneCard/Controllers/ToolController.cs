@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Text;
 using System.IO;
 using System.Data;
+using System.Globalization;
 
 namespace OneCard.Controllers
 {
@@ -57,9 +58,26 @@ namespace OneCard.Controllers
                 db.SaveChanges();
 
                 //Insert to current ZaoCanIn24 table
-                //TODO
-
-                //Move CardRecord records?
+                var data = GetDataFromCVS(path);
+                DateTimeFormatInfo dtFormat = new System.Globalization.DateTimeFormatInfo();
+　　            dtFormat.ShortDatePattern = "MM/dd/yy";                
+                foreach(DataRow row in data.Rows)
+                {
+                    db.ZaoCanIn24.Add(new Models.ZaoCanIn24
+                    {
+                        Room = int.Parse(row["Room"].ToString()),
+                        FullName = row["Full Name"].ToString(),
+                        ChineseName = row["Chinese Name"].ToString(),
+                        StartTime = Convert.ToDateTime(row["Arrive Date"].ToString(), dtFormat),
+                        EndTime = Convert.ToDateTime(row["Depart Date"].ToString(), dtFormat),
+                        InTime = DateTime.Now,
+                        Num = int.Parse(row["Adults"].ToString()),
+                        Package = row["Package"].ToString(),
+                        Pax = string.IsNullOrWhiteSpace(row["Pax"].ToString()) ? 0 : int.Parse(row["Pax"].ToString()),
+                        Vip = string.IsNullOrWhiteSpace(row["VIP"].ToString()) ? 0 : int.Parse(row["VIP"].ToString()),
+                    }); 
+                }
+                db.SaveChanges();
 
                 //Clean temp file
                 FileInfo f = new FileInfo(path);
@@ -114,18 +132,27 @@ namespace OneCard.Controllers
                 StreamReader sr = new StreamReader(fs, Encoding.UTF8);
                 string strTitle = sr.ReadLine();
                 string[] strColumTitle = strTitle.Split('\t');   //CVS 文件默认以逗号隔开
+                
+                /*
+                //Read columns name from first line
                 for (int i = 0; i < strColumTitle.Length; i++)
                 {
                     dt.Columns.Add(strColumTitle[i]);
+                }*/
+
+                string[] columns = new string[]{"Room", "Full Name", "Chinese Name", "VIP", "Adults", "Arrive Date", "Depart Date", "Pax", "Package"};
+                for (int i = 0; i < columns.Length; i++)
+                {
+                    dt.Columns.Add(columns[i]);
                 }
                 while (!sr.EndOfStream)
                 {
                     string strTest = sr.ReadLine();
                     string[] strTestAttribute = strTest.Split('\t');
                     DataRow dr = dt.NewRow();
-                    for (int i = 0; i < strColumTitle.Length; i++)
+                    for (int i = 0; i < columns.Length; i++)
                     {
-                        dr[strColumTitle[i]] = strTestAttribute[i];
+                        dr[columns[i]] = strTestAttribute[i];
                     }
                     dt.Rows.Add(dr);
                 }
