@@ -12,12 +12,12 @@ namespace OneCard.Controllers
         //
         // GET: /Report/
 
-        public ActionResult DailyReport()
+        public ActionResult DailyConsumption()
         {
-            IEnumerable<RoomDataViewModel> model = from row in db.CardRecord
+            IEnumerable<RoomCosumptionDataViewModel> model = from row in db.CardRecord
                                                    group row by new { row.Room } into b
                                                    orderby b.Key.Room
-                                                   select new RoomDataViewModel
+                                                   select new RoomCosumptionDataViewModel
                                                    {
                                                        RoomNumber = b.Key.Room,
                                                        Count1 = b.Sum(c=>c.time1),
@@ -31,10 +31,7 @@ namespace OneCard.Controllers
         }
 
 
-
-
-
-        public ActionResult History()
+        public ActionResult ConsumptionHistory()
         {
             return View();
         }
@@ -42,7 +39,7 @@ namespace OneCard.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult History(string StartTime, string EndTime, int? room)
+        public ActionResult ConsumptionHistory(string StartTime, string EndTime, int? room)
         {
             if (string.IsNullOrWhiteSpace(StartTime) || string.IsNullOrWhiteSpace(EndTime))
             {
@@ -52,11 +49,11 @@ namespace OneCard.Controllers
             
             DateTime stTime = DateTime.Parse(StartTime + " 00:00:00");
             DateTime edTime = DateTime.Parse(EndTime + " 23:59:59");
-            IEnumerable<RoomDataViewModel> model = from row in db.CardRecord_His
+            IEnumerable<RoomCosumptionDataViewModel> model = from row in db.CardRecord_His
                                                    where row.ChkTime >= stTime && row.ChkTime <= edTime
                                                    group row by new { row.Room } into b
                                                    orderby b.Key.Room
-                                                   select new RoomDataViewModel
+                                                   select new RoomCosumptionDataViewModel
                                                    {
                                                        RoomNumber = b.Key.Room,
                                                        Count1 = b.Sum(c => c.time1),
@@ -69,6 +66,38 @@ namespace OneCard.Controllers
             ViewBag.Date = stTime.ToString("yyyy-M-d") + "至" + edTime.ToString("yyyy-M-d");
             return View(model);
         }
+
+
+        public ActionResult DailyRoomBooking()
+        {
+            IEnumerable<RoomBookingDataViewModel> model = from row in db.ZaoCanIn24                                                             
+                                                             orderby row.Room
+                                                             select new RoomBookingDataViewModel
+                                                             {
+                                                                RoomNumber = row.Room,
+                                                                Adults = row.Num,
+                                                                ArriveTime = row.StartTime,
+                                                                DepartTime = row.EndTime,
+                                                                InTime = row.InTime,
+                                                                VIP = row.Vip, 
+                                                                ChineseName = row.ChineseName, 
+                                                                GuestName = row.FullName, 
+                                                                Package = row.Package, 
+                                                                Pax = row.Pax,
+                                                             };
+
+            ViewBag.Date = db.ZaoCanIn24.FirstOrDefault().InTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            return View(model);
+        }
+
+
+        public ActionResult RoomBookingHistory()
+        {
+            return View();
+        }
+
+
+
 
     }
 }

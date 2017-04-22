@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OneCard.Models.RoomDataViewModel>
+﻿@model IEnumerable<OneCard.Models.RoomCosumptionDataViewModel>
 
 @{
     ViewBag.Title = "历史就餐数据查询";
@@ -18,7 +18,7 @@
 {
     <div class="panel panel-default">
         <div class="panel-heading">
-            HISTORY RECORDS
+            CONSUMPTION HISTORY
         </div>
         <div class="panel-body">
             @if(!ViewData.ModelState.IsValid)
@@ -28,7 +28,7 @@
             </div>
             }
 
-            @using (Html.BeginForm("History", "Report", FormMethod.Post, new { role = "form" }))
+            @using (Html.BeginForm("ConsumptionHistory", "Report", FormMethod.Post, new { role = "form" }))
             {
                 @Html.AntiForgeryToken()
 
@@ -99,7 +99,7 @@ else
         int total = Model.Sum(m => m.Count);
         <div class="panel panel-default">
             <div class="panel-heading">
-                HISTORY RECORDS
+                CONSUMPTION HISTORY
             </div>
             <div class="panel-body">
                 <div class="dataTable_wrapper">

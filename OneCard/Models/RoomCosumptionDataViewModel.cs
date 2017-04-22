@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OneCard.Models
 {
-    public class RoomDataViewModel
+    public class RoomCosumptionDataViewModel
     {
 
         [Display(Name = "房间号")]

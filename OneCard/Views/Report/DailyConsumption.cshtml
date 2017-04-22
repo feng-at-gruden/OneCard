@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OneCard.Models.RoomDataViewModel>
+﻿@model IEnumerable<OneCard.Models.RoomCosumptionDataViewModel>
 
 @{
     ViewBag.Title = "当日就餐数据汇总";
@@ -10,13 +10,15 @@
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>@ViewBag.Title  </h1>
-                <h2>DAILY REPORT</h2>
             </hgroup>
         </div>
     </section>
 }
 
 <div class="panel panel-default">
+    <div class="panel-heading">
+        DAILY CONSUMPTION
+    </div>
     <div class="panel-body">
         <div class="dataTable_wrapper">
             <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
