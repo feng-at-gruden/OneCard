@@ -96,6 +96,54 @@ namespace OneCard.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RoomBookingHistory(string StartTime, string EndTime, int? room)
+        {
+            DateTime edTime = DateTime.Now.AddDays(-1);
+            DateTime stTime = DateTime.MinValue;
+            if (!string.IsNullOrWhiteSpace(StartTime))
+            {
+                stTime = DateTime.Parse(StartTime + " 00:00:00");
+            }
+            if (!string.IsNullOrWhiteSpace(EndTime))
+            {
+                edTime = DateTime.Parse(EndTime + " 23:59:59");
+            }
+            
+
+            IEnumerable<RoomBookingDataViewModel> model = from row in db.ZaoCanIn
+                                                          orderby row.Room
+                                                          where row.StartTime >= stTime && row.StartTime<= edTime
+                                                          select new RoomBookingDataViewModel
+                                                          {
+                                                              RoomNumber = row.Room,
+                                                              Adults = row.Num,
+                                                              ArriveTime = row.StartTime,
+                                                              DepartTime = row.EndTime,
+                                                              InTime = row.InTime,
+                                                              VIP = row.Vip,
+                                                              ChineseName = row.ChineseName,
+                                                              GuestName = row.FullName,
+                                                              Package = row.Package,
+                                                              Pax = row.Pax,
+                                                          };
+
+            if (room.HasValue)
+                model = model.Where(m => m.RoomNumber == room);
+
+            if (!string.IsNullOrWhiteSpace(StartTime))
+            {
+                ViewBag.Date = stTime.ToString("yyyy-MM-dd") + "至" + edTime.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                ViewBag.Date = "截至" + edTime.ToString("yyyy-MM-dd");
+            }
+            
+            return View(model);
+        }
+
 
 
 
