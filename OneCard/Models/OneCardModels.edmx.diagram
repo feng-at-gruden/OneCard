@@ -7,12 +7,17 @@
       <Diagram DiagramId="67a50f68433b4210883723c80318ad10" Name="Diagram1">
         <EntityTypeShape EntityType="onecardModel.CardRecord" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="onecardModel.CardRecord_His" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="onecardModel.ExFloor_Record" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="onecardModel.ExFloor_Record24" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="onecardModel.Fitness" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="onecardModel.Fitness24" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="onecardModel.ZaoCanIn" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="onecardModel.ZaoCanIn24" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="onecardModel.ExFloor_Record" Width="1.5" PointX="6.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="onecardModel.ExFloor_Record24" Width="1.5" PointX="4.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="onecardModel.Fitness" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="onecardModel.Fitness24" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="onecardModel.ZaoCanIn" Width="1.5" PointX="2.625" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="onecardModel.ZaoCanIn24" Width="1.5" PointX="0.625" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="onecardModel.Log" Width="1.5" PointX="9.875" PointY="8.375" />
+        <EntityTypeShape EntityType="onecardModel.UserRole" Width="1.5" PointX="5.375" PointY="8.5" />
+        <EntityTypeShape EntityType="onecardModel.User" Width="1.5" PointX="7.625" PointY="8" />
+        <AssociationConnector Association="onecardModel.FK__Log__UserId__164452B1" />
+        <AssociationConnector Association="onecardModel.FK__Users__RoleId__173876EA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

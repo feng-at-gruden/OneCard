@@ -7,6 +7,7 @@ using System.Text;
 using System.IO;
 using System.Data;
 using System.Globalization;
+using OneCard.Filters;
 
 namespace OneCard.Controllers
 {
@@ -17,13 +18,14 @@ namespace OneCard.Controllers
 
         //
         // GET: /Tool
-
+        [OneCardAuth(Roles = "管理员,客房部")]
         public ActionResult Import()
         {
             return View();
         }
 
 
+        [OneCardAuth(Roles = "管理员")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Import(String path)

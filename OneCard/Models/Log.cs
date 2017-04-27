@@ -12,13 +12,13 @@ namespace OneCard.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ExFloor_Record24
+    public partial class Log
     {
-        public int id { get; set; }
-        public Nullable<int> StationID { get; set; }
-        public Nullable<int> Room { get; set; }
-        public Nullable<System.DateTime> StartTime { get; set; }
-        public Nullable<System.DateTime> EndTime { get; set; }
-        public Nullable<System.DateTime> ChkTime { get; set; }
+        public int Id { get; set; }
+        public string Action { get; set; }
+        public System.DateTime ActionTime { get; set; }
+        public Nullable<int> UserId { get; set; }
+    
+        public virtual User Users { get; set; }
     }
 }
