@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using OneCard.Models;
+using OneCard.Filters;
 
 namespace OneCard.Controllers
 {
@@ -26,12 +27,24 @@ namespace OneCard.Controllers
 
         protected User CurrentUser { get {
             FormsIdentity fi = HttpContext.User.Identity as FormsIdentity;
-            string username = "admin";
-            string password = "password";
-            var u = db.Users.FirstOrDefault(m => m.UserName.Equals(username, StringComparison.CurrentCultureIgnoreCase) && m.Password.Equals(password));
+            //var a = OneCardAuthAttribute.GetUser(this.HttpContext);
+            //string username = "admin";
+            //string password = "password";
+            //var u = db.Users.FirstOrDefault(m => m.UserName.Equals(username, StringComparison.CurrentCultureIgnoreCase) && m.Password.Equals(password));
+            var u = db.Users.FirstOrDefault(m => m.UserName.Equals(fi.Name, StringComparison.CurrentCultureIgnoreCase));
             return u;
         } }
-            
+           
+ 
+        protected void Log(string action)
+        {
+            db.Log.Add(new Log
+            {
+                UserId = CurrentUser.Id,
+                Action = action,
+                ActionTime = DateTime.Now
+            });
+        }
 
     }
 }

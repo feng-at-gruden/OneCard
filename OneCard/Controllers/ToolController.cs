@@ -11,6 +11,7 @@ using OneCard.Filters;
 
 namespace OneCard.Controllers
 {
+    [OneCardAuth(Roles = "管理员,客房部")]
     public class ToolController : BaseController
     {
 
@@ -18,18 +19,18 @@ namespace OneCard.Controllers
 
         //
         // GET: /Tool
-        [OneCardAuth(Roles = "管理员,客房部")]
+        
         public ActionResult Import()
         {
             return View();
         }
 
 
-        [OneCardAuth(Roles = "管理员")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Import(String path)
         {
+            Log("导入当天客房数据");
             HttpRequestBase request = this.Request;
             if (request.Files.Count == 1 && string.IsNullOrWhiteSpace(request.Files[0].FileName))
             {
@@ -84,6 +85,9 @@ namespace OneCard.Controllers
                 //Clean temp file
                 FileInfo f = new FileInfo(path);
                 f.Delete();
+
+                //Add log
+                Log("导入当天客房数据");
 
                 ViewBag.SuccessMessage = "数据导入成功！";
                 return View();

@@ -39,19 +39,18 @@ namespace OneCard.Controllers
                 return RedirectToLocal(returnUrl);
             }*/
             var u = db.Users.FirstOrDefault(m => m.UserName.Equals(model.UserName, StringComparison.CurrentCultureIgnoreCase) && m.Password.Equals(model.Password));
-
+            //FormsAuthentication.SignOut();
             if(u!=null){
-                
+                FormsAuthentication.SetAuthCookie(model.UserName, false);
                 FormsAuthentication.RedirectFromLoginPage(u.UserName, false);
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, u.UserName, DateTime.Now,
                 DateTime.Now.AddMinutes(120), false, string.Format("{0}|{1}", u.UserRole.Role.ToString(), u.RealName));
                 string encryptedTicket = FormsAuthentication.Encrypt(ticket);
                 HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-                Response.Cookies.Add(cookie);
-
-                System.Web.HttpContext.Current.User = new OneCardPrincipal(u.UserRole.Role.ToString(), u.RealName, System.Web.HttpContext.Current.User.Identity);
+                Response.Cookies.Add(cookie);                
+                //System.Web.HttpContext.Current.User = new OneCardPrincipal(u.UserRole.Role.ToString(), u.RealName, System.Web.HttpContext.Current.User.Identity);
                 
-                var k = CurrentUser;
+                //var k = CurrentUser;
                 return RedirectToLocal(returnUrl);
             }
 
@@ -66,7 +65,7 @@ namespace OneCard.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            WebSecurity.Logout();
+            FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
         }

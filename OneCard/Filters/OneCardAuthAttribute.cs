@@ -22,7 +22,7 @@ namespace OneCard.Filters
                 return true;
 
             bool isAccess = JudgeAuthorize(httpContext.User.Identity.Name, StrRoles);
-            if (StrRoles.Length > 0 && isAccess) //先判断是否有设用户权限，如果没有不允许访问
+            if (StrRoles.Length > 0 && !isAccess) //先判断是否有设用户权限，如果没有不允许访问
                 return false;
 
 
@@ -49,10 +49,10 @@ namespace OneCard.Filters
             }
         }
 
-
+        /*
         public static OneCardPrincipal GetUser(HttpContextBase httpContext)
         {
-            if (httpContext.Request.IsAuthenticated)
+            //if (httpContext.Request.IsAuthenticated)
             {
                 FormsIdentity fi = httpContext.User.Identity as FormsIdentity;
                 if (fi != null)
@@ -71,7 +71,7 @@ namespace OneCard.Filters
             }
             return null;
         } 
-
+        */
 
     }
 
