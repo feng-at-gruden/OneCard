@@ -26,11 +26,7 @@ namespace OneCard.Controllers
 
 
         protected User CurrentUser { get {
-            FormsIdentity fi = HttpContext.User.Identity as FormsIdentity;
-            //var a = OneCardAuthAttribute.GetUser(this.HttpContext);
-            //string username = "admin";
-            //string password = "password";
-            //var u = db.Users.FirstOrDefault(m => m.UserName.Equals(username, StringComparison.CurrentCultureIgnoreCase) && m.Password.Equals(password));
+            FormsIdentity fi = System.Web.HttpContext.Current.User.Identity as FormsIdentity;
             var u = db.Users.FirstOrDefault(m => m.UserName.Equals(fi.Name, StringComparison.CurrentCultureIgnoreCase));
             return u;
         } }
@@ -44,6 +40,7 @@ namespace OneCard.Controllers
                 Action = action,
                 ActionTime = DateTime.Now
             });
+            db.SaveChanges();
         }
 
     }

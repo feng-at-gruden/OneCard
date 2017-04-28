@@ -187,7 +187,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
-    <Compile Include="Controllers\ToolController.cs" />
+    <Compile Include="Controllers\ToolsController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Filters\OneCardAuthAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -233,6 +233,7 @@
     </Compile>
     <Compile Include="Models\OneCardPrincipal.cs" />
     <Compile Include="Models\RoomBookingDataViewModel.cs" />
+    <Compile Include="Models\FitnessDataViewModel.cs" />
     <Compile Include="Models\RoomCosumptionDataViewModel.cs" />
     <Compile Include="Models\User.cs">
       <DependentUpon>OneCardModels.tt</DependentUpon>
@@ -1206,9 +1207,11 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Report\DailyConsumption.cshtml" />
     <Content Include="Views\Report\ConsumptionHistory.cshtml" />
-    <Content Include="Views\Tool\Import.cshtml" />
+    <Content Include="Views\Tools\Import.cshtml" />
     <Content Include="Views\Report\DailyRoomBooking.cshtml" />
     <Content Include="Views\Report\RoomBookingHistory.cshtml" />
+    <Content Include="Views\Report\DailyFitness.cshtml" />
+    <Content Include="Views\Report\FitnessHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

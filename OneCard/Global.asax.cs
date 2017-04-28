@@ -24,5 +24,16 @@ namespace OneCard
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
         }
+
+
+        protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
+        {
+            var app = (HttpApplication)sender;
+            if (app.User.Identity.IsAuthenticated)
+            {
+                HttpContext.Current.User = OneCard.Models.OneCardPrincipal.GetUser(HttpContext.Current); 
+            }
+        }
+
     }
 }

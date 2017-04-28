@@ -29,7 +29,7 @@
 
         @if (Model == null && string.IsNullOrWhiteSpace(ViewBag.SuccessMessage))
         {            
-            using (Html.BeginForm("Import", "Tool", FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+            using (Html.BeginForm("import", "tools", FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
             {                
                 @Html.AntiForgeryToken()
 
@@ -69,7 +69,7 @@
                 </tbody>
             </table>
             
-            using (Html.BeginForm("Import", "Tool", FormMethod.Post, new { role = "form" }))
+            using (Html.BeginForm("Import", "Tools", FormMethod.Post, new { role = "form" }))
             {
                 @Html.AntiForgeryToken()
                 <div style="margin:auto; text-align:center;">
@@ -87,7 +87,7 @@
                         "ordering": true,
                         "info": false,
                         "searching": false,
-                        "pageLength": 50,
+                        "pageLength": 25,
                     });
                 });
             </script>

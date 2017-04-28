@@ -16,7 +16,7 @@ namespace OneCard.Models
     {
         public int id { get; set; }
         public Nullable<int> StationID { get; set; }
-        public Nullable<int> Room { get; set; }
+        public int Room { get; set; }
         public Nullable<System.DateTime> StartTime { get; set; }
         public Nullable<System.DateTime> EndTime { get; set; }
         public Nullable<System.DateTime> ChkTime { get; set; }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Security.Principal;
 
 namespace OneCard.Models
@@ -30,5 +31,28 @@ namespace OneCard.Models
         {
             return RoleName.IndexOf(role) >= 0;
         }
+
+
+        public static OneCardPrincipal GetUser(HttpContext httpContext)
+        {
+            if (httpContext.Request.IsAuthenticated)
+            {
+                FormsIdentity fi = httpContext.User.Identity as FormsIdentity;
+                if (fi != null)
+                {
+                    string[] userData = fi.Ticket.UserData.Split('|');
+                    if (userData.Length == 2)
+                    {
+                        OneCardPrincipal newPrincipal = new OneCardPrincipal(userData[0],
+                            userData[1],
+                            httpContext.User.Identity);
+                        return newPrincipal;
+                    }
+                    return null;
+                }
+                return null;
+            }
+            return null;
+        } 
     }
 }

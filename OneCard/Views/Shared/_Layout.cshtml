@@ -41,24 +41,79 @@
     <body>
         <header>
             <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("酒店一卡通", "Index", "Home")</p>
+                <div class="float-left" style="margin-bottom:5px;">
+                    <p class="site-title">@Html.ActionLink("酒店一卡通查询系统", "Index", "Home")</p>
                 </div>
-                <div class="float-right">
+                <div class="float-right" style="margin: 20px 15px 0 0;">
                     <section id="login">
                         @Html.Partial("_LoginPartial")
                     </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("客房数据导入", "Import", "Tool")</li>
-                            <li>@Html.ActionLink("当日客房数据", "DailyRoomBooking", "Report")</li>
-                            <li>@Html.ActionLink("历史客房数据", "RoomBookingHistory", "Report")</li>
-                            <li>|</li>
-                            <li>@Html.ActionLink("当日就餐数据", "DailyConsumption", "Report")</li>
-                            <li>@Html.ActionLink("历史就餐数据", "ConsumptionHistory", "Report")</li>
-                        </ul>
-                    </nav>
                 </div>
+                @if (User.Identity.IsAuthenticated) { 
+                    <nav class="navbar navbar-default" role="navigation" style="clear:both;">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <a class="navbar-brand" href="#"></a>
+                            </div>
+                            
+                            <ul class="nav navbar-nav navbar-right">
+                                @if (User.IsInRole("管理员"))
+                                {
+                                    <li><a href="/tools/members" style="padding: 15px 10px !important; margin-left:50px;"><span class="glyphicon glyphicon-user"></span> 用户管理</a></li>
+                                    <li><a href="/tools/log" style="padding: 15px 10px !important;"><span class="glyphicon glyphicon-list-alt"></span> 日志</a></li>
+                                }
+                                <li><a href="/account/logoff" style="padding: 15px 10px !important; margin-right:5px;"><span class="glyphicon glyphicon-log-out"></span> 注销</a></li>
+                            </ul>
+
+                            <div>
+                                <ul class="nav navbar-nav navbar-left">
+                                    @if (User.IsInRole("管理员") || User.IsInRole("前厅部"))
+                                    {
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                前厅部 <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu ">
+                                                <li>@Html.ActionLink("客房数据导入", "import", "tools")</li>
+                                                <li class="divider"></li>
+                                                <li>@Html.ActionLink("当日客房数据", "DailyRoomBooking", "Report")</li>
+                                                <li class="divider"></li>
+                                                <li>@Html.ActionLink("客房历史数据", "RoomBookingHistory", "Report")</li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    @if (User.IsInRole("管理员") || User.IsInRole("餐饮部") || User.IsInRole("财务部"))
+                                    {
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                餐饮部 <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu ">
+                                                <li>@Html.ActionLink("当日就餐数据", "DailyConsumption", "Report")</li>
+                                                <li class="divider"></li>
+                                                <li>@Html.ActionLink("历史就餐数据", "ConsumptionHistory", "Report")</li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    @if (User.IsInRole("管理员") || User.IsInRole("客房部") || User.IsInRole("财务部"))
+                                    {
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                客房部 <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu ">
+                                                <li>@Html.ActionLink("健身中心当日数据", "DailyFitness", "Report")</li>
+                                                <li class="divider"></li>
+                                                <li>@Html.ActionLink("健身中心历史数据", "FitnessHistory", "Report")</li>
+                                            </ul>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                }
+                
             </div>
         </header>
         <div id="body">

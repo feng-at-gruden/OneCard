@@ -322,7 +322,7 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StationID" Type="Int32" />
-          <Property Name="Room" Type="Int32" />
+          <Property Name="Room" Type="Int32" Nullable="false" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="ChkTime" Type="DateTime" Precision="3" />
@@ -333,7 +333,7 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StationID" Type="Int32" />
-          <Property Name="Room" Type="Int32" />
+          <Property Name="Room" Type="Int32" Nullable="false" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="ChkTime" Type="DateTime" Precision="3" />
@@ -344,7 +344,7 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StationID" Type="Int32" />
-          <Property Name="Room" Type="Int32" />
+          <Property Name="Room" Type="Int32" Nullable="false" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="ChkTime" Type="DateTime" Precision="3" />
@@ -355,7 +355,7 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StationID" Type="Int32" />
-          <Property Name="Room" Type="Int32" />
+          <Property Name="Room" Type="Int32" Nullable="false" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="ChkTime" Type="DateTime" Precision="3" />

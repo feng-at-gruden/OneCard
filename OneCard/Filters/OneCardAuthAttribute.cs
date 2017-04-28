@@ -49,29 +49,6 @@ namespace OneCard.Filters
             }
         }
 
-        /*
-        public static OneCardPrincipal GetUser(HttpContextBase httpContext)
-        {
-            //if (httpContext.Request.IsAuthenticated)
-            {
-                FormsIdentity fi = httpContext.User.Identity as FormsIdentity;
-                if (fi != null)
-                {
-                    string[] userData = fi.Ticket.UserData.Split('|');
-                    if (userData.Length == 3)
-                    {
-                        OneCardPrincipal newPrincipal = new OneCardPrincipal(userData[0],
-                            userData[1],
-                            httpContext.User.Identity);
-                        return newPrincipal;
-                    }
-                    return null;
-                }
-                return null;
-            }
-            return null;
-        } 
-        */
 
     }
 

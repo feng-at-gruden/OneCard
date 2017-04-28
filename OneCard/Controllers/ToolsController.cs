@@ -11,8 +11,8 @@ using OneCard.Filters;
 
 namespace OneCard.Controllers
 {
-    [OneCardAuth(Roles = "管理员,客房部")]
-    public class ToolController : BaseController
+    [OneCardAuth(Roles = "管理员,前厅部")]
+    public class ToolsController : BaseController
     {
 
         private const String UploadFolder = "upload";
@@ -30,7 +30,6 @@ namespace OneCard.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Import(String path)
         {
-            Log("导入当天客房数据");
             HttpRequestBase request = this.Request;
             if (request.Files.Count == 1 && string.IsNullOrWhiteSpace(request.Files[0].FileName))
             {

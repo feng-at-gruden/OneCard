@@ -1,7 +1,7 @@
 ﻿@model OneCard.Models.LoginModel
 
 @{
-    ViewBag.Title = "登录";
+    ViewBag.Title = "用户登录";
 }
 
 
@@ -9,49 +9,53 @@
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
-                <h1>@ViewBag.Title  </h1>
-                <h2>Login</h2>
+                
             </hgroup>
         </div>
     </section>
 }
 
+<div class="panel panel-default">
+    <div class="panel-heading">
+        @ViewBag.Title
+    </div>
+    <div class="panel-body">
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @Html.ValidationSummary(true)
+            </div>
+        }
+        @using (Html.BeginForm(new { role = "form", ReturnUrl = ViewBag.ReturnUrl }))
+        {
+            @Html.AntiForgeryToken()
 
-<section id="loginForm">
-@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>“登录”表单</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
-                @Html.ValidationMessageFor(m => m.UserName)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-                @Html.ValidationMessageFor(m => m.Password)
-            </li>
-            <li>
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
-            </li>
-        </ol>
-        <input type="submit" value="登录" />
-    </fieldset>
-    <p>
-        @Html.ActionLink("注册", "Register") 如果你没有帐户。
-    </p>
-}
-</section>
-
-<section class="social" id="socialLoginForm">
-    <h2> </h2>
-    
-</section>
+            <div style="width:600px; margin:auto; text-align:center;">
+                <div class="form-group">
+                    <div class='input-group date'>
+                        <input type='text' class="form-control" name="UserName" placeholder="用户名" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class='input-group date'>
+                        <input type='password' class="form-control" name="Password" placeholder="密码" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-lock"></span>
+                        </span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">登 录</button>
+            </div>
+        }
+    </div>
+    <!-- /.panel-body -->
+    <div class="panel-footer">
+        &nbsp;
+    </div>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

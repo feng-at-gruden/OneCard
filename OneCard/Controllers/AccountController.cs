@@ -47,8 +47,8 @@ namespace OneCard.Controllers
                 DateTime.Now.AddMinutes(120), false, string.Format("{0}|{1}", u.UserRole.Role.ToString(), u.RealName));
                 string encryptedTicket = FormsAuthentication.Encrypt(ticket);
                 HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-                Response.Cookies.Add(cookie);                
-                //System.Web.HttpContext.Current.User = new OneCardPrincipal(u.UserRole.Role.ToString(), u.RealName, System.Web.HttpContext.Current.User.Identity);
+                Response.Cookies.Add(cookie);
+                HttpContext.User = new OneCardPrincipal(u.UserRole.Role.ToString(), u.RealName, HttpContext.User.Identity);
                 
                 //var k = CurrentUser;
                 return RedirectToLocal(returnUrl);
@@ -61,8 +61,6 @@ namespace OneCard.Controllers
         //
         // POST: /Account/LogOff
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
@@ -140,14 +138,12 @@ namespace OneCard.Controllers
 
         public ActionResult Manage(ManageMessageId? message)
         {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "你的密码已更改。"
-                : message == ManageMessageId.SetPasswordSuccess ? "已设置你的密码。"
-                : message == ManageMessageId.RemoveLoginSuccess ? "已删除外部登录。"
-                : "";
-            ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.ReturnUrl = Url.Action("Manage");
-            return View();
+            ChangeUserDetailModel model = new ChangeUserDetailModel
+            { 
+                RealName = CurrentUser.RealName,
+            };
+            return View(model);
         }
 
         //
@@ -155,61 +151,33 @@ namespace OneCard.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Manage(LocalPasswordModel model)
+        public ActionResult Manage(ChangeUserDetailModel model)
         {
-            bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-            ViewBag.HasLocalPassword = hasLocalAccount;
             ViewBag.ReturnUrl = Url.Action("Manage");
-            if (hasLocalAccount)
+            var cu = CurrentUser;
+            if (string.IsNullOrWhiteSpace(model.RealName) ||
+                string.IsNullOrWhiteSpace(model.OldPassword) ||
+                string.IsNullOrWhiteSpace(model.NewPassword) ||
+                string.IsNullOrWhiteSpace(model.ConfirmPassword))
             {
-                if (ModelState.IsValid)
-                {
-                    // 在某些出错情况下，ChangePassword 将引发异常，而不是返回 false。
-                    bool changePasswordSucceeded;
-                    try
-                    {
-                        changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
-                    }
-                    catch (Exception)
-                    {
-                        changePasswordSucceeded = false;
-                    }
-
-                    if (changePasswordSucceeded)
-                    {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "当前密码不正确或新密码无效。");
-                    }
-                }
+                ModelState.AddModelError("", "请输入完整信息。");
+                return View(model);
             }
-            else
+            if(!model.OldPassword.Equals(cu.Password))
             {
-                // 用户没有本地密码，因此将删除由于缺少
-                // OldPassword 字段而导致的所有验证错误
-                ModelState state = ModelState["OldPassword"];
-                if (state != null)
-                {
-                    state.Errors.Clear();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        WebSecurity.CreateAccount(User.Identity.Name, model.NewPassword);
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
-                    }
-                    catch (Exception)
-                    {
-                        ModelState.AddModelError("", String.Format("无法创建本地帐户。可能已存在名为“{0}”的帐户。", User.Identity.Name));
-                    }
-                }
+                ModelState.AddModelError("", "请输入正确的当前密码。");
+                return View(model);
+            }
+            if(!model.NewPassword.Equals(model.ConfirmPassword))
+            {
+                ModelState.AddModelError("", "新密码不一致，请重试。");
+                return View(model);
             }
 
-            // 如果我们进行到这一步时某个地方出错，则重新显示表单
+            CurrentUser.RealName = model.RealName;
+            CurrentUser.Password = model.NewPassword;
+            db.SaveChanges();
+            ViewBag.SuccessMessage = "你的信息已更新";
             return View(model);
         }
 
