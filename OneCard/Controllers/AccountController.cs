@@ -39,7 +39,6 @@ namespace OneCard.Controllers
                 return RedirectToLocal(returnUrl);
             }*/
             var u = db.Users.FirstOrDefault(m => m.UserName.Equals(model.UserName, StringComparison.CurrentCultureIgnoreCase) && m.Password.Equals(model.Password));
-            //FormsAuthentication.SignOut();
             if(u!=null){
                 FormsAuthentication.SetAuthCookie(model.UserName, false);
                 FormsAuthentication.RedirectFromLoginPage(u.UserName, false);
@@ -49,8 +48,8 @@ namespace OneCard.Controllers
                 HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                 Response.Cookies.Add(cookie);
                 HttpContext.User = new OneCardPrincipal(u.UserRole.Role.ToString(), u.RealName, HttpContext.User.Identity);
-                
-                //var k = CurrentUser;
+
+                Log("登录系统", u);
                 return RedirectToLocal(returnUrl);
             }
 
@@ -63,6 +62,7 @@ namespace OneCard.Controllers
 
         public ActionResult LogOff()
         {
+            Log("退出系统");
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
@@ -178,6 +178,8 @@ namespace OneCard.Controllers
             CurrentUser.Password = model.NewPassword;
             db.SaveChanges();
             ViewBag.SuccessMessage = "你的信息已更新";
+
+            Log("修改个人登录密码");
             return View(model);
         }
 

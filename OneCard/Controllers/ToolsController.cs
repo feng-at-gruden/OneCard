@@ -8,6 +8,7 @@ using System.IO;
 using System.Data;
 using System.Globalization;
 using OneCard.Filters;
+using OneCard.Models;
 
 namespace OneCard.Controllers
 {
@@ -17,9 +18,7 @@ namespace OneCard.Controllers
 
         private const String UploadFolder = "upload";
 
-        //
-        // GET: /Tool
-        
+       
         public ActionResult Import()
         {
             return View();
@@ -109,6 +108,21 @@ namespace OneCard.Controllers
             }            
         }
 
+
+        public ActionResult Log()
+        {
+            var model = from row in db.Log
+                        orderby row.ActionTime descending
+                        select new LogViewModel
+                        {
+                            Action = row.Action,
+                            ActionTime = row.ActionTime,
+                            IP = row.IP,
+                            UserClient = row.Client,
+                            User = row.Users.UserName + "(" + row.Users.RealName + ")"
+                        };
+            return View(model);
+        }
 
 
         private bool IsValidaDataFile(string filename)

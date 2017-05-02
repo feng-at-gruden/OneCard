@@ -193,6 +193,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\NetworkHelper.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CardRecord.cs">
       <DependentUpon>OneCardModels.tt</DependentUpon>
@@ -216,6 +217,7 @@
     <Compile Include="Models\Log.cs">
       <DependentUpon>OneCardModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LogViewModel.cs" />
     <Compile Include="Models\OneCardModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1212,6 +1214,7 @@
     <Content Include="Views\Report\RoomBookingHistory.cshtml" />
     <Content Include="Views\Report\DailyFitness.cshtml" />
     <Content Include="Views\Report\FitnessHistory.cshtml" />
+    <Content Include="Views\Tools\Log.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

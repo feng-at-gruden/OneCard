@@ -5,8 +5,8 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="onecardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'onecard.dbo.CardRecord' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“onecard.dbo.CardRecord”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="CardRecord">
           <Key>
             <PropertyRef Name="id" />
@@ -26,8 +26,8 @@ warning 6002: The table/view 'onecard.dbo.CardRecord' does not have a primary ke
           <Property Name="yes" Type="int" />
           <Property Name="no" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'onecard.dbo.CardRecord_His' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“onecard.dbo.CardRecord_His”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="CardRecord_His">
           <Key>
             <PropertyRef Name="id" />
@@ -47,8 +47,8 @@ warning 6002: The table/view 'onecard.dbo.CardRecord_His' does not have a primar
           <Property Name="yes" Type="int" />
           <Property Name="no" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'onecard.dbo.ExFloor_Record' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“onecard.dbo.ExFloor_Record”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="ExFloor_Record">
           <Key>
             <PropertyRef Name="id" />
@@ -60,8 +60,8 @@ warning 6002: The table/view 'onecard.dbo.ExFloor_Record' does not have a primar
           <Property Name="EndTime" Type="datetime" />
           <Property Name="ChkTime" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'onecard.dbo.ExFloor_Record24' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“onecard.dbo.ExFloor_Record24”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="ExFloor_Record24">
           <Key>
             <PropertyRef Name="id" />
@@ -73,8 +73,8 @@ warning 6002: The table/view 'onecard.dbo.ExFloor_Record24' does not have a prim
           <Property Name="EndTime" Type="datetime" />
           <Property Name="ChkTime" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'onecard.dbo.Fitness' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“onecard.dbo.Fitness”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="Fitness">
           <Key>
             <PropertyRef Name="id" />
@@ -86,8 +86,8 @@ warning 6002: The table/view 'onecard.dbo.Fitness' does not have a primary key d
           <Property Name="EndTime" Type="datetime" />
           <Property Name="ChkTime" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'onecard.dbo.Fitness24' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“onecard.dbo.Fitness24”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="Fitness24">
           <Key>
             <PropertyRef Name="id" />
@@ -107,6 +107,8 @@ warning 6002: The table/view 'onecard.dbo.Fitness24' does not have a primary key
           <Property Name="Action" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="ActionTime" Type="datetime" Nullable="false" />
           <Property Name="UserId" Type="int" />
+          <Property Name="IP" Type="varchar" MaxLength="50" />
+          <Property Name="Client" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -322,7 +324,7 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StationID" Type="Int32" />
-          <Property Name="Room" Type="Int32" Nullable="false" />
+          <Property Name="Room" Type="Int32" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="ChkTime" Type="DateTime" Precision="3" />
@@ -333,7 +335,7 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StationID" Type="Int32" />
-          <Property Name="Room" Type="Int32" Nullable="false" />
+          <Property Name="Room" Type="Int32" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="ChkTime" Type="DateTime" Precision="3" />
@@ -365,7 +367,7 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Room" Type="Int32" />
+          <Property Name="Room" Type="Int32" Nullable="false" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="Num" Type="Int32" />
@@ -381,7 +383,7 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Room" Type="Int32" />
+          <Property Name="Room" Type="Int32" Nullable="false" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="Num" Type="Int32" />
@@ -401,28 +403,18 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           <EntitySet Name="Fitness24" EntityType="Self.Fitness24" />
           <EntitySet Name="ZaoCanIn" EntityType="Self.ZaoCanIn" />
           <EntitySet Name="ZaoCanIn24" EntityType="Self.ZaoCanIn24" />
-          <EntitySet Name="Log" EntityType="onecardModel.Log" />
           <EntitySet Name="UserRole" EntityType="onecardModel.UserRole" />
           <EntitySet Name="Users" EntityType="onecardModel.User" />
-          <AssociationSet Name="FK__Log__UserId__164452B1" Association="onecardModel.FK__Log__UserId__164452B1">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Log" EntitySet="Log" />
-          </AssociationSet>
           <AssociationSet Name="FK__Users__RoleId__173876EA" Association="onecardModel.FK__Users__RoleId__173876EA">
             <End Role="UserRole" EntitySet="UserRole" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Log" EntityType="onecardModel.Log" />
+          <AssociationSet Name="FK__Log__UserId__164452B1" Association="onecardModel.FK__Log__UserId__164452B1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Log">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Action" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="ActionTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UserId" Type="Int32" />
-          <NavigationProperty Name="Users" Relationship="onecardModel.FK__Log__UserId__164452B1" FromRole="Log" ToRole="Users" />
-        </EntityType>
         <EntityType Name="UserRole">
           <Key>
             <PropertyRef Name="Id" />
@@ -442,21 +434,9 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           <Property Name="RegisterTime" Type="DateTime" Precision="3" />
           <Property Name="LastLoginTime" Type="DateTime" Precision="3" />
           <Property Name="RealName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Log" Relationship="onecardModel.FK__Log__UserId__164452B1" FromRole="Users" ToRole="Log" />
           <NavigationProperty Name="UserRole" Relationship="onecardModel.FK__Users__RoleId__173876EA" FromRole="Users" ToRole="UserRole" />
+          <NavigationProperty Name="Log" Relationship="onecardModel.FK__Log__UserId__164452B1" FromRole="User" ToRole="Log" />
         </EntityType>
-        <Association Name="FK__Log__UserId__164452B1">
-          <End Type="onecardModel.User" Role="Users" Multiplicity="0..1" />
-          <End Type="onecardModel.Log" Role="Log" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Log">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Users__RoleId__173876EA">
           <End Type="onecardModel.UserRole" Role="UserRole" Multiplicity="0..1" />
           <End Type="onecardModel.User" Role="Users" Multiplicity="*" />
@@ -466,6 +446,30 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
             </Principal>
             <Dependent Role="Users">
               <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Action" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ActionTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Client" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="onecardModel.FK__Log__UserId__164452B1" FromRole="Log" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__Log__UserId__164452B1">
+          <End Type="onecardModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="onecardModel.Log" Role="Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -597,16 +601,6 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Log">
-            <EntityTypeMapping TypeName="onecardModel.Log">
-              <MappingFragment StoreEntitySet="Log">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ActionTime" ColumnName="ActionTime" />
-                <ScalarProperty Name="Action" ColumnName="Action" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UserRole">
             <EntityTypeMapping TypeName="onecardModel.UserRole">
               <MappingFragment StoreEntitySet="UserRole">
@@ -624,6 +618,18 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log">
+            <EntityTypeMapping TypeName="onecardModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ActionTime" ColumnName="ActionTime" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

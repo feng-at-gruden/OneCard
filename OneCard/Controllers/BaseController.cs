@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using OneCard.Models;
 using OneCard.Filters;
+using OneCard.Helpers;
 
 namespace OneCard.Controllers
 {
@@ -32,15 +33,25 @@ namespace OneCard.Controllers
         } }
            
  
-        protected void Log(string action)
+        protected void Log(string action, User u)
         {
+            String ip = NetworkHelper.GetClientIPv4Address();
+            String userClient = Request.Browser.Browser + " " + Request.Browser.Version + " (" + Request.Browser.Platform + ")";
+
             db.Log.Add(new Log
             {
-                UserId = CurrentUser.Id,
+                UserId = u.Id,
                 Action = action,
-                ActionTime = DateTime.Now
+                ActionTime = DateTime.Now,
+                IP = ip,
+                Client = userClient
             });
             db.SaveChanges();
+        }
+
+        protected void Log(string action)
+        {
+            Log(action, CurrentUser);
         }
 
     }
