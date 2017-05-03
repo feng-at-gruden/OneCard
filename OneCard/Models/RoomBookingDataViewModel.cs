@@ -11,13 +11,16 @@ namespace OneCard.Models
         public int? RoomNumber { get; set; }
 
         [Display(Name = "入住时间")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? ArriveTime { get; set; }
 
 
         [Display(Name = "退房时间")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? DepartTime { get; set; }
 
         [Display(Name = "录入时间")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? InTime { get; set; }
 
 
