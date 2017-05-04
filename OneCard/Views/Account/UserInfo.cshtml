@@ -1,0 +1,76 @@
+﻿@model OneCard.Models.UserViewModel
+@{
+    ViewBag.Title = "用户信息";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title  </h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        USER ACCOUNT         
+    </div>
+    <div class="panel-body">
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @Html.ValidationSummary()
+            </div>
+        }
+
+        @if (ViewBag.SuccessMessage != null)
+        {
+            <div class="alert alert-success">
+                @ViewBag.SuccessMessage
+            </div>
+        }
+
+
+        @using (Html.BeginForm("UserInfo", "Account"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m=>m.ID)
+        <div style="width:600px; margin:auto; text-align:center;">
+            <div class="form-group">
+                <div class='input-group date'>
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", disabled = "true" })
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class='input-group date'>
+                    @Html.TextBoxFor(m => m.RealName, new { @class = "form-control", placeholder = "真实姓名", maxlength = 10 })
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class='input-group date'>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", value = Model.Password, placeholder = "当前密码", maxlength = 20 })
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock"></span>
+                    </span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success" onclick="javascript: history.go(-1);">返 回</button>
+
+            <button type="submit" class="btn btn-success">更 新</button>
+        </div>
+
+    }
+
+    </div>
+</div>

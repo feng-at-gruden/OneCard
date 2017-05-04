@@ -50,6 +50,8 @@ namespace OneCard.Controllers
                 HttpContext.User = new OneCardPrincipal(u.UserRole.Role.ToString(), u.RealName, HttpContext.User.Identity);
 
                 Log("登录系统", u);
+                u.LastLoginTime = DateTime.Now;
+                db.SaveChanges();
                 return RedirectToLocal(returnUrl);
             }
 
@@ -182,6 +184,70 @@ namespace OneCard.Controllers
             Log("修改个人登录密码");
             return View(model);
         }
+
+        [OneCardAuth(Roles = "管理员")]
+        public ActionResult UserList()
+        {
+            var model = from row in db.Users
+                        select new UserViewModel
+                        {
+                            ID = row.Id,
+                            UserName = row.UserName,
+                            RealName = row.RealName,
+                            RoleId = row.RoleId.Value,
+                            RoleName = row.UserRole.Role,
+                            Password = row.Password,
+                            LastLoginTime = row.LastLoginTime,
+                            RegisterTime = row.RegisterTime,
+                        };
+            return View(model);
+        }
+
+        [OneCardAuth(Roles = "管理员")]
+        public ActionResult UserInfo(int id)
+        {
+            var row = db.Users.SingleOrDefault(m => m.Id == id);
+            UserViewModel u = new UserViewModel
+                    {
+                        ID = row.Id,
+                        UserName = row.UserName,
+                        RealName = row.RealName,
+                        RoleId = row.RoleId.Value,
+                        RoleName = row.UserRole.Role,
+                        Password = row.Password,
+                        LastLoginTime = row.LastLoginTime,
+                        RegisterTime = row.RegisterTime,
+                    };
+            return View(u);
+        }
+
+        [HttpPost]
+        [OneCardAuth(Roles = "管理员")]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserInfo(UserViewModel model)
+        {
+            //TODO
+            if (ModelState.IsValid)
+            {
+                var u = db.Users.SingleOrDefault(m => m.Id == model.ID);
+                u.RealName = model.RealName;
+                u.Password = model.Password;
+                db.SaveChanges();
+                ViewBag.SuccessMessage = "用户信息已更新！";
+            }            
+            return View(model);
+        }
+
+
+        [HttpPut]
+        [OneCardAuth(Roles = "管理员")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(UserViewModel model)
+        {
+            //TODO            
+            return View(model);
+        }
+
 
         //
         // POST: /Account/ExternalLogin

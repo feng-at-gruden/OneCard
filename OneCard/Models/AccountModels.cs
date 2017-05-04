@@ -36,6 +36,41 @@ namespace OneCard.Models
         public string ExternalLoginData { get; set; }
     }
 
+    public class UserViewModel
+    {
+        [Required(ErrorMessage = "请输入{0}")]
+        [Display(Name = "ID")]
+        public int ID { get; set; }
+
+        [Required(ErrorMessage = "请输入{0}")]
+        [Display(Name = "部门ID")]
+        public int RoleId { get; set; }
+
+        [Required]
+        [Display(Name = "用户名")]
+        public string UserName { get; set; }
+
+        [Required(ErrorMessage = "请输入{0}")]
+        [StringLength(100, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "密码")]
+        public string Password { get; set; }
+
+        [Required(ErrorMessage = "请输入{0}")]
+        [Display(Name = "真实姓名")]
+        public string RealName { get; set; }
+
+        [Required]
+        [Display(Name = "部门")]
+        public string RoleName { get; set; }
+
+        [Display(Name = "注册时间")]
+        public DateTime? RegisterTime { get; set; }
+
+        [Display(Name = "最后登录时间")]
+        public DateTime? LastLoginTime { get; set; }
+    }
+
     public class ChangeUserDetailModel
     {
         [Display(Name = "真实姓名")]
