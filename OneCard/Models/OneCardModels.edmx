@@ -5,8 +5,8 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="onecardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“onecard.dbo.CardRecord”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'onecard.dbo.CardRecord' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="CardRecord">
           <Key>
             <PropertyRef Name="id" />
@@ -26,8 +26,8 @@
           <Property Name="yes" Type="int" />
           <Property Name="no" Type="int" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“onecard.dbo.CardRecord_His”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'onecard.dbo.CardRecord_His' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="CardRecord_His">
           <Key>
             <PropertyRef Name="id" />
@@ -47,8 +47,8 @@
           <Property Name="yes" Type="int" />
           <Property Name="no" Type="int" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“onecard.dbo.ExFloor_Record”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'onecard.dbo.ExFloor_Record' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ExFloor_Record">
           <Key>
             <PropertyRef Name="id" />
@@ -60,8 +60,8 @@
           <Property Name="EndTime" Type="datetime" />
           <Property Name="ChkTime" Type="datetime" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“onecard.dbo.ExFloor_Record24”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'onecard.dbo.ExFloor_Record24' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ExFloor_Record24">
           <Key>
             <PropertyRef Name="id" />
@@ -73,8 +73,8 @@
           <Property Name="EndTime" Type="datetime" />
           <Property Name="ChkTime" Type="datetime" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“onecard.dbo.Fitness”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'onecard.dbo.Fitness' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Fitness">
           <Key>
             <PropertyRef Name="id" />
@@ -86,8 +86,8 @@
           <Property Name="EndTime" Type="datetime" />
           <Property Name="ChkTime" Type="datetime" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“onecard.dbo.Fitness24”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'onecard.dbo.Fitness24' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Fitness24">
           <Key>
             <PropertyRef Name="id" />
@@ -128,6 +128,7 @@
           <Property Name="RegisterTime" Type="datetime" />
           <Property Name="LastLoginTime" Type="datetime" />
           <Property Name="RealName" Type="varchar" MaxLength="255" />
+          <Property Name="Locked" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ZaoCanIn">
           <Key>
@@ -324,7 +325,7 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StationID" Type="Int32" />
-          <Property Name="Room" Type="Int32" />
+          <Property Name="Room" Type="Int32" Nullable="false" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="ChkTime" Type="DateTime" Precision="3" />
@@ -335,7 +336,7 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StationID" Type="Int32" />
-          <Property Name="Room" Type="Int32" />
+          <Property Name="Room" Type="Int32" Nullable="false" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="ChkTime" Type="DateTime" Precision="3" />
@@ -436,6 +437,7 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           <Property Name="RealName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="UserRole" Relationship="onecardModel.FK__Users__RoleId__173876EA" FromRole="Users" ToRole="UserRole" />
           <NavigationProperty Name="Log" Relationship="onecardModel.FK__Log__UserId__164452B1" FromRole="User" ToRole="Log" />
+          <Property Name="Locked" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK__Users__RoleId__173876EA">
           <End Type="onecardModel.UserRole" Role="UserRole" Multiplicity="0..1" />
@@ -612,6 +614,7 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="onecardModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
                 <ScalarProperty Name="RealName" ColumnName="RealName" />
                 <ScalarProperty Name="LastLoginTime" ColumnName="LastLoginTime" />
                 <ScalarProperty Name="RegisterTime" ColumnName="RegisterTime" />

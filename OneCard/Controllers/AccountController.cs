@@ -206,19 +206,7 @@ namespace OneCard.Controllers
         [OneCardAuth(Roles = "管理员")]
         public ActionResult UserInfo(int id)
         {
-            var row = db.Users.SingleOrDefault(m => m.Id == id);
-            UserViewModel u = new UserViewModel
-                    {
-                        ID = row.Id,
-                        UserName = row.UserName,
-                        RealName = row.RealName,
-                        RoleId = row.RoleId.Value,
-                        RoleName = row.UserRole.Role,
-                        Password = row.Password,
-                        LastLoginTime = row.LastLoginTime,
-                        RegisterTime = row.RegisterTime,
-                    };
-            return View(u);
+            return View(getUserInfoViewModel(id));
         }
 
         [HttpPost]
@@ -231,11 +219,13 @@ namespace OneCard.Controllers
             {
                 var u = db.Users.SingleOrDefault(m => m.Id == model.ID);
                 u.RealName = model.RealName;
-                u.Password = model.Password;
+                u.RoleId = model.RoleId;
+                if(!string.IsNullOrWhiteSpace(model.Password))
+                    u.Password = model.Password;
                 db.SaveChanges();
                 ViewBag.SuccessMessage = "用户信息已更新！";
-            }            
-            return View(model);
+            }
+            return View(getUserInfoViewModel(model.ID));
         }
 
 
@@ -452,5 +442,30 @@ namespace OneCard.Controllers
             }
         }
         #endregion
+
+
+        private UserViewModel getUserInfoViewModel(int id)
+        {
+            var row = db.Users.SingleOrDefault(m => m.Id == id);
+            UserViewModel u = new UserViewModel
+                    {
+                        ID = row.Id,
+                        UserName = row.UserName,
+                        RealName = row.RealName,
+                        RoleId = row.RoleId.Value,
+                        RoleName = row.UserRole.Role,
+                        Password = row.Password,
+                        LastLoginTime = row.LastLoginTime,
+                        RegisterTime = row.RegisterTime,
+                        Roles = from r in db.UserRole
+                                select new UserRoleViweModel
+                                {
+                                    ID = r.Id,
+                                    Role = r.Role,
+                                }
+                    };
+            return u;
+        }
+
     }
 }

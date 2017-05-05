@@ -38,15 +38,12 @@ namespace OneCard.Models
 
     public class UserViewModel
     {
-        [Required(ErrorMessage = "请输入{0}")]
         [Display(Name = "ID")]
         public int ID { get; set; }
 
-        [Required(ErrorMessage = "请输入{0}")]
         [Display(Name = "部门ID")]
         public int RoleId { get; set; }
 
-        [Required]
         [Display(Name = "用户名")]
         public string UserName { get; set; }
 
@@ -60,7 +57,6 @@ namespace OneCard.Models
         [Display(Name = "真实姓名")]
         public string RealName { get; set; }
 
-        [Required]
         [Display(Name = "部门")]
         public string RoleName { get; set; }
 
@@ -69,7 +65,19 @@ namespace OneCard.Models
 
         [Display(Name = "最后登录时间")]
         public DateTime? LastLoginTime { get; set; }
+
+        public IEnumerable<UserRoleViweModel> Roles { get; set; }
     }
+
+    public class UserRoleViweModel
+    {
+        public int ID { get; set; }
+
+        public string Role { get; set; }
+
+
+    }
+
 
     public class ChangeUserDetailModel
     {

@@ -36,7 +36,7 @@
 
 
         @using (Html.BeginForm("UserInfo", "Account"))
-    {
+        {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(m=>m.ID)
         <div style="width:600px; margin:auto; text-align:center;">
@@ -44,7 +44,7 @@
                 <div class='input-group date'>
                     @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", disabled = "true" })
                     <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="glyphicon glyphicon-bookmark"></span>
                     </span>
                 </div>
             </div>
@@ -65,12 +65,20 @@
                     </span>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success" onclick="javascript: history.go(-1);">返 回</button>
+            <div class="form-group">
+                <div class='input-group date'>
+                    @Html.DropDownListFor(m=>m.RoleId, new SelectList(Model.Roles, "ID", "Role"), new{ @class = "form-control"})
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-globe"></span>
+                    </span>
+                </div>
+            </div>
+            <a href="~/account/userlist" class="btn btn-success" style="color:white;">返 回</a>
 
             <button type="submit" class="btn btn-success">更 新</button>
         </div>
 
-    }
+        }
 
     </div>
 </div>
