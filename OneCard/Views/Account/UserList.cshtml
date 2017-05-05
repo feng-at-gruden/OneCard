@@ -39,13 +39,17 @@
                     @foreach (OneCard.Models.UserViewModel item in Model)
                     {
                         <tr class="odd">
-                            <td style="text-align: center; font-weight: bold;">@Html.DisplayFor(modelItem => item.ID)</td>
-                            <td style="text-align: left; padding-left:15px;"><a href="/account/userinfo?id=@item.ID">@Html.DisplayFor(modelItem => item.UserName)</a></td>
+                            <td style="text-align: center; font-weight: bold;"><a href="/account/userinfo?id=@item.ID" style="padding:5px;">@Html.DisplayFor(modelItem => item.ID)</a></td>
+                            <td style="text-align: left; padding-left:15px;">@Html.DisplayFor(modelItem => item.UserName)</td>
                             <td style="text-align: left; padding-left: 15px;">@Html.DisplayFor(modelItem => item.RealName)</td>
                             <td style="text-align: left; padding-left: 15px;">@Html.DisplayFor(modelItem => item.RoleName)</td>
                             <td style="text-align: center;">@Html.DisplayFor(modelItem => item.RegisterTime)</td>
                             <td style="text-align: center;">@Html.DisplayFor(modelItem => item.LastLoginTime)</td>
-                            <td style="text-align: center;">删除 锁定</td>
+                            <td style="text-align: center;">
+                                <a href="~/account/userinfo?id=@item.ID" title="编辑" style="padding:5px;"><span class="glyphicon glyphicon-edit">编辑</span></a>
+                                <a href="~/account/lock?id=@item.ID" title="锁定" style="padding:5px;"><span class="glyphicon glyphicon-lock">锁定</span></a>
+                                <a href="~/account/delete?id=@item.ID" title="删除" style="padding:5px;"><span class="glyphicon glyphicon-remove">删除</span></a>
+                            </td>
                         </tr>
                     }
                 </tbody>
