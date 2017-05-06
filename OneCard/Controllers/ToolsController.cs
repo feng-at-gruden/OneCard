@@ -119,7 +119,7 @@ namespace OneCard.Controllers
                             ActionTime = row.ActionTime,
                             IP = row.IP,
                             UserClient = row.Client,
-                            User = row.Users.UserName + "(" + row.Users.RealName + ")"
+                            User = row.Users != null ? row.Users.UserName + "/" + row.Users.RealName + "" : "已删除帐户"
                         };
             return View(model);
         }

@@ -40,6 +40,12 @@ namespace OneCard.Controllers
             }*/
             var u = db.Users.FirstOrDefault(m => m.UserName.Equals(model.UserName, StringComparison.CurrentCultureIgnoreCase) && m.Password.Equals(model.Password));
             if(u!=null){
+                if(u.Locked)
+                {
+                    ModelState.AddModelError("", "您的帐户已被锁定，请与系统管理员联系！");
+                    return View();
+                }
+
                 FormsAuthentication.SetAuthCookie(model.UserName, false);
                 FormsAuthentication.RedirectFromLoginPage(u.UserName, false);
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, u.UserName, DateTime.Now,
@@ -199,6 +205,7 @@ namespace OneCard.Controllers
                             Password = row.Password,
                             LastLoginTime = row.LastLoginTime,
                             RegisterTime = row.RegisterTime,
+                            Locked = row.Locked,
                         };
             return View(model);
         }
@@ -214,7 +221,10 @@ namespace OneCard.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UserInfo(UserViewModel model)
         {
-            //TODO
+            if (string.IsNullOrWhiteSpace(model.RealName))
+                ModelState.AddModelError("", "请输入真实姓名");
+            if (string.IsNullOrWhiteSpace(model.Password))
+                ModelState.AddModelError("", "请输入登录密码");
             if (ModelState.IsValid)
             {
                 var u = db.Users.SingleOrDefault(m => m.Id == model.ID);
@@ -223,21 +233,136 @@ namespace OneCard.Controllers
                 if(!string.IsNullOrWhiteSpace(model.Password))
                     u.Password = model.Password;
                 db.SaveChanges();
+                Log("修改用户信息:" + u.UserName);
                 ViewBag.SuccessMessage = "用户信息已更新！";
             }
             return View(getUserInfoViewModel(model.ID));
         }
 
+        [OneCardAuth(Roles = "管理员")]
+        public ActionResult Create()
+        {
+            var model = new UserViewModel
+            {
+                Roles = from r in db.UserRole
+                        select new UserRoleViweModel
+                        {
+                            ID = r.Id,
+                            Role = r.Role,
+                        }
+            };
+            return View(model);
+        }
 
-        [HttpPut]
+        [HttpPost]
         [OneCardAuth(Roles = "管理员")]
         [ValidateAntiForgeryToken]
         public ActionResult Create(UserViewModel model)
         {
-            //TODO            
+            if (string.IsNullOrWhiteSpace(model.UserName))
+                ModelState.AddModelError("", "请输入登录账号");
+            if (string.IsNullOrWhiteSpace(model.RealName))
+                ModelState.AddModelError("", "请输入真实姓名");
+            if (string.IsNullOrWhiteSpace(model.Password))
+                ModelState.AddModelError("", "请输入登录密码");            
+            if(string.IsNullOrWhiteSpace(model.ConfirmPassword))
+                ModelState.AddModelError("","请输入确认密码");
+            else if (model.ConfirmPassword != model.Password)
+                ModelState.AddModelError("", "两次密码输入不一致");
+            if(model.RoleId<=0)
+                ModelState.AddModelError("", "请选择用户部门");
+
+            if (ModelState.IsValid)
+            {
+                var i = db.Users.Count(m => m.UserName.Equals(model.UserName, StringComparison.OrdinalIgnoreCase));
+                if(i>0)
+                {
+                    ModelState.AddModelError("", "用户名已存在");                    
+                }
+                else
+                {
+                    db.Users.Add(new User
+                    {
+                        UserName = model.UserName,
+                        RealName = model.RealName,
+                        RoleId = model.RoleId,
+                        Password = model.Password,
+                        RegisterTime = DateTime.Now,
+                    });
+                    db.SaveChanges();
+                    ViewBag.SuccessMessage = "添加用户成功！";
+                    Log("添加用户:" + model.UserName);
+                }                 
+            }
+            model.Roles = from r in db.UserRole
+                          select new UserRoleViweModel
+                          {
+                              ID = r.Id,
+                              Role = r.Role,
+                          };
             return View(model);
         }
 
+
+        [HttpPost]
+        [OneCardAuth(Roles = "管理员")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            var u = db.Users.SingleOrDefault(m => m.Id == id);
+            if(u!=null)
+            {
+                db.Users.Remove(u);
+                db.SaveChanges();
+                Log("删除用户:" + u.UserName);
+                ViewBag.SuccessMessage = "删除用户成功！";
+            }
+            else
+            {
+                ModelState.AddModelError("", "找不到指定用户");
+            }
+            return RedirectToAction("UserList");
+        }
+
+        [HttpPost]
+        [OneCardAuth(Roles = "管理员")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Lock(int id)
+        {
+            var u = db.Users.SingleOrDefault(m => m.Id == id);
+            if (u != null)
+            {
+                u.Locked = true;
+                db.SaveChanges();
+                Log("锁定用户:" + u.UserName);
+                ViewBag.SuccessMessage = "锁定用户成功！";
+            }
+            else
+            {
+                ModelState.AddModelError("", "找不到指定用户");
+            }
+            return RedirectToAction("UserList");
+        }
+
+        [HttpPost]
+        [OneCardAuth(Roles = "管理员")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Unlock(int id)
+        {
+            var u = db.Users.SingleOrDefault(m => m.Id == id);
+            if (u != null)
+            {
+                u.Locked = false;
+                db.SaveChanges();
+                Log("解锁用户:" + u.UserName);
+                ViewBag.SuccessMessage = "解锁用户成功！";
+            }
+            else
+            {
+                ModelState.AddModelError("", "找不到指定用户");
+            }
+            return RedirectToAction("UserList");
+        }
 
         //
         // POST: /Account/ExternalLogin

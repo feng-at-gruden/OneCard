@@ -47,13 +47,15 @@ namespace OneCard.Models
         [Display(Name = "用户名")]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "请输入{0}")]
         [StringLength(100, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "密码")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "请输入{0}")]
+        [Display(Name = "确认密码")]
+        [StringLength(100, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 6)]
+        public string ConfirmPassword { get; set; }
+
         [Display(Name = "真实姓名")]
         public string RealName { get; set; }
 
@@ -65,6 +67,8 @@ namespace OneCard.Models
 
         [Display(Name = "最后登录时间")]
         public DateTime? LastLoginTime { get; set; }
+
+        public Boolean Locked {get; set;}
 
         public IEnumerable<UserRoleViweModel> Roles { get; set; }
     }

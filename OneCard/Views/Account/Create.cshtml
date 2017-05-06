@@ -1,0 +1,91 @@
+﻿@model OneCard.Models.UserViewModel
+@{
+    ViewBag.Title = "添加用户";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title  </h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        ADD NEW ACCOUNT
+    </div>
+    <div class="panel-body">
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @Html.ValidationSummary()
+            </div>
+        }
+
+        @if (ViewBag.SuccessMessage != null)
+        {
+            <div class="alert alert-success">
+                @ViewBag.SuccessMessage
+            </div>
+        }
+
+
+        @using (Html.BeginForm("Create", "Account"))
+        {
+            @Html.AntiForgeryToken()
+            <div style="width:600px; margin:auto; text-align:center;">
+                <div class="form-group">
+                    <div class='input-group date'>
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", value = Model.UserName, placeholder = "登录账号", maxlength = 10 })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class='input-group date'>
+                        @Html.TextBoxFor(m => m.RealName, new { @class = "form-control", value = Model.RealName, placeholder = "真实姓名", maxlength = 10 })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class='input-group date'>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", value = Model.Password, placeholder = "登录密码", maxlength = 20 })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-lock"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class='input-group date'>
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", value = Model.ConfirmPassword, placeholder = "确认密码", maxlength = 20 })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-lock"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class='input-group date'>
+                        @Html.DropDownListFor(m => m.RoleId, new SelectList(Model.Roles, "ID", "Role"), new { @class = "form-control" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-globe"></span>
+                        </span>
+                    </div>
+                </div>
+                <a href="~/account/userlist" class="btn btn-success" style="color:white;">返 回</a>
+
+                <button type="submit" class="btn btn-success">保 存</button>
+            </div>
+
+        }
+
+    </div>
+</div>
