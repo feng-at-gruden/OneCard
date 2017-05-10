@@ -193,6 +193,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CSVHelper.cs" />
     <Compile Include="Helpers\NetworkHelper.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CardRecord.cs">

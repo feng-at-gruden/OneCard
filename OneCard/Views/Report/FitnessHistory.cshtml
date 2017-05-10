@@ -95,7 +95,7 @@ else
             FITNESS CENTER HISTORY
         </div>
         <div class="panel-body">
-            <div class="dataTable_wrapper" style=" margin:auto auto;">
+            <div class="dataTable_wrapper" style="width: 720px; margin: auto auto;">
                 <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
                     <span>共<b>@Model.Count()</b>间客房 打卡<b>@total</b>次    日期:<b>@ViewBag.Date</b></span>
                 </div>
@@ -104,7 +104,6 @@ else
                         <tr>
                             <th>房间号</th>
                             <th style="text-align: center;">打卡次数</th>
-                            <th style="text-align: center;">打卡时间</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -113,12 +112,24 @@ else
                             <tr class="odd">
                                 <td style="text-align: left; font-weight: bold; padding-left:20px;">@Html.DisplayFor(modelItem => item.RoomNumber)</td>
                                 <td style="text-align: center; font-weight:bold;">@Html.DisplayFor(modelItem => item.Count)</td>
-                                <td style="text-align: center; ">@Html.DisplayFor(modelItem => item.CheckInTime)</td>
                             </tr>
                         }
                     </tbody>
                 </table>
-
+                @using (Html.BeginForm("FitnessHistory", "Report", FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="StartTime" value="@ViewBag.StartTime" />
+                    <input type="hidden" name="EndTime" value="@ViewBag.EndTime" />
+                    <input type="hidden" name="room" value="@ViewBag.room" />
+                    <input type="hidden" name="exportCSV" value="true" />
+                    <button type="button" class="btn btn-success" onclick="javastript: history.go(-1);" style="float: left; margin-top: -42px; margin-left: 65px;">
+                        返 回
+                    </button>
+                    <button type="submit" class="btn btn-success" style="float: left;margin-top: -42px;">
+                        导 出
+                    </button>
+                }
             </div>
             <!-- /.Table -->
         </div>

@@ -20,7 +20,7 @@
         FITNESS CENTER DAILY REPORT
     </div>
     <div class="panel-body">
-        <div class="dataTable_wrapper" style="width:640px; margin:auto auto;">
+        <div class="dataTable_wrapper" style="margin:auto auto;">
             <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
                 <span>共<b>@Model.Count()</b>间客房 打卡<b>@total</b>次    日期:<b>@ViewBag.Date</b></span>
             </div>
@@ -29,6 +29,7 @@
                     <tr>
                         <th>房间号</th>
                         <th style="text-align: center;">打卡次数</th>
+                        <th style="text-align: center;">打卡时间</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,11 +38,12 @@
                         <tr class="odd">
                             <td style="text-align: left; font-weight: bold; padding-left:20px;">@Html.DisplayFor(modelItem => item.RoomNumber)</td>
                             <td style="text-align: center; color:#ff6a00; font-weight:bold;">@Html.DisplayFor(modelItem => item.Count)</td>
+                            <td style="text-align: center; ">@Html.DisplayFor(modelItem => item.CheckInTime)</td>
                         </tr>
                     }
                 </tbody>
             </table>
-
+            <a href="~/Report/DailyFitness?exportCSV=true" class="btn btn-success" style="float: left;margin-top: -42px; color:white;">导 出</a>
         </div>
         <!-- /.Table -->
     </div>
