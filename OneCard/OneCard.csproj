@@ -214,7 +214,6 @@
     <Compile Include="Models\Fitness24.cs">
       <DependentUpon>OneCardModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HistoryViewModel.cs" />
     <Compile Include="Models\Log.cs">
       <DependentUpon>OneCardModels.tt</DependentUpon>
     </Compile>
@@ -235,9 +234,7 @@
       <DependentUpon>OneCardModels.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\OneCardPrincipal.cs" />
-    <Compile Include="Models\RoomBookingDataViewModel.cs" />
-    <Compile Include="Models\FitnessDataViewModel.cs" />
-    <Compile Include="Models\RoomCosumptionDataViewModel.cs" />
+    <Compile Include="Models\ReportDataViewModels.cs" />
     <Compile Include="Models\User.cs">
       <DependentUpon>OneCardModels.tt</DependentUpon>
     </Compile>
@@ -1219,6 +1216,7 @@
     <Content Include="Views\Account\UserList.cshtml" />
     <Content Include="Views\Account\UserInfo.cshtml" />
     <Content Include="Views\Account\Create.cshtml" />
+    <Content Include="Views\Report\YearlyConsumption.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

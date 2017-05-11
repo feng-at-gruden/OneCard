@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Objects.SqlClient;
 using OneCard.Models;
 using OneCard.Filters;
 using OneCard.Helpers;
@@ -87,6 +88,37 @@ namespace OneCard.Controllers
 
             return View(model);
         }
+
+        [OneCardAuth(Roles = "管理员,餐饮部,财务部")]
+        public ActionResult YearlyConsumption(int? Year, bool exportCSV = false)
+        {
+            int mYear = DateTime.Now.Year;
+
+            if(Year.HasValue)
+                mYear = Year.Value;
+            DateTime st = new DateTime(mYear, 1, 1, 0, 0, 0);
+            DateTime et = new DateTime(mYear, 12, 31, 23, 59, 59);
+            IEnumerable<MonthlyCosumptionViewModel> model = db.CardRecord_His
+                                             .Where(m => m.ChkTime >= st && m.ChkTime <= et)
+                                             .GroupBy(m => m.ChkTime.Value.Month)
+                                             .OrderBy(m=>m.Key)
+                                             .Select(m => new MonthlyCosumptionViewModel {
+                                                 Month = SqlFunctions.StringConvert((double)mYear) + "-" + SqlFunctions.StringConvert((double)m.Key), 
+                                                 Count1 = m.Sum(i => i.time1), 
+                                                 Count2 = m.Sum(i => i.time2), 
+                                                 Count3 = m.Sum(i => i.time3), 
+                                                 Count4 = m.Sum(i => i.time4) 
+                                             });
+            
+            ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy");
+            if (exportCSV)
+            {
+                return File(CSVHelper.ExportCSV(model, new string[] { "月份", "时段1", "时段2", "时段3", "时段4", "当月总计" }), "text/comma-separated-values", ViewBag.Date + "年度就餐汇总.csv");
+            }
+            return View(model);
+        }
+
+
 
 
 
@@ -183,6 +215,8 @@ namespace OneCard.Controllers
 
             return View(model);
         }
+
+
 
 
 
