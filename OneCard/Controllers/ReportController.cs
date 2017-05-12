@@ -90,6 +90,14 @@ namespace OneCard.Controllers
         }
 
         [OneCardAuth(Roles = "管理员,餐饮部,财务部")]
+        public ActionResult YearlyConsumption()
+        {
+            return View();
+        }
+
+        [OneCardAuth(Roles = "管理员,餐饮部,财务部")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult YearlyConsumption(int? Year, bool exportCSV = false)
         {
             int mYear = DateTime.Now.Year;
@@ -103,17 +111,54 @@ namespace OneCard.Controllers
                                              .GroupBy(m => m.ChkTime.Value.Month)
                                              .OrderBy(m=>m.Key)
                                              .Select(m => new MonthlyCosumptionViewModel {
-                                                 Month = SqlFunctions.StringConvert((double)mYear) + "-" + SqlFunctions.StringConvert((double)m.Key), 
+                                                 Month = SqlFunctions.StringConvert((double)m.Key, 2) + "月",  //SqlFunctions.StringConvert((double)mYear, 4) + "-" +
                                                  Count1 = m.Sum(i => i.time1), 
                                                  Count2 = m.Sum(i => i.time2), 
                                                  Count3 = m.Sum(i => i.time3), 
                                                  Count4 = m.Sum(i => i.time4) 
                                              });
-            
-            ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy");
+
+            ViewBag.Year = mYear;
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(model, new string[] { "月份", "时段1", "时段2", "时段3", "时段4", "当月总计" }), "text/comma-separated-values", ViewBag.Date + "年度就餐汇总.csv");
+                return File(CSVHelper.ExportCSV(model, new string[] { "月份", "时段1", "时段2", "时段3", "时段4", "当月总计" }), "text/comma-separated-values", ViewBag.Year + "年度就餐统计.csv");
+            }
+            return View(model);
+        }
+
+        [OneCardAuth(Roles = "管理员,餐饮部,财务部")]
+        public ActionResult MonthlyConsumption()
+        {
+            return View();
+        }
+
+        [OneCardAuth(Roles = "管理员,餐饮部,财务部")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MonthlyConsumption(int Year, int Month, bool exportCSV = false)
+        {
+
+            DateTime st = new DateTime(Year, Month, 1, 0, 0, 0);
+            DateTime et = st.AddMonths(1);
+            IEnumerable<DailyCosumptionViewModel> model = db.CardRecord_His
+                                             .Where(m => m.ChkTime >= st && m.ChkTime < et)
+                                             .GroupBy(m => m.ChkTime.Value.Day)
+                                             .OrderBy(m => m.Key)
+                                             .Select(m => new DailyCosumptionViewModel
+                                             {
+                                                 Day = SqlFunctions.StringConvert((double)m.Key, 2) + "",  //SqlFunctions.StringConvert((double)mYear, 4) + "-" +
+                                                 Count1 = m.Sum(i => i.time1),
+                                                 Count2 = m.Sum(i => i.time2),
+                                                 Count3 = m.Sum(i => i.time3),
+                                                 Count4 = m.Sum(i => i.time4)
+                                             });
+
+            ViewBag.Year = Year;
+            ViewBag.Month = Month;
+
+            if (exportCSV)
+            {
+                return File(CSVHelper.ExportCSV(model, new string[] { "日期", "时段1", "时段2", "时段3", "时段4", "当天总计" }), "text/comma-separated-values", Year + "年" + Month + "月就餐统计.csv");
             }
             return View(model);
         }
