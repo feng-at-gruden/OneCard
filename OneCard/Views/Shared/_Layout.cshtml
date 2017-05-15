@@ -21,6 +21,7 @@
 
         <!-- Charts -->
         @Scripts.Render("~/Content/js/charts/jquery.flot.js") <!-- Flot Main -->
+        @Scripts.Render("~/Content/js/charts/jquery.flot.categories.js")
         @Scripts.Render("~/Content/js/charts/jquery.flot.time.js") <!-- Flot sub -->
         @Scripts.Render("~/Content/js/charts/jquery.flot.animator.min.js") <!-- Flot sub -->
         @Scripts.Render("~/Content/js/charts/jquery.flot.resize.min.js") <!-- Flot sub - for repaint when resizing the screen -->
@@ -93,7 +94,7 @@
                                                 <li class="divider"></li>
                                                 <li>@Html.ActionLink("历史就餐数据", "ConsumptionHistory", "Report")</li>
                                                 <li class="divider"></li>
-                                                <li>@Html.ActionLink("月就餐统计", "MonthlyConsumption", "Report")</li>
+                                                <li>@Html.ActionLink("月度就餐统计", "MonthlyConsumption", "Report")</li>
                                                 <li class="divider"></li>
                                                 <li>@Html.ActionLink("年度就餐统计", "YearlyConsumption", "Report")</li>
                                             </ul>

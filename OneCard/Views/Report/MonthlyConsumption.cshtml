@@ -27,6 +27,7 @@
 
 @if (Model == null)
 {
+    ViewBag.Title = "月度就餐数据统计";
     <div class="panel panel-default">
         <div class="panel-heading">
             MONTHLY CONSUMPTION
@@ -120,10 +121,17 @@ else
             </div>
             <!-- /.Table -->
         </div>
+
         <!-- /.panel-body -->
         <div class="panel-footer">
             &nbsp;
         </div>
+
+        <!-- Bar Chart-->
+        <div class="demo-container" style="height: 400px; width: 800px; margin: auto;">
+            <div id="chart-placeholder" style="height:400px; width:800px;"></div>
+        </div>
+
     </div>
 
     <script>
@@ -138,4 +146,31 @@ else
             });
         });
     </script>
+    
+    <script type="text/javascript">
+	$(function() {
+	    var data = [
+            @foreach( var d in Model)
+            {
+                <text>['@d.Day', @d.Total],</text>
+            }
+	    ];
+
+	    $.plot("#chart-placeholder", [data], {
+	        series: {
+	            bars: {
+	                show: true,
+	                barWidth: 0.6,
+	                align: "center",
+	            }
+	        },
+	        xaxis: {
+	            mode: "categories",
+	            tickLength: 0
+	        },
+	        colors: ["#007ACC"]
+	    });
+
+	});
+	</script>
 }
