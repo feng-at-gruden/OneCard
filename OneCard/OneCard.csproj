@@ -1250,6 +1250,7 @@
     <Content Include="Views\Report\YearlyConsumption.cshtml" />
     <Content Include="Views\Report\MonthlyConsumption.cshtml" />
     <Content Include="Views\Report\DailyConsumptionDetails.cshtml" />
+    <Content Include="Views\Report\DailyConsumptionSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

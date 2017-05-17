@@ -111,7 +111,9 @@ namespace OneCard.Controllers
 
         public ActionResult Log()
         {
+            DateTime et = DateTime.Now.AddMonths(-1);
             var model = from row in db.Log
+                        where row.ActionTime >= et
                         orderby row.ActionTime descending
                         select new LogViewModel
                         {

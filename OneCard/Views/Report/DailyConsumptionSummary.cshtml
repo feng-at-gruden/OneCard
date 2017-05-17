@@ -1,0 +1,103 @@
+﻿@model OneCard.Models.DailyCosumptionSummaryViewModel
+
+@{
+    ViewBag.Title = "当日用餐汇总";
+    int total = Model.Count1.Value + Model.Count2.Value + Model.Count3.Value + Model.Count4.Value;
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title  </h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        DAILY CONSUMPTION
+    </div>
+    <div class="panel-body">
+        <div class="dataTable_wrapper">
+            <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
+                <span>共用餐<b>@total</b>次    日期:<b>@ViewBag.Date</b></span>
+            </div>
+            @Model.Count1 <br/>
+            @Model.Count2 <br />
+            @Model.Count3 <br />
+            @Model.Count4 <br />
+            @Model.ABNCount <br />
+            @Model.FBNCount <br />
+            @Model.YesCount <br />
+            @Model.NoCount <br />
+
+            <!-- Bar Chart-->
+            <div class="demo-container" style="height: 400px; width: 800px; margin: auto;">
+                <div id="chart-placeholder1" style="height:400px; width:800px;"></div>
+            </div>
+
+            <!-- Bar Chart-->
+            <div class="demo-container" style="height: 400px; width: 800px; margin: auto;">
+                <div id="chart-placeholder2" style="height:400px; width:800px;"></div>
+            </div>
+
+            <!-- Bar Chart-->
+            <div class="demo-container" style="height: 400px; width: 800px; margin: auto;">
+                <div id="chart-placeholder3" style="height:400px; width:800px;"></div>
+            </div>
+        </div>
+        <!-- /.Table -->
+    </div>
+    <!-- /.panel-body -->
+    <div class="panel-footer">
+        &nbsp;
+    </div>
+</div>
+
+<script>
+
+    /*
+    var data = [],
+			series = Math.floor(Math.random() * 6) + 3;
+
+    for (var i = 0; i < series; i++) {
+        data[i] = {
+            label: "Series" + (i + 1),
+            data: Math.floor(Math.random() * 100) + 1
+        }
+    }*/
+    var data = [];
+    data[0] = {label: "6:30-7:30", data: @Model.Count1 };
+    data[1] = {label: "7:30-9:00", data: @Model.Count2 };
+    data[2] = {label: "9:00-10:30", data: @Model.Count3 };
+    data[3] = {label: "其他时段", data: @Model.Count4 };
+    
+
+    var placeholder = $("#chart-placeholder1");
+    $.plot(placeholder, data, {
+        series: {
+            pie: {
+                show: true,
+                radius: 3 / 4,
+                label: {
+                    show: true,
+                    radius: 3 / 4,
+                    formatter: labelFormatter,
+                    background: {
+                        opacity: 0.5,
+                        color: "#000"
+                    }
+                }
+            }
+        },
+        legend: {
+            show: false
+        }
+    });
+
+    function labelFormatter(label, series) {
+        return "<div style='font-size:8pt; text-align:center; padding:2px; color:white;'>" + label + "<br/>" + Math.round(series.percent) + "%</div>";
+    }
+</script>

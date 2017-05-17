@@ -37,7 +37,7 @@ namespace OneCard.Models
         public string Package { get; set; }
 
         [Display(Name = "含早")]
-        public bool IncludeBreakfast { get; set; }
+        public string IncludeBreakfast { get; set; }
 
         [Display(Name = "打卡时间")]
         public DateTime? CheckInTime { get; set; }
@@ -104,6 +104,36 @@ namespace OneCard.Models
 
         [Display(Name = "用餐次数")]
         public int Total { get { return (Count1.HasValue ? Count1.Value : 0) + (Count2.HasValue ? Count2.Value : 0) + (Count3.HasValue ? Count3.Value : 0) + (Count4.HasValue ? Count4.Value : 0); } }
+    }
+
+    public class DailyCosumptionSummaryViewModel
+    {        
+        [Display(Name = "时段1")]
+        public int? Count1 { get; set; }
+
+
+        [Display(Name = "时段2")]
+        public int? Count2 { get; set; }
+
+
+        [Display(Name = "时段3")]
+        public int? Count3 { get; set; }
+
+
+        [Display(Name = "时段4")]
+        public int? Count4 { get; set; }
+
+        [Display(Name = "ABN")]
+        public int? ABNCount { get; set; }
+
+        [Display(Name = "FBN")]
+        public int? FBNCount { get; set; }
+
+        [Display(Name = "含早")]
+        public int? YesCount { get; set; }
+
+        [Display(Name = "不含早")]
+        public int? NoCount { get; set; }
     }
 
 

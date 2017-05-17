@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<OneCard.Models.RoomCosumptionDataViewModel>
 
 @{
-    ViewBag.Title = "当日用餐数据汇总";
+    ViewBag.Title = "当日用餐按房间汇总";
     int total = Model.Sum(m=>m.Count);
 }
 

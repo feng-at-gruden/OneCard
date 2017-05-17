@@ -27,10 +27,10 @@ namespace OneCard.Controllers
                                                                  Count2 = row.time2,
                                                                  Count3 = row.time3,
                                                                  Count4 = row.time4,
-                                                                 Package = row.Package1==1? "ABF" : "FBF",
+                                                                 Package = row.Package1==1 ? "ABF" : "FBF",
                                                                  DeviceID = row.StationID,
                                                                  CheckInTime = row.ChkTime,
-                                                                 IncludeBreakfast = row.yes==1?true:false,
+                                                                 IncludeBreakfast = row.yes==1 ? "Yes" : "No",
                                                              };
 
             ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
@@ -45,22 +45,32 @@ namespace OneCard.Controllers
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
         public ActionResult DailyConsumptionSummary(bool exportCSV = false)
         {
-            IEnumerable<RoomCosumptionDataViewModel> model = from row in db.CardRecord
-                                                             group row by new { row.Room } into b
-                                                             orderby b.Key.Room
-                                                             select new RoomCosumptionDataViewModel
-                                                             {
-                                                                 RoomNumber = b.Key.Room,
-                                                                 Count1 = b.Sum(c => c.time1),
-                                                                 Count2 = b.Sum(c => c.time2),
-                                                                 Count3 = b.Sum(c => c.time3),
-                                                                 Count4 = b.Sum(c => c.time4),
-                                                             };
+
+            var count1 = db.CardRecord.Count(m => m.time1==1);
+            var count2 = db.CardRecord.Count(m => m.time2==1);
+            var count3 = db.CardRecord.Count(m => m.time3==1);
+            var count4 = db.CardRecord.Count(m => m.time4==1);
+            var mABNCount = db.CardRecord.Count(m=>m.Package1==1);
+            var mFBNCount = db.CardRecord.Count(m => m.package2 == 1);
+            var mYesCount = db.CardRecord.Count(m => m.yes == 1);
+            var mNoCount = db.CardRecord.Count(m => m.yes != 1);
+
+            var model = new DailyCosumptionSummaryViewModel
+            {
+                Count1 = count1,
+                Count2 = count2,
+                Count3 = count3,
+                Count4 = count4,
+                ABNCount = mABNCount,
+                FBNCount = mFBNCount,
+                YesCount = mYesCount,
+                NoCount = mNoCount,
+            };
 
             ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "时段1", "时段2", "时段3", "时段4", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "用餐记录.csv");
+                return File(CSVHelper.ExportCSV(new List<DailyCosumptionSummaryViewModel> { model }, new string[] { "房间号", "时段1", "时段2", "时段3", "时段4", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "用餐统计.csv");
             }
             return View(model);
         }
@@ -238,7 +248,7 @@ namespace OneCard.Controllers
                                                                 Pax = row.Pax,
                                                              };
 
-            ViewBag.Date = db.ZaoCanIn24.FirstOrDefault().InTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            ViewBag.Date = db.ZaoCanIn24.FirstOrDefault().InTime.Value.ToString("yyyy-MM-dd");
 
             if (exportCSV)
             {
