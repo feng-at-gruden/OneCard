@@ -3,7 +3,7 @@
     <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta charset="utf-8" />
-        <title>@ViewBag.Title - 酒店一卡通查询系统</title>
+        <title>@ViewBag.Title - 中心假日酒店一卡通查询系统</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/site.css")
@@ -58,7 +58,8 @@
                             </div>
                             
                             <ul class="nav navbar-nav navbar-right">
-                                @if (User.IsInRole("管理员"))
+                                @if (User.IsInRole(OneCard.Models.Constants.Roles.ROLE_ADMIN)
+                                    || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_IT))
                                 {
                                     <li><a href="/account/userlist" style="padding: 15px 10px !important; margin-left:50px;"><span class="glyphicon glyphicon-user"></span> 用户管理</a></li>
                                     <li><a href="/tools/log" style="padding: 15px 10px !important;"><span class="glyphicon glyphicon-list-alt"></span> 日志</a></li>
@@ -68,11 +69,13 @@
 
                             <div>
                                 <ul class="nav navbar-nav navbar-left">
-                                    @if (User.IsInRole("管理员") || User.IsInRole("前厅部"))
+                                    @if (User.IsInRole(OneCard.Models.Constants.Roles.ROLE_ADMIN)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_IT)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_LOBBY))
                                     {
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                前厅部 <b class="caret"></b>
+                                                客房数据 <b class="caret"></b>
                                             </a>
                                             <ul class="dropdown-menu ">
                                                 <li>@Html.ActionLink("客房数据导入", "import", "tools")</li>
@@ -83,28 +86,37 @@
                                             </ul>
                                         </li>
                                     }
-                                    @if (User.IsInRole("管理员") || User.IsInRole("餐饮部") || User.IsInRole("财务部"))
+                                    @if (User.IsInRole(OneCard.Models.Constants.Roles.ROLE_ADMIN)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_IT)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_FINANCE)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_DIET))
                                     {
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                餐饮部 <b class="caret"></b>
+                                                餐饮数据 <b class="caret"></b>
                                             </a>
                                             <ul class="dropdown-menu ">
-                                                <li>@Html.ActionLink("当日就餐数据", "DailyConsumption", "Report")</li>
+                                                <li>@Html.ActionLink("当日用餐明细", "DailyConsumptionDetails", "Report")</li>
                                                 <li class="divider"></li>
-                                                <li>@Html.ActionLink("历史就餐数据", "ConsumptionHistory", "Report")</li>
+                                                <li>@Html.ActionLink("当日用餐汇总", "DailyConsumptionSummary", "Report")</li>
                                                 <li class="divider"></li>
-                                                <li>@Html.ActionLink("月度就餐统计", "MonthlyConsumption", "Report")</li>
+                                                <li>@Html.ActionLink("当日按房间汇总", "DailyConsumption", "Report")</li>
                                                 <li class="divider"></li>
-                                                <li>@Html.ActionLink("年度就餐统计", "YearlyConsumption", "Report")</li>
+                                                <li>@Html.ActionLink("历史数据查询", "ConsumptionHistory", "Report")</li>
+                                                <li class="divider"></li>
+                                                <li>@Html.ActionLink("月度用餐统计", "MonthlyConsumption", "Report")</li>
+                                                <li class="divider"></li>
+                                                <li>@Html.ActionLink("年度用餐统计", "YearlyConsumption", "Report")</li>
                                             </ul>
                                         </li>
                                     }
-                                    @if (User.IsInRole("管理员") || User.IsInRole("客房部") || User.IsInRole("财务部"))
+                                    @if (User.IsInRole(OneCard.Models.Constants.Roles.ROLE_ADMIN)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_IT)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_LOBBY))
                                     {
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                客房部 <b class="caret"></b>
+                                                健身中心数据 <b class="caret"></b>
                                             </a>
                                             <ul class="dropdown-menu ">
                                                 <li>@Html.ActionLink("健身中心当日数据", "DailyFitness", "Report")</li>

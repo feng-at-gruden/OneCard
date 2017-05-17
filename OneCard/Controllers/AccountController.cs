@@ -191,7 +191,7 @@ namespace OneCard.Controllers
             return View(model);
         }
 
-        [OneCardAuth(Roles = "管理员")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT)]
         public ActionResult UserList()
         {
             var model = from row in db.Users
@@ -210,14 +210,14 @@ namespace OneCard.Controllers
             return View(model);
         }
 
-        [OneCardAuth(Roles = "管理员")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT)]
         public ActionResult UserInfo(int id)
         {
             return View(getUserInfoViewModel(id));
         }
 
         [HttpPost]
-        [OneCardAuth(Roles = "管理员")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT)]
         [ValidateAntiForgeryToken]
         public ActionResult UserInfo(UserViewModel model)
         {
@@ -255,7 +255,7 @@ namespace OneCard.Controllers
         }
 
         [HttpPost]
-        [OneCardAuth(Roles = "管理员")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT)]
         [ValidateAntiForgeryToken]
         public ActionResult Create(UserViewModel model)
         {
@@ -305,7 +305,7 @@ namespace OneCard.Controllers
 
 
         [HttpPost]
-        [OneCardAuth(Roles = "管理员")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT)]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
@@ -325,7 +325,7 @@ namespace OneCard.Controllers
         }
 
         [HttpPost]
-        [OneCardAuth(Roles = "管理员")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT)]
         [ValidateAntiForgeryToken]
         public ActionResult Lock(int id)
         {
@@ -345,7 +345,7 @@ namespace OneCard.Controllers
         }
 
         [HttpPost]
-        [OneCardAuth(Roles = "管理员")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT)]
         [ValidateAntiForgeryToken]
         public ActionResult Unlock(int id)
         {

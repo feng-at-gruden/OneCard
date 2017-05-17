@@ -202,6 +202,7 @@
     <Compile Include="Models\CardRecord_His.cs">
       <DependentUpon>OneCardModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\ExFloor_Record.cs">
       <DependentUpon>OneCardModels.tt</DependentUpon>
     </Compile>
@@ -1248,6 +1249,7 @@
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\Report\YearlyConsumption.cshtml" />
     <Content Include="Views\Report\MonthlyConsumption.cshtml" />
+    <Content Include="Views\Report\DailyConsumptionDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

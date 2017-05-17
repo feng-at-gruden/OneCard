@@ -15,7 +15,57 @@ namespace OneCard.Controllers
         
 
         //餐饮信息
-        [OneCardAuth(Roles = "管理员,餐饮部,财务部")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
+        public ActionResult DailyConsumptionDetails(bool exportCSV = false)
+        {
+            IEnumerable<RoomCosumptionDataViewModel> model = from row in db.CardRecord
+                                                             orderby row.ChkTime
+                                                             select new RoomCosumptionDataViewModel
+                                                             {
+                                                                 RoomNumber = row.Room,
+                                                                 Count1 = row.time1,
+                                                                 Count2 = row.time2,
+                                                                 Count3 = row.time3,
+                                                                 Count4 = row.time4,
+                                                                 Package = row.Package1==1? "ABF" : "FBF",
+                                                                 DeviceID = row.StationID,
+                                                                 CheckInTime = row.ChkTime,
+                                                                 IncludeBreakfast = row.yes==1?true:false,
+                                                             };
+
+            ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
+            if (exportCSV)
+            {
+                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数", "Package", "含早", "打卡时间", "打卡设备" }), "text/comma-separated-values", ViewBag.Date + "用餐明细记录.csv");
+            }
+            return View(model);
+        }
+
+        //TODO
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
+        public ActionResult DailyConsumptionSummary(bool exportCSV = false)
+        {
+            IEnumerable<RoomCosumptionDataViewModel> model = from row in db.CardRecord
+                                                             group row by new { row.Room } into b
+                                                             orderby b.Key.Room
+                                                             select new RoomCosumptionDataViewModel
+                                                             {
+                                                                 RoomNumber = b.Key.Room,
+                                                                 Count1 = b.Sum(c => c.time1),
+                                                                 Count2 = b.Sum(c => c.time2),
+                                                                 Count3 = b.Sum(c => c.time3),
+                                                                 Count4 = b.Sum(c => c.time4),
+                                                             };
+
+            ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
+            if (exportCSV)
+            {
+                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "时段1", "时段2", "时段3", "时段4", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "用餐记录.csv");
+            }
+            return View(model);
+        }
+
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
         public ActionResult DailyConsumption(bool exportCSV = false)
         {
             IEnumerable<RoomCosumptionDataViewModel> model = from row in db.CardRecord
@@ -33,18 +83,18 @@ namespace OneCard.Controllers
             ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "时段1", "时段2", "时段3", "时段4", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "就餐记录.csv");
+                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "用餐按房间汇总.csv");
             }
             return View(model);
         }
 
-        [OneCardAuth(Roles = "管理员,餐饮部,财务部")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
         public ActionResult ConsumptionHistory()
         {
             return View();
         }
 
-        [OneCardAuth(Roles = "管理员,餐饮部,财务部")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ConsumptionHistory(string StartTime, string EndTime, int? room, bool exportCSV = false)
@@ -78,7 +128,7 @@ namespace OneCard.Controllers
             
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "时段1", "时段2", "时段3", "时段4", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "就餐记录.csv");
+                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "用餐记录.csv");
             }
 
             //Store form values;
@@ -89,13 +139,13 @@ namespace OneCard.Controllers
             return View(model);
         }
 
-        [OneCardAuth(Roles = "管理员,餐饮部,财务部")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
         public ActionResult YearlyConsumption()
         {
             return View();
         }
 
-        [OneCardAuth(Roles = "管理员,餐饮部,财务部")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult YearlyConsumption(int? Year, bool exportCSV = false)
@@ -121,18 +171,18 @@ namespace OneCard.Controllers
             ViewBag.Year = mYear;
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(model, new string[] { "月份", "时段1", "时段2", "时段3", "时段4", "当月总计" }), "text/comma-separated-values", ViewBag.Year + "年度就餐统计.csv");
+                return File(CSVHelper.ExportCSV(model, new string[] { "月份", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "当月总计" }), "text/comma-separated-values", ViewBag.Year + "年度就餐统计.csv");
             }
             return View(model);
         }
 
-        [OneCardAuth(Roles = "管理员,餐饮部,财务部")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
         public ActionResult MonthlyConsumption()
         {
             return View();
         }
 
-        [OneCardAuth(Roles = "管理员,餐饮部,财务部")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult MonthlyConsumption(int Year, int Month, bool exportCSV = false)
@@ -158,17 +208,18 @@ namespace OneCard.Controllers
 
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(model, new string[] { "日期", "时段1", "时段2", "时段3", "时段4", "当天总计" }), "text/comma-separated-values", Year + "年" + Month + "月就餐统计.csv");
+                return File(CSVHelper.ExportCSV(model, new string[] { "日期", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "当天总计" }), "text/comma-separated-values", Year + "年" + Month + "月就餐统计.csv");
             }
             return View(model);
         }
 
+        
 
 
 
 
         //客房信息
-        [OneCardAuth(Roles = "管理员,前厅部")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
         public ActionResult DailyRoomBooking(bool exportCSV = false)
         {
             IEnumerable<RoomBookingDataViewModel> model = from row in db.ZaoCanIn24                                                             
@@ -196,13 +247,13 @@ namespace OneCard.Controllers
             return View(model);
         }
 
-        [OneCardAuth(Roles = "管理员,前厅部")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
         public ActionResult RoomBookingHistory()
         {
             return View();
         }
 
-        [OneCardAuth(Roles = "管理员,前厅部")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult RoomBookingHistory(string StartTime, string EndTime, int? room, bool exportCSV = false)
@@ -265,8 +316,9 @@ namespace OneCard.Controllers
 
 
 
+
         //健身中心
-        [OneCardAuth(Roles = "管理员,客房部")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
         public ActionResult DailyFitness(bool exportCSV = false)
         {
             IEnumerable<FitnessDataViewModel> model = from row in db.Fitness24
@@ -285,13 +337,13 @@ namespace OneCard.Controllers
             return View(model);
         }
 
-        [OneCardAuth(Roles = "管理员,客房部")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
         public ActionResult FitnessHistory()
         {
             return View();
         }
 
-        [OneCardAuth(Roles = "管理员,客房部")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult FitnessHistory(string StartTime, string EndTime, int? room, bool exportCSV = false)

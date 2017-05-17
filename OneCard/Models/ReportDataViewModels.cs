@@ -31,6 +31,19 @@ namespace OneCard.Models
 
         [Display(Name = "用餐次数")]
         public int Count { get { return (Count1.HasValue ? Count1.Value : 0) + (Count2.HasValue ? Count2.Value : 0) + (Count3.HasValue ? Count3.Value : 0) + (Count4.HasValue ? Count4.Value : 0); } }
+
+
+        [Display(Name = "Package")]
+        public string Package { get; set; }
+
+        [Display(Name = "含早")]
+        public bool IncludeBreakfast { get; set; }
+
+        [Display(Name = "打卡时间")]
+        public DateTime? CheckInTime { get; set; }
+
+        [Display(Name = "打卡设备")]
+        public int? DeviceID { get; set; }
     }
 
     public class CosumptionHistoryViewModel

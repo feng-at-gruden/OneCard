@@ -12,7 +12,7 @@ using OneCard.Models;
 
 namespace OneCard.Controllers
 {
-    [OneCardAuth(Roles = "管理员,前厅部")]
+    [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY )]
     public class ToolsController : BaseController
     {
 
