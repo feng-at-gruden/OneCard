@@ -4,7 +4,7 @@
     ViewBag.Title = ViewBag.Year + "年" + ViewBag.Month + "月用餐数据统计";
 
     List<int> years = new List<int>(); ;
-    for (int i = 2016; i <= DateTime.Now.Year; i++)
+    for (int i = DateTime.Now.Year; i >= 2016; i--)
     {
         years.Add(i);
     }
@@ -38,7 +38,7 @@
                 @using (Html.BeginForm("MonthlyConsumption", "Report", FormMethod.Post, new { role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <div style="width:600px; margin:auto; text-align:center;">
+                    <div style="width:400px; margin:auto; text-align:center;">
                         <div class="form-group">
                             <div class='input-group date'>
                                 @Html.DropDownList("Year", new SelectList(years), new { @class = "form-control" })
@@ -85,11 +85,12 @@ else
                     <thead>
                         <tr>
                             <th>日期</th>
-                            <th>6:30 - 7:30</th>
-                            <th>7:30 - 9:00</th>
-                            <th>9:00 - 10:30</th>
-                            <th>其他时段</th>
+                            <th style ="text-align:center;">6:30 - 7:30</th>
+                            <th style="text-align:center;">7:30 - 9:00</th>
+                            <th style="text-align:center;">9:00 - 10:30</th>
+                            <th style="text-align:center;">其他时段</th>
                             <th>当天总计</th>
+                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -102,6 +103,7 @@ else
                                 <td style="text-align: center;">@Html.DisplayFor(modelItem => item.Count3)</td>
                                 <td style="text-align: center;">@Html.DisplayFor(modelItem => item.Count4)</td>
                                 <td style="text-align: center; color:#ff6a00; font-weight:bold;">@Html.DisplayFor(modelItem => item.Total)</td>
+                                <td style="text-align: center;">@Html.ActionLink(" ", "DailyConsumptionSummary", new { year = ViewBag.Year, month = ViewBag.Month, day = item.Day }, new { @class = "glyphicon glyphicon-info-sign" })</td>
                             </tr>
                         }
                     </tbody>
@@ -146,6 +148,7 @@ else
                 "info": false,
                 "searching": false,
                 "pageLength": 50,
+                "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] }] 
             });
         });
     </script>

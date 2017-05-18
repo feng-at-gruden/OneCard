@@ -38,7 +38,7 @@
         @using (Html.BeginForm("Create", "Account"))
         {
             @Html.AntiForgeryToken()
-            <div style="width:600px; margin:auto; text-align:center;">
+            <div style="width:400px; margin:auto; text-align:center;">
                 <div class="form-group">
                     <div class='input-group date'>
                         @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", value = Model.UserName, placeholder = "登录账号", maxlength = 10 })

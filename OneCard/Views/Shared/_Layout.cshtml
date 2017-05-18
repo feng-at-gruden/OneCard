@@ -40,11 +40,14 @@
         @Scripts.Render("~/Content/bower_components/datepicker/bootstrap-datepicker.js")
         @Styles.Render("~/Content/bower_components/datepicker/datepicker.css")
     </head>
+@{
+    var logoUrl = "https://ihg.scene7.com/is/image/ihg/HI_logo_LVP_@2x?fmt=png-alpha";
+}
     <body>
         <header>
             <div class="content-wrapper">
                 <div class="float-left" style="margin-bottom:5px;">
-                    <p class="site-title">@Html.ActionLink("酒店一卡通查询系统", "Index", "Home")</p>
+                    <p class="site-title"><a href="~/"><img src="@logoUrl" style="height:50px;"></a>@Html.ActionLink("酒店一卡通查询系统", "Index", "Home")</p>
                 </div>
                 <div class="float-right" style="margin: 20px 15px 0 0;">
                     <section id="login">
@@ -101,9 +104,9 @@
                                                 <li class="divider"></li>
                                                 <li>@Html.ActionLink("当日用餐汇总", "DailyConsumptionSummary", "Report")</li>
                                                 <li class="divider"></li>
-                                                <li>@Html.ActionLink("当日按房间汇总", "DailyConsumption", "Report")</li>
+                                                <li>@Html.ActionLink("当日房间汇总", "DailyConsumption", "Report")</li>
                                                 <li class="divider"></li>
-                                                <li>@Html.ActionLink("历史数据查询", "ConsumptionHistory", "Report")</li>
+                                                <li>@Html.ActionLink("历史数据明细", "ConsumptionHistory", "Report")</li>
                                                 <li class="divider"></li>
                                                 <li>@Html.ActionLink("月度用餐统计", "MonthlyConsumption", "Report")</li>
                                                 <li class="divider"></li>

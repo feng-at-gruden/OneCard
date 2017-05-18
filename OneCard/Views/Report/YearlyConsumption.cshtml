@@ -4,7 +4,7 @@
     ViewBag.Title = ViewBag.Year + "年度用餐数据统计";
 
     List<int> years = new List<int>(); ;
-    for (int i = 2016; i <= DateTime.Now.Year; i++)
+    for (int i = DateTime.Now.Year; i >= 2016; i--)
     {
         years.Add(i);
     }
@@ -32,7 +32,7 @@
                 @using (Html.BeginForm("YearlyConsumption", "Report", FormMethod.Post, new { role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <div style="width:600px; margin:auto; text-align:center;">
+                    <div style="width:400px; margin:auto; text-align:center;">
                         <div class="form-group">
                             <div class='input-group date'>
                                 @Html.DropDownList("Year", new SelectList(years), new { @class = "form-control" })
@@ -70,10 +70,10 @@ else
                     <thead>
                         <tr>
                             <th>月份</th>
-                            <th>6:30 - 7:30</th>
-                            <th>7:30 - 9:00</th>
-                            <th>9:00 - 10:30</th>
-                            <th>其他时段</th>
+                            <th style="text-align:center;">6:30 - 7:30</th>
+                            <th style="text-align:center;">7:30 - 9:00</th>
+                            <th style="text-align:center;">9:00 - 10:30</th>
+                            <th style="text-align:center;">其他时段</th>
                             <th>当月总计</th>
                         </tr>
                     </thead>
@@ -133,30 +133,37 @@ else
     
     
     <script type="text/javascript">
-	$(function() {
-	    var data = [
-            @foreach( var d in Model)
+        $(function () {
+            var data = [];
+            for (var i = 0; i < 12; i++)
             {
-                <text>['@d.Month', @d.Total],</text>
+                data[i] = [i + 1 + "月", 0];
             }
-	    ];
 
-	    $.plot("#chart-placeholder", [data], {
-	        series: {
-	            bars: {
-	                show: true,
-	                barWidth: 0.6,
-	                align: "center",
-	            }
-	        },
-	        xaxis: {
-	            mode: "categories",
-	            tickLength: 0
-	        },
-	        colors: ["#007ACC"]
+	        
+            @for (int i = 0; i < Model.Count(); i++ )
+            {
+                var item = Model.ToArray()[i];
+                var m = int.Parse(item.Month.Replace("月",""));
+                <text>data[@m - 1] = [@m + "月", @item.Total];  </text>
+            }
+	        
+	        $.plot("#chart-placeholder", [data], {
+	            series: {
+	                bars: {
+	                    show: true,
+	                    barWidth: 0.6,
+	                    align: "center",
+	                }
+	            },
+	            xaxis: {
+	                mode: "categories",
+	                tickLength: 0
+	            },
+	            colors: ["#007ACC"]
+	        });
+
 	    });
-
-	});
 	</script>
     
 }

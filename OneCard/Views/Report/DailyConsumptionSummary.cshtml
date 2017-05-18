@@ -40,7 +40,7 @@
 
             <!-- Bar Chart-->
             <div class="pie-container">
-                <b>按Packge汇总:</b>
+                <b>Package汇总:</b>
                 <div id="chart-placeholder2"></div>
             </div>
 
@@ -141,6 +141,6 @@
 
 
     function labelFormatter(label, series) {
-        return "<div style='font-size:8pt; text-align:center; padding:2px; color:white;'>" + label + "<br/>" + Math.round(series.percent) + "%" + "<br/>" +  series.data[0][1] + "次</div>";
+        return "<div style='font-size:7pt; text-align:center; padding:2px; color:white;'>" + label + "<br/>" + Math.round(series.percent) + "%("  +  series.data[0][1] + "次)</div>";
     }
 </script>
