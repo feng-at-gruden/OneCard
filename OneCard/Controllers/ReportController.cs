@@ -27,7 +27,7 @@ namespace OneCard.Controllers
                                                                  Count2 = row.time2,
                                                                  Count3 = row.time3,
                                                                  Count4 = row.time4,
-                                                                 Package = row.Package1==1 ? "ABF" : "FBF",
+                                                                 Package = row.Package1==1 ? "A-BF" : "F-BF",
                                                                  DeviceID = row.StationID,
                                                                  CheckInTime = row.ChkTime,
                                                                  IncludeBreakfast = row.yes==1 ? "Yes" : "No",
@@ -41,19 +41,43 @@ namespace OneCard.Controllers
             return View(model);
         }
 
-        //TODO
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
-        public ActionResult DailyConsumptionSummary(bool exportCSV = false)
+        public ActionResult DailyConsumptionSummary(int? year, int? month, int? day, bool exportCSV = false)
         {
-
-            var count1 = db.CardRecord.Count(m => m.time1==1);
-            var count2 = db.CardRecord.Count(m => m.time2==1);
-            var count3 = db.CardRecord.Count(m => m.time3==1);
-            var count4 = db.CardRecord.Count(m => m.time4==1);
-            var mABNCount = db.CardRecord.Count(m=>m.Package1==1);
-            var mFBNCount = db.CardRecord.Count(m => m.package2 == 1);
-            var mYesCount = db.CardRecord.Count(m => m.yes == 1);
-            var mNoCount = db.CardRecord.Count(m => m.yes != 1);
+            var count1 = 0;
+            var count2 = 0;
+            var count3 = 0;
+            var count4 = 0;
+            var mABNCount = 0;
+            var mFBNCount = 0;
+            var mYesCount = 0;
+            var mNoCount = 0;
+            if(year.HasValue && month.HasValue && day.HasValue)
+            {
+                DateTime st = new DateTime(year.Value, month.Value, day.Value, 0, 0, 0);
+                DateTime et = new DateTime(year.Value, month.Value, day.Value, 23, 59, 59);
+                count1 = db.CardRecord_His.Count(m => m.time1 == 1 && m.ChkTime>=st && m.ChkTime<=et);
+                count2 = db.CardRecord_His.Count(m => m.time2 == 1 && m.ChkTime >= st && m.ChkTime <= et);
+                count3 = db.CardRecord_His.Count(m => m.time3 == 1 && m.ChkTime >= st && m.ChkTime <= et);
+                count4 = db.CardRecord_His.Count(m => m.time4 == 1 && m.ChkTime >= st && m.ChkTime <= et);
+                mABNCount = db.CardRecord_His.Count(m => m.package1 == 1 && m.ChkTime >= st && m.ChkTime <= et);
+                //mFBNCount = db.CardRecord_His.Count(m => m.package2 == 1 && m.ChkTime >= st && m.ChkTime <= et);
+                mYesCount = db.CardRecord_His.Count(m => m.yes == 1 && m.ChkTime >= st && m.ChkTime <= et);
+                //mNoCount = db.CardRecord_His.Count(m => m.yes != 1 && m.ChkTime >= st && m.ChkTime <= et);
+                ViewBag.Date = st.ToString("yyyy-M-d");
+            }
+            else
+            {
+                count1 = db.CardRecord.Count(m => m.time1 == 1);
+                count2 = db.CardRecord.Count(m => m.time2 == 1);
+                count3 = db.CardRecord.Count(m => m.time3 == 1);
+                count4 = db.CardRecord.Count(m => m.time4 == 1);
+                mABNCount = db.CardRecord.Count(m => m.Package1 == 1);
+                //mFBNCount = db.CardRecord.Count(m => m.package2 == 1);
+                mYesCount = db.CardRecord.Count(m => m.yes == 1);
+                //mNoCount = db.CardRecord.Count(m => m.yes != 1);
+                ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
+            }
 
             var model = new DailyCosumptionSummaryViewModel
             {
@@ -62,15 +86,13 @@ namespace OneCard.Controllers
                 Count3 = count3,
                 Count4 = count4,
                 ABNCount = mABNCount,
-                FBNCount = mFBNCount,
+                //FBNCount = mFBNCount,
                 YesCount = mYesCount,
-                NoCount = mNoCount,
+                //NoCount = mNoCount,
             };
-
-            ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(new List<DailyCosumptionSummaryViewModel> { model }, new string[] { "房间号", "时段1", "时段2", "时段3", "时段4", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "用餐统计.csv");
+                return File(CSVHelper.ExportCSV(new List<DailyCosumptionSummaryViewModel> { model }, new string[] { "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "A-BF", "F-BF", "含早", "不含早", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "用餐汇总.csv");
             }
             return View(model);
         }
@@ -119,15 +141,18 @@ namespace OneCard.Controllers
             DateTime edTime = DateTime.Parse(EndTime + " 23:59:59");
             IEnumerable<RoomCosumptionDataViewModel> model = from row in db.CardRecord_His
                                                    where row.ChkTime >= stTime && row.ChkTime <= edTime
-                                                   group row by new { row.Room } into b
-                                                   orderby b.Key.Room
+                                                   orderby row.ChkTime
                                                    select new RoomCosumptionDataViewModel
                                                    {
-                                                       RoomNumber = b.Key.Room,
-                                                       Count1 = b.Sum(c => c.time1),
-                                                       Count2 = b.Sum(c => c.time2),
-                                                       Count3 = b.Sum(c => c.time3),
-                                                       Count4 = b.Sum(c => c.time4),
+                                                       RoomNumber = row.Room,
+                                                       Count1 = row.time1,
+                                                       Count2 = row.time2,
+                                                       Count3 = row.time3,
+                                                       Count4 = row.time4,
+                                                       Package = row.package1 == 1 ? "A-BF" : "F-BF",
+                                                       DeviceID = row.StationID,
+                                                       CheckInTime = row.ChkTime,
+                                                       IncludeBreakfast = row.yes == 1 ? "Yes" : "No",
                                                    };
             ViewBag.Date = stTime.ToString("yyyy-M-d") + "至" + edTime.ToString("yyyy-M-d");
             if (room.HasValue)
@@ -138,7 +163,11 @@ namespace OneCard.Controllers
             
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "用餐记录.csv");
+                var filename = ViewBag.Date + "用餐详细记录.csv";
+                if (room.HasValue)
+                    filename = ViewBag.Date + " " + room.Value + "房间用餐详细记录.csv";
+
+                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数", "Package", "含早", "打卡时间", "打卡设备" }), "text/comma-separated-values", filename);
             }
 
             //Store form values;
@@ -181,7 +210,7 @@ namespace OneCard.Controllers
             ViewBag.Year = mYear;
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(model, new string[] { "月份", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "当月总计" }), "text/comma-separated-values", ViewBag.Year + "年度就餐统计.csv");
+                return File(CSVHelper.ExportCSV(model, new string[] { "月份", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "当月总计" }), "text/comma-separated-values", ViewBag.Year + "年度用餐统计.csv");
             }
             return View(model);
         }
@@ -218,7 +247,7 @@ namespace OneCard.Controllers
 
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(model, new string[] { "日期", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "当天总计" }), "text/comma-separated-values", Year + "年" + Month + "月就餐统计.csv");
+                return File(CSVHelper.ExportCSV(model, new string[] { "日期", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "当天总计" }), "text/comma-separated-values", Year + "年" + Month + "月用餐统计.csv");
             }
             return View(model);
         }
@@ -407,4 +436,5 @@ namespace OneCard.Controllers
 
 
     }
+
 }

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<OneCard.Models.MonthlyCosumptionViewModel>
 
 @{
-    ViewBag.Title = ViewBag.Year + "年度就餐数据统计";
+    ViewBag.Title = ViewBag.Year + "年度用餐数据统计";
 
     List<int> years = new List<int>(); ;
     for (int i = 2016; i <= DateTime.Now.Year; i++)
@@ -64,7 +64,7 @@ else
         <div class="panel-body">
             <div class="dataTable_wrapper">
                 <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
-                    <span> <b>@ViewBag.Year</b>年度 总计就餐:<b>@total</b>次 </span>
+                    <span> <b>@ViewBag.Year</b>年度 总计用餐:<b>@total</b>次 </span>
                 </div>
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>

@@ -15,7 +15,5 @@ namespace OneCard.Models
             public const string ROLE_LOBBY = "前厅部";
         }
 
-        
-
     }
 }

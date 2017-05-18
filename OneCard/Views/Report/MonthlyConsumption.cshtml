@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<OneCard.Models.DailyCosumptionViewModel>
 
 @{
-    ViewBag.Title = ViewBag.Year + "年" + ViewBag.Month + "月就餐数据统计";
+    ViewBag.Title = ViewBag.Year + "年" + ViewBag.Month + "月用餐数据统计";
 
     List<int> years = new List<int>(); ;
     for (int i = 2016; i <= DateTime.Now.Year; i++)
@@ -27,7 +27,7 @@
 
 @if (Model == null)
 {
-    ViewBag.Title = "月度就餐数据统计";
+    ViewBag.Title = "月度用餐数据统计";
     <div class="panel panel-default">
         <div class="panel-heading">
             MONTHLY CONSUMPTION
@@ -70,6 +70,7 @@
 }
 else
 {
+    int days = DateTime.DaysInMonth((int)ViewBag.Year, (int)ViewBag.Month); 
     int total = Model.Sum(m => m.Total);
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -78,7 +79,7 @@ else
         <div class="panel-body">
             <div class="dataTable_wrapper">
                 <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
-                    <span> <b>@ViewBag.Year</b>年<b>@ViewBag.Month</b>月总计就餐:<b>@total</b>次 </span>
+                    <span> <b>@ViewBag.Year</b>年<b>@ViewBag.Month</b>月总计用餐:<b>@total</b>次 </span>
                 </div>
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
@@ -95,7 +96,7 @@ else
                         @foreach (var item in Model)
                         {
                             <tr class="odd">
-                                <td style="text-align: center; font-weight: bold;">@Html.DisplayFor(modelItem => item.Day)</td>
+                                <td style="text-align: center; font-weight: bold;">@Html.ActionLink(item.Day, "DailyConsumptionSummary", new { year=ViewBag.Year, month=ViewBag.Month, day=item.Day })</td>
                                 <td style="text-align: center;">@Html.DisplayFor(modelItem => item.Count1)</td>
                                 <td style="text-align: center;">@Html.DisplayFor(modelItem => item.Count2)</td>
                                 <td style="text-align: center;">@Html.DisplayFor(modelItem => item.Count3)</td>
@@ -127,11 +128,13 @@ else
             &nbsp;
         </div>
 
+        @if(Model.Count()>0)
+        {
         <!-- Bar Chart-->
         <div class="demo-container" style="height: 400px; width: 800px; margin: auto;">
             <div id="chart-placeholder" style="height:400px; width:800px;"></div>
         </div>
-
+        }
     </div>
 
     <script>
@@ -147,30 +150,40 @@ else
         });
     </script>
     
-    <script type="text/javascript">
-	$(function() {
-	    var data = [
-            @foreach( var d in Model)
-            {
-                <text>['@d.Day', @d.Total],</text>
-            }
-	    ];
+        if(Model.Count()>0)
+        {
+            <script type="text/javascript">
+                function tickFormatter(val, axis) {
+                    return parseInt(val) + "";
+                }
 
-	    $.plot("#chart-placeholder", [data], {
-	        series: {
-	            bars: {
-	                show: true,
-	                barWidth: 0.6,
-	                align: "center",
-	            }
-	        },
-	        xaxis: {
-	            mode: "categories",
-	            tickLength: 0
-	        },
-	        colors: ["#007ACC"]
-	    });
+	            $(function() {
+	                var data = [];
+	                for(var i=1; i < @Model.First().Day; i++)
+	                {
+	                    data.push([i, 0]);
+	                }
 
-	});
-	</script>
+                    @{
+                        foreach(var m in Model)
+                        {
+                            <text>data.push([@m.Day, @m.Total]);</text>
+                        }
+                    }
+
+	                $.plot("#chart-placeholder", [data], {
+	                    xaxis : {
+	                        minTickSize : 1,
+	                        ticks: @days,
+	                        min:1,
+	                        tickFormatter: tickFormatter,
+	                    },
+	                });
+
+	            });
+
+            
+	        </script>
+        }
+    
 }

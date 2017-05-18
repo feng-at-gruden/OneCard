@@ -127,13 +127,16 @@ namespace OneCard.Models
         public int? ABNCount { get; set; }
 
         [Display(Name = "FBN")]
-        public int? FBNCount { get; set; }
+        public int? FBNCount { get { return Total - ABNCount; } }
 
         [Display(Name = "含早")]
         public int? YesCount { get; set; }
 
         [Display(Name = "不含早")]
-        public int? NoCount { get; set; }
+        public int? NoCount { get { return Total - YesCount; } }
+
+        [Display(Name = "用餐总数")]
+        public int Total { get { return (Count1.HasValue ? Count1.Value : 0) + (Count2.HasValue ? Count2.Value : 0) + (Count3.HasValue ? Count3.Value : 0) + (Count4.HasValue ? Count4.Value : 0); } }
     }
 
 

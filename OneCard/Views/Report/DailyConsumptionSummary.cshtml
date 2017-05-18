@@ -1,8 +1,9 @@
 ﻿@model OneCard.Models.DailyCosumptionSummaryViewModel
 
 @{
-    ViewBag.Title = "当日用餐汇总";
+    ViewBag.Title = ViewBag.Date + "日用餐汇总";
     int total = Model.Count1.Value + Model.Count2.Value + Model.Count3.Value + Model.Count4.Value;
+    DateTime date = DateTime.Parse(ViewBag.Date);
 }
 
 @section featured {
@@ -20,33 +21,36 @@
         DAILY CONSUMPTION
     </div>
     <div class="panel-body">
-        <div class="dataTable_wrapper">
-            <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
-                <span>共用餐<b>@total</b>次    日期:<b>@ViewBag.Date</b></span>
+        <div class="chart_wrapper">
+            <div style="text-align: right; float: right; margin: 10px 10px 0 0; display:block;width:100%;">
+                <span>总计用餐<b>@total</b>次    日期:<b>@ViewBag.Date</b></span><br/>
+                <i><small>6:30-7:30 <b>@(Model.Count1)</b>次 
+                     7:30-9:00 <b>@(Model.Count2)</b>次
+                     9:00-10:30 <b>@(Model.Count3)</b>次
+                     其他时段 <b>@(Model.Count4)</b>次</small></i> <br/>
+                <i><small>A-BF: <b>@(Model.ABNCount)</b>次 F-BF: <b>@(Model.FBNCount)</b>次</small></i><br />
+                <i><small>含早: <b>@(Model.YesCount)</b>次 不含早: <b>@(Model.NoCount)</b>次</small></i>
             </div>
-            @Model.Count1 <br/>
-            @Model.Count2 <br />
-            @Model.Count3 <br />
-            @Model.Count4 <br />
-            @Model.ABNCount <br />
-            @Model.FBNCount <br />
-            @Model.YesCount <br />
-            @Model.NoCount <br />
-
+            
             <!-- Bar Chart-->
-            <div class="demo-container" style="height: 400px; width: 800px; margin: auto;">
-                <div id="chart-placeholder1" style="height:400px; width:800px;"></div>
-            </div>
-
-            <!-- Bar Chart-->
-            <div class="demo-container" style="height: 400px; width: 800px; margin: auto;">
-                <div id="chart-placeholder2" style="height:400px; width:800px;"></div>
+            <div class="pie-container">
+                <b>按时段汇总:</b>
+                <div id="chart-placeholder1"></div>
             </div>
 
             <!-- Bar Chart-->
-            <div class="demo-container" style="height: 400px; width: 800px; margin: auto;">
-                <div id="chart-placeholder3" style="height:400px; width:800px;"></div>
+            <div class="pie-container">
+                <b>按Packge汇总:</b>
+                <div id="chart-placeholder2"></div>
             </div>
+
+            <!-- Bar Chart-->
+            <div class="pie-container">
+                <b>含早/不含早:</b>
+                <div id="chart-placeholder3"></div>
+            </div>
+
+            <a href="~/Report/DailyConsumptionSummary?exportCSV=true&year=@date.Year&month=@date.Month&day=@date.Day" class="btn btn-success" style="float: left;margin-top: 20px; color:white;">导 出</a>
         </div>
         <!-- /.Table -->
     </div>
@@ -57,47 +61,86 @@
 </div>
 
 <script>
+    var placeholder1 = $("#chart-placeholder1");
+    var placeholder2 = $("#chart-placeholder2");
+    var placeholder3 = $("#chart-placeholder3");
 
-    /*
-    var data = [],
-			series = Math.floor(Math.random() * 6) + 3;
-
-    for (var i = 0; i < series; i++) {
-        data[i] = {
-            label: "Series" + (i + 1),
-            data: Math.floor(Math.random() * 100) + 1
-        }
-    }*/
-    var data = [];
-    data[0] = {label: "6:30-7:30", data: @Model.Count1 };
-    data[1] = {label: "7:30-9:00", data: @Model.Count2 };
-    data[2] = {label: "9:00-10:30", data: @Model.Count3 };
-    data[3] = {label: "其他时段", data: @Model.Count4 };
-    
-
-    var placeholder = $("#chart-placeholder1");
-    $.plot(placeholder, data, {
+    var data1 = [];
+    data1[0] = {label: "6:30-7:30", data: @Model.Count1 };
+    data1[1] = {label: "7:30-9:00", data: @Model.Count2 };
+    data1[2] = {label: "9:00-10:30", data: @Model.Count3 };
+    data1[3] = {label: "其他时段", data: @Model.Count4 };
+    $.plot(placeholder1, data1, {
         series: {
             pie: {
                 show: true,
                 radius: 3 / 4,
                 label: {
                     show: true,
-                    radius: 3 / 4,
+                    radius: 2 / 4,
                     formatter: labelFormatter,
                     background: {
-                        opacity: 0.5,
+                        opacity: 0.3,
                         color: "#000"
                     }
                 }
             }
         },
         legend: {
-            show: false
+            show: true,
         }
     });
 
+    var data2 = [];
+    data2[0] = {label: "A-BF", data: @Model.ABNCount };
+    data2[1] = {label: "F-BF", data: @Model.FBNCount };
+    $.plot(placeholder2, data2, {
+        series: {
+            pie: {
+                show: true,
+                radius: 3 / 4,
+                label: {
+                    show: true,
+                    radius: 2 / 4,
+                    formatter: labelFormatter,
+                    background: {
+                        opacity: 0.3,
+                        color: "#000"
+                    }
+                }
+            }
+        },
+        legend: {
+            show: true,
+        }
+    });
+
+    var data3 = [];
+    data3[0] = {label: "含早", data: @Model.YesCount };
+    data3[1] = {label: "不含早", data: @Model.NoCount };
+    $.plot(placeholder3, data3, {
+        series: {
+            pie: {
+                show: true,
+                radius: 3 / 4,
+                label: {
+                    show: true,
+                    radius: 2 / 4,
+                    formatter: labelFormatter,
+                    background: {
+                        opacity: 0.3,
+                        color: "#000"
+                    }
+                }
+            }
+        },
+        legend: {
+            show: true,
+        }
+    });
+
+
     function labelFormatter(label, series) {
-        return "<div style='font-size:8pt; text-align:center; padding:2px; color:white;'>" + label + "<br/>" + Math.round(series.percent) + "%</div>";
+        return "<div style='font-size:8pt; text-align:center; padding:2px; color:white;'>" + label + "<br/>" + Math.round(series.percent) + "%" + "<br/>" +  series.data[0][1] + "次</div>";
     }
 </script>

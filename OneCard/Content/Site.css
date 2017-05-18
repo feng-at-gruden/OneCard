@@ -765,3 +765,30 @@ tr.pager td {
     color: #999;
     font-style: italic;
 }
+
+
+.pie-container{
+    float:left;
+    width:280px;
+    height:260px;
+    border:1px solid #ccc; 
+    text-align:center;
+    margin:20px 12px;
+}
+#chart-placeholder1,
+#chart-placeholder2,
+#chart-placeholder3
+{
+    width:280px;
+    height:260px;
+    margin:auto;
+}
+
+.pie-container .legend  table,
+.pie-container .legend td {
+    border: none;
+    font-size:0.7em;
+    padding:1px;
+    text-align:left;
+    margin-top:-10px;
+}
