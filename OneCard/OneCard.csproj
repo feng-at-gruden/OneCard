@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -116,17 +117,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.30506.0\lib\net40\WebMatrix.Data.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.30506.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
-    </Reference>
-    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.30506.0\lib\net40\WebMatrix.WebData.dll</HintPath>
     </Reference>
     <Reference Include="DotNetOpenAuth.AspNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -188,7 +181,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ToolsController.cs" />
-    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Filters\OneCardAuthAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -481,12 +473,15 @@
     <Content Include="Content\bower_components\datepicker\datepicker.css" />
     <Content Include="Content\bower_components\datetimepicker\build\jquery.datetimepicker.full.js" />
     <Content Include="Content\bower_components\datetimepicker\build\jquery.datetimepicker.full.min.js" />
+    <Content Include="Content\bower_components\datetimepicker\build\jquery.datetimepicker.min.css" />
     <Content Include="Content\bower_components\datetimepicker\build\jquery.datetimepicker.min.js" />
     <Content Include="Content\bower_components\datetimepicker\index.html" />
     <Content Include="Content\bower_components\datetimepicker\jquery.datetimepicker.css" />
     <Content Include="Content\bower_components\datetimepicker\jquery.datetimepicker.js" />
     <Content Include="Content\bower_components\datetimepicker\jquery.datetimepicker.min.js" />
     <Content Include="Content\bower_components\datetimepicker\jquery.js" />
+    <Content Include="Content\bower_components\datetimepicker\tests\input_in_container_fixed_to_bottom_of_viewport.html" />
+    <Content Include="Content\bower_components\datetimepicker\tests\input_in_container_fixed_to_top_of_viewport.html" />
     <Content Include="Content\bower_components\flot.tooltip\js\excanvas.min.js" />
     <Content Include="Content\bower_components\flot.tooltip\js\jquery.flot.js" />
     <Content Include="Content\bower_components\flot.tooltip\js\jquery.flot.tooltip.js" />
@@ -1181,6 +1176,9 @@
     <Content Include="Content\bower_components\morrisjs\spec\viz\run.sh" />
     <Content Include="Content\bower_components\raphael\.bower.json" />
     <Content Include="Content\bower_components\raphael\bower.json" />
+    <Content Include="Content\bower_components\datetimepicker\bower.json" />
+    <Content Include="Content\bower_components\datetimepicker\datetimepicker.jquery.json" />
+    <Content Include="Content\bower_components\datetimepicker\package.json" />
     <None Include="Properties\PublishProfiles\UAT-1.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

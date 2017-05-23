@@ -106,7 +106,7 @@ h5 a:link, h5 a:visited, h5 a:active {
 
     .main-content {
         background: url("../Images/accent.png") no-repeat;
-        padding-left: 10px;
+        padding-left: 0px;
         padding-top: 30px;
     }
 

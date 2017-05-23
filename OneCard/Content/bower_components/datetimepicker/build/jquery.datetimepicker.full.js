@@ -1,8 +1,10 @@
 /*!
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2015
- * @version 1.3.3
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2017
+ * @version 1.3.4
  *
  * Date formatter utility library that allows formatting date/time variables or Date objects using PHP DateTime format.
+ * This library is a standalone javascript library and does not depend on other libraries or plugins like jQuery.
+ * 
  * @see http://php.net/manual/en/function.date.php
  *
  * For more JQuery plugins visit http://plugins.krajee.com
@@ -12,15 +14,16 @@ var DateFormatter;
 (function () {
     "use strict";
 
-    var _compare, _lpad, _extend, defaultSettings, DAY, HOUR;
+    var _compare, _lpad, _extend, _indexOf, defaultSettings, DAY, HOUR;
     DAY = 1000 * 60 * 60 * 24;
     HOUR = 3600;
 
     _compare = function (str1, str2) {
         return typeof(str1) === 'string' && typeof(str2) === 'string' && str1.toLowerCase() === str2.toLowerCase();
     };
-    _lpad = function (value, length, char) {
-        var chr = char || '0', val = value.toString();
+    _lpad = function (value, length, chr) {
+        var val = value.toString();
+        chr = chr || '0';
         return val.length < length ? _lpad(chr + val, length) : val;
     };
     _extend = function (out) {
@@ -42,6 +45,14 @@ var DateFormatter;
             }
         }
         return out;
+    };
+    _indexOf = function (val, arr) {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].toLowerCase() === val.toLowerCase()) {
+                return i;
+            }
+        }
+        return -1;
     };
     defaultSettings = {
         dateSettings: {
@@ -77,25 +88,35 @@ var DateFormatter;
 
     DateFormatter.prototype = {
         constructor: DateFormatter,
+        getMonth: function (val) {
+            var self = this, i;
+            i = _indexOf(val, self.dateSettings.monthsShort) + 1;
+            if (i === 0) {
+                i = _indexOf(val, self.dateSettings.months) + 1;
+            }
+            return i;
+        },
         parseDate: function (vDate, vFormat) {
             var self = this, vFormatParts, vDateParts, i, vDateFlag = false, vTimeFlag = false, vDatePart, iDatePart,
                 vSettings = self.dateSettings, vMonth, vMeriIndex, vMeriOffset, len, mer,
                 out = {date: null, year: null, month: null, day: null, hour: 0, min: 0, sec: 0};
             if (!vDate) {
-                return undefined;
+                return null;
             }
             if (vDate instanceof Date) {
                 return vDate;
-            }
-            if (typeof vDate === 'number') {
-                return new Date(vDate);
             }
             if (vFormat === 'U') {
                 i = parseInt(vDate);
                 return i ? new Date(i * 1000) : vDate;
             }
-            if (typeof vDate !== 'string') {
-                return '';
+            switch (typeof vDate) {
+                case 'number':
+                    return new Date(vDate);
+                case 'string':
+                    break;
+                default:
+                    return null;
             }
             vFormatParts = vFormat.match(self.validParts);
             if (!vFormatParts || vFormatParts.length === 0) {
@@ -108,11 +129,11 @@ var DateFormatter;
                 switch (vFormatParts[i]) {
                     case 'y':
                     case 'Y':
-                        len = vDatePart.length;
-                        if (len === 2) {
-                            out.year = parseInt((iDatePart < 70 ? '20' : '19') + vDatePart);
-                        } else if (len === 4) {
-                            out.year = iDatePart;
+                        if (iDatePart) {
+                            len = vDatePart.length;
+                            out.year = len === 2 ? parseInt((iDatePart < 70 ? '20' : '19') + vDatePart) : iDatePart;
+                        } else {
+                            return null;
                         }
                         vDateFlag = true;
                         break;
@@ -120,18 +141,18 @@ var DateFormatter;
                     case 'n':
                     case 'M':
                     case 'F':
-                        if (isNaN(vDatePart)) {
-                            vMonth = vSettings.monthsShort.indexOf(vDatePart);
-                            if (vMonth > -1) {
-                                out.month = vMonth + 1;
-                            }
-                            vMonth = vSettings.months.indexOf(vDatePart);
-                            if (vMonth > -1) {
-                                out.month = vMonth + 1;
+                        if (isNaN(iDatePart)) {
+                            vMonth = self.getMonth(vDatePart);
+                            if (vMonth > 0) {
+                                out.month = vMonth;
+                            } else {
+                                return null;
                             }
                         } else {
                             if (iDatePart >= 1 && iDatePart <= 12) {
                                 out.month = iDatePart;
+                            } else {
+                                return null;
                             }
                         }
                         vDateFlag = true;
@@ -140,6 +161,8 @@ var DateFormatter;
                     case 'j':
                         if (iDatePart >= 1 && iDatePart <= 31) {
                             out.day = iDatePart;
+                        } else {
+                            return null;
                         }
                         vDateFlag = true;
                         break;
@@ -148,16 +171,22 @@ var DateFormatter;
                         vMeriIndex = (vFormatParts.indexOf('a') > -1) ? vFormatParts.indexOf('a') :
                             (vFormatParts.indexOf('A') > -1) ? vFormatParts.indexOf('A') : -1;
                         mer = vDateParts[vMeriIndex];
-                        if (vMeriIndex > -1) {
+                        if (vMeriIndex !== -1) {
                             vMeriOffset = _compare(mer, vSettings.meridiem[0]) ? 0 :
                                 (_compare(mer, vSettings.meridiem[1]) ? 12 : -1);
-                            if (iDatePart >= 1 && iDatePart <= 12 && vMeriOffset > -1) {
-                                out.hour = iDatePart + vMeriOffset - 1;
-                            } else if (iDatePart >= 0 && iDatePart <= 23) {
-                                out.hour = iDatePart;
+                            if (iDatePart >= 1 && iDatePart <= 12 && vMeriOffset !== -1) {
+                                out.hour = iDatePart % 12 === 0 ? vMeriOffset : iDatePart + vMeriOffset;
+                            } else {
+                                if (iDatePart >= 0 && iDatePart <= 23) {
+                                    out.hour = iDatePart;
+                                }
                             }
-                        } else if (iDatePart >= 0 && iDatePart <= 23) {
-                            out.hour = iDatePart;
+                        } else {
+                            if (iDatePart >= 0 && iDatePart <= 23) {
+                                out.hour = iDatePart;
+                            } else {
+                                return null;
+                            }
                         }
                         vTimeFlag = true;
                         break;
@@ -165,18 +194,24 @@ var DateFormatter;
                     case 'H':
                         if (iDatePart >= 0 && iDatePart <= 23) {
                             out.hour = iDatePart;
+                        } else {
+                            return null;
                         }
                         vTimeFlag = true;
                         break;
                     case 'i':
                         if (iDatePart >= 0 && iDatePart <= 59) {
                             out.min = iDatePart;
+                        } else {
+                            return null;
                         }
                         vTimeFlag = true;
                         break;
                     case 's':
                         if (iDatePart >= 0 && iDatePart <= 59) {
                             out.sec = iDatePart;
+                        } else {
+                            return null;
                         }
                         vTimeFlag = true;
                         break;
@@ -186,7 +221,7 @@ var DateFormatter;
                 out.date = new Date(out.year, out.month - 1, out.day, out.hour, out.min, out.sec, 0);
             } else {
                 if (vTimeFlag !== true) {
-                    return false;
+                    return null;
                 }
                 out.date = new Date(0, 0, 0, out.hour, out.min, out.sec, 0);
             }
@@ -196,8 +231,8 @@ var DateFormatter;
             if (typeof vDateStr !== 'string') {
                 return vDateStr;
             }
-            var self = this, vParts = vDateStr.replace(self.separators, '\0').split('\0'), vPattern = /^[djmn]/g,
-                vFormatParts = vFormat.match(self.validParts), vDate = new Date(), vDigit = 0, vYear, i, iPart, iSec;
+            var self = this, vParts = vDateStr.replace(self.separators, '\0').split('\0'), vPattern = /^[djmn]/g, len,
+                vFormatParts = vFormat.match(self.validParts), vDate = new Date(), vDigit = 0, vYear, i, n, iPart, iSec;
 
             if (!vPattern.test(vFormatParts[0])) {
                 return vDateStr;
@@ -207,6 +242,9 @@ var DateFormatter;
                 vDigit = 2;
                 iPart = vParts[i];
                 iSec = parseInt(iPart.substr(0, 2));
+                if (isNaN(iSec)) {
+                    return null;
+                }
                 switch (i) {
                     case 0:
                         if (vFormatParts[0] === 'm' || vFormatParts[0] === 'n') {
@@ -224,13 +262,13 @@ var DateFormatter;
                         break;
                     case 2:
                         vYear = vDate.getFullYear();
-                        if (iPart.length < 4) {
-                            vDate.setFullYear(parseInt(vYear.toString().substr(0, 4 - iPart.length) + iPart));
-                            vDigit = iPart.length;
-                        } else {
-                            vDate.setFullYear = parseInt(iPart.substr(0, 4));
-                            vDigit = 4;
+                        len = iPart.length;
+                        vDigit = len < 4 ? len : 4;
+                        vYear = parseInt(len < 4 ? vYear.toString().substr(0, 4 - len) + iPart : iPart.substr(0, 4));
+                        if (!vYear) {
+                            return null;
                         }
+                        vDate.setFullYear(vYear);
                         break;
                     case 3:
                         vDate.setHours(iSec);
@@ -242,14 +280,15 @@ var DateFormatter;
                         vDate.setSeconds(iSec);
                         break;
                 }
-                if (iPart.substr(vDigit).length > 0) {
-                    vParts.splice(i + 1, 0, iPart.substr(vDigit));
+                n = iPart.substr(vDigit);
+                if (n.length > 0) {
+                    vParts.splice(i + 1, 0, n);
                 }
             }
             return vDate;
         },
         parseFormat: function (vChar, vDate) {
-            var self = this, vSettings = self.dateSettings, fmt, backspace = /\\?(.?)/gi, doFormat = function (t, s) {
+            var self = this, vSettings = self.dateSettings, fmt, backslash = /\\?(.?)/gi, doFormat = function (t, s) {
                 return fmt[t] ? fmt[t]() : s;
             };
             fmt = {
@@ -480,14 +519,6 @@ var DateFormatter;
                     return str || 'Coordinated Universal Time';
                 },
                 /**
-                 * Timezone abbreviation: `e.g. EST, MDT, ...`
-                 * @return {string}
-                 */
-                T: function () {
-                    var str = (String(vDate).match(self.tzParts) || [""]).pop().replace(self.tzClip, "");
-                    return str || 'UTC';
-                },
-                /**
                  * DST observed? `0 or 1`
                  * @return {number}
                  */
@@ -513,6 +544,14 @@ var DateFormatter;
                     return (O.substr(0, 3) + ':' + O.substr(3, 2));
                 },
                 /**
+                 * Timezone abbreviation: `e.g. EST, MDT, ...`
+                 * @return {string}
+                 */
+                T: function () {
+                    var str = (String(vDate).match(self.tzParts) || [""]).pop().replace(self.tzClip, "");
+                    return str || 'UTC';
+                },
+                /**
                  * Timezone offset in seconds: `-43200...50400`
                  * @return {number}
                  */
@@ -528,14 +567,14 @@ var DateFormatter;
                  * @return {string}
                  */
                 c: function () {
-                    return 'Y-m-d\\TH:i:sP'.replace(backspace, doFormat);
+                    return 'Y-m-d\\TH:i:sP'.replace(backslash, doFormat);
                 },
                 /**
                  * RFC 2822 date
                  * @return {string}
                  */
                 r: function () {
-                    return 'D, d M Y H:i:s O'.replace(backspace, doFormat);
+                    return 'D, d M Y H:i:s O'.replace(backslash, doFormat);
                 },
                 /**
                  * Seconds since UNIX epoch
@@ -548,23 +587,27 @@ var DateFormatter;
             return doFormat(vChar, vChar);
         },
         formatDate: function (vDate, vFormat) {
-            var self = this, i, n, len, str, vChar, vDateStr = '';
+            var self = this, i, n, len, str, vChar, vDateStr = '', BACKSLASH = '\\';
             if (typeof vDate === 'string') {
                 vDate = self.parseDate(vDate, vFormat);
-                if (vDate === false) {
-                    return false;
+                if (!vDate) {
+                    return null;
                 }
             }
             if (vDate instanceof Date) {
                 len = vFormat.length;
                 for (i = 0; i < len; i++) {
                     vChar = vFormat.charAt(i);
-                    if (vChar === 'S') {
+                    if (vChar === 'S' || vChar === BACKSLASH) {
+                        continue;
+                    }
+                    if (i > 0 && vFormat.charAt(i - 1) === BACKSLASH) {
+                        vDateStr += vChar;
                         continue;
                     }
                     str = self.parseFormat(vChar, vDate);
                     if (i !== (len - 1) && self.intParts.test(vChar) && vFormat.charAt(i + 1) === 'S') {
-                        n = parseInt(str);
+                        n = parseInt(str) || 0;
                         str += self.dateSettings.ordinal(n);
                     }
                     vDateStr += str;
@@ -574,8 +617,9 @@ var DateFormatter;
             return '';
         }
     };
-})();/**
- * @preserve jQuery DateTimePicker plugin v2.5.3
+})();
+/**
+ * @preserve jQuery DateTimePicker plugin v2.5.4
  * @homepage http://xdsoft.net/jqplugins/datetimepicker/
  * @author Chupurnov Valeriy (<chupurnov@gmail.com>)
  */
@@ -773,6 +817,13 @@ var DateFormatter;
 					"Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"
 				]
 			},
+			km: { // Khmer
+    		months: [
+    			"មករា​", "កុម្ភៈ", "មិនា​", "មេសា​", "ឧសភា​", "មិថុនា​", "កក្កដា​", "សីហា​", "កញ្ញា​", "តុលា​", "វិច្ឋិកា​", "ធ្នូ​"
+    		],
+    		dayOfWeekShort: ["អាទិ​", "ចន្ទ​", "អង្គារ​", "ពុធ​", "ព្រហ​​", "សុក្រ​", "សៅរ៍"],
+    		dayOfWeek: ["អាទិត្យ​", "ចន្ទ​", "អង្គារ​", "ពុធ​", "ព្រហស្បតិ៍​", "សុក្រ​", "សៅរ៍"]
+    	},
 			kr: { // Korean
 				months: [
 					"1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"
@@ -1099,8 +1150,12 @@ var DateFormatter;
 					"კვ", "ორშ", "სამშ", "ოთხ", "ხუთ", "პარ", "შაბ"
 				],
 				dayOfWeek: ["კვირა", "ორშაბათი", "სამშაბათი", "ოთხშაბათი", "ხუთშაბათი", "პარასკევი", "შაბათი"]
-			},
+			}
 		},
+
+		ownerDocument: document,
+		contentWindow: window,
+
 		value: '',
 		rtl: false,
 
@@ -1206,12 +1261,14 @@ var DateFormatter;
 				days: locale.dayOfWeek,
 				daysShort: locale.dayOfWeekShort,
 				months: locale.months,
-				monthsShort: $.map(locale.months, function(n){ return n.substring(0, 3) }),
+				monthsShort: $.map(locale.months, function(n){ return n.substring(0, 3) })
 			};
 
-	 	dateHelper = new DateFormatter({
-			dateSettings: $.extend({}, dateFormatterOptionsDefault, opts)
-		});
+		if (typeof DateFormatter === 'function') {
+			dateHelper = new DateFormatter({
+				dateSettings: $.extend({}, dateFormatterOptionsDefault, opts)
+			});
+		}
 	};
 
 	// for locale settings
@@ -1272,7 +1329,7 @@ var DateFormatter;
 	Date.prototype.countDaysInMonth = function () {
 		return new Date(this.getFullYear(), this.getMonth() + 1, 0).getDate();
 	};
-	$.fn.xdsoftScroller = function (percent) {
+	$.fn.xdsoftScroller = function (options, percent) {
 		return this.each(function () {
 			var timeboxparent = $(this),
 				pointerEventToXY = function (e) {
@@ -1336,15 +1393,15 @@ var DateFormatter;
 						h1 = scrollbar[0].offsetHeight;
 
 						if (event.type === 'mousedown' || event.type === 'touchstart') {
-							if (document) {
-								$(document.body).addClass('xdsoft_noselect');
+							if (options.ownerDocument) {
+								$(options.ownerDocument.body).addClass('xdsoft_noselect');
 							}
-							$([document.body, window]).on('touchend mouseup.xdsoft_scroller', function arguments_callee() {
-								$([document.body, window]).off('touchend mouseup.xdsoft_scroller', arguments_callee)
+							$([options.ownerDocument.body, options.contentWindow]).on('touchend mouseup.xdsoft_scroller', function arguments_callee() {
+								$([options.ownerDocument.body, options.contentWindow]).off('touchend mouseup.xdsoft_scroller', arguments_callee)
 									.off('mousemove.xdsoft_scroller', calcOffset)
 									.removeClass('xdsoft_noselect');
 							});
-							$(document.body).on('mousemove.xdsoft_scroller', calcOffset);
+							$(options.ownerDocument.body).on('mousemove.xdsoft_scroller', calcOffset);
 						} else {
 							touchStart = true;
 							event.stopPropagation();
@@ -1480,7 +1537,7 @@ var DateFormatter;
 			var datetimepicker = $('<div class="xdsoft_datetimepicker xdsoft_noselect"></div>'),
 				xdsoft_copyright = $('<div class="xdsoft_copyright"><a target="_blank" href="http://xdsoft.net/jqplugins/datetimepicker/">xdsoft.net</a></div>'),
 				datepicker = $('<div class="xdsoft_datepicker active"></div>'),
-				mounth_picker = $('<div class="xdsoft_mounthpicker"><button type="button" class="xdsoft_prev"></button><button type="button" class="xdsoft_today_button"></button>' +
+				month_picker = $('<div class="xdsoft_monthpicker"><button type="button" class="xdsoft_prev"></button><button type="button" class="xdsoft_today_button"></button>' +
 					'<div class="xdsoft_label xdsoft_month"><span></span><i></i></div>' +
 					'<div class="xdsoft_label xdsoft_year"><span></span><i></i></div>' +
 					'<button type="button" class="xdsoft_next"></button></div>'),
@@ -1501,7 +1558,8 @@ var DateFormatter;
 				setPos,
 				timer = 0,
 				_xdsoft_datetime,
-				forEachAncestorOf;
+				forEachAncestorOf,
+				throttle;
 
 			if (options.id) {
 				datetimepicker.attr('id', options.id);
@@ -1519,14 +1577,14 @@ var DateFormatter;
 			datetimepicker.addClass('xdsoft_' + options.theme);
 			datetimepicker.addClass(options.className);
 
-			mounth_picker
+			month_picker
 				.find('.xdsoft_month span')
 					.after(monthselect);
-			mounth_picker
+			month_picker
 				.find('.xdsoft_year span')
 					.after(yearselect);
 
-			mounth_picker
+			month_picker
 				.find('.xdsoft_month,.xdsoft_year')
 					.on('touchstart mousedown.xdsoft', function (event) {
 					var select = $(this).find('.xdsoft_select').eq(0),
@@ -1536,7 +1594,7 @@ var DateFormatter;
 						items,
 						i;
 
-					mounth_picker
+					month_picker
 						.find('.xdsoft_select')
 							.hide();
 					if (_xdsoft_datetime.currentTime) {
@@ -1552,14 +1610,14 @@ var DateFormatter;
 						}
 					}
 
-					select.xdsoftScroller(top / (select.children()[0].offsetHeight - (select[0].clientHeight)));
+					select.xdsoftScroller(options, top / (select.children()[0].offsetHeight - (select[0].clientHeight)));
 					event.stopPropagation();
 					return false;
 				});
 
-			mounth_picker
+			month_picker
 				.find('.xdsoft_select')
-					.xdsoftScroller()
+					.xdsoftScroller(options)
 				.on('touchstart mousedown.xdsoft', function (event) {
 					event.stopPropagation();
 					event.preventDefault();
@@ -1721,7 +1779,7 @@ var DateFormatter;
 				}
 
 				if (!options.timepickerScrollbar) {
-					timeboxparent.xdsoftScroller('hide');
+					timeboxparent.xdsoftScroller(options, 'hide');
 				}
 
 				if (options.minDate && /^[\+\-](.*)$/.test(options.minDate)) {
@@ -1734,15 +1792,15 @@ var DateFormatter;
 
 				applyButton.toggle(options.showApplyButton);
 
-				mounth_picker
+				month_picker
 					.find('.xdsoft_today_button')
 						.css('visibility', !options.todayButton ? 'hidden' : 'visible');
 
-				mounth_picker
+				month_picker
 					.find('.' + options.prev)
 						.css('visibility', !options.prevButton ? 'hidden' : 'visible');
 
-				mounth_picker
+				month_picker
 					.find('.' + options.next)
 						.css('visibility', !options.nextButton ? 'hidden' : 'visible');
 
@@ -1762,7 +1820,7 @@ var DateFormatter;
 								} else {
 									var splittedHours   = +([$(this).val()[0], $(this).val()[1]].join('')),
 										splittedMinutes = +([$(this).val()[2], $(this).val()[3]].join(''));
-	
+
 									// parse the numbers as 0312 => 03:12
 									if (!options.datepicker && options.timepicker && splittedHours >= 0 && splittedHours < 24 && splittedMinutes >= 0 && splittedMinutes < 60) {
 										$(this).val([splittedHours, splittedMinutes].map(function (item) {
@@ -1798,10 +1856,10 @@ var DateFormatter;
 
 			//scroll_element = timepicker.find('.xdsoft_time_box');
 			timeboxparent.append(timebox);
-			timeboxparent.xdsoftScroller();
+			timeboxparent.xdsoftScroller(options);
 
 			datetimepicker.on('afterOpen.xdsoft', function () {
-				timeboxparent.xdsoftScroller();
+				timeboxparent.xdsoftScroller(options);
 			});
 
 			datetimepicker
@@ -1814,7 +1872,7 @@ var DateFormatter;
 			}
 
 			datepicker
-				.append(mounth_picker)
+				.append(month_picker)
 				.append(calendar)
 				.append(applyButton);
 
@@ -1830,6 +1888,7 @@ var DateFormatter;
 
 					if (!norecursion && options.defaultDate) {
 						date = _this.strToDateTime(options.defaultDate);
+						d.setDate(1);
 						d.setFullYear(date.getFullYear());
 						d.setMonth(date.getMonth());
 						d.setDate(date.getDate());
@@ -1854,8 +1913,20 @@ var DateFormatter;
 					return !isNaN(d.getTime());
 				};
 
-				_this.setCurrentTime = function (dTime) {
-					_this.currentTime = (typeof dTime === 'string') ? _this.strToDateTime(dTime) : _this.isValidDate(dTime) ? dTime : _this.now();
+				_this.setCurrentTime = function (dTime, requireValidDate) {
+					if (typeof dTime === 'string') {
+						_this.currentTime = _this.strToDateTime(dTime);
+					}
+					else if (_this.isValidDate(dTime)) {
+						_this.currentTime = dTime;
+					}
+					else if (!dTime && !requireValidDate && options.allowBlank) {
+						_this.currentTime = null;
+					}
+					else {
+						_this.currentTime = _this.now();
+					}
+
 					datetimepicker.trigger('xchange.xdsoft');
 				};
 
@@ -2004,11 +2075,11 @@ var DateFormatter;
 				input.val(_xdsoft_datetime.str());
 				datetimepicker.trigger('close.xdsoft');
 			});
-			mounth_picker
+			month_picker
 				.find('.xdsoft_today_button')
 				.on('touchend mousedown.xdsoft', function () {
 					datetimepicker.data('changed', true);
-					_xdsoft_datetime.setCurrentTime(0);
+					_xdsoft_datetime.setCurrentTime(0, true);
 					datetimepicker.trigger('afterOpen.xdsoft');
 				}).on('dblclick.xdsoft', function () {
 					var currentDate = _xdsoft_datetime.getCurrentTime(), minDate, maxDate;
@@ -2027,7 +2098,7 @@ var DateFormatter;
 					input.trigger('change');
 					datetimepicker.trigger('close.xdsoft');
 				});
-			mounth_picker
+			month_picker
 				.find('.xdsoft_prev,.xdsoft_next')
 				.on('touchend mousedown.xdsoft', function () {
 					var $this = $(this),
@@ -2047,10 +2118,10 @@ var DateFormatter;
 						}
 					}(500));
 
-					$([document.body, window]).on('touchend mouseup.xdsoft', function arguments_callee2() {
+					$([options.ownerDocument.body, options.contentWindow]).on('touchend mouseup.xdsoft', function arguments_callee2() {
 						clearTimeout(timer);
 						stop = true;
-						$([document.body, window]).off('touchend mouseup.xdsoft', arguments_callee2);
+						$([options.ownerDocument.body, options.contentWindow]).off('touchend mouseup.xdsoft', arguments_callee2);
 					});
 				});
 
@@ -2079,7 +2150,7 @@ var DateFormatter;
                          * jquery timebox.css('marginTop') will return the original value which is before you clicking the next/prev button,
                          * meanwhile the timebox[0].style.marginTop will return the right value which is after you clicking the
                          * next/prev button.
-                         * 
+                         *
                          * What we should do:
                          * Replace timebox.css('marginTop') with timebox[0].style.marginTop.
                          */
@@ -2089,10 +2160,10 @@ var DateFormatter;
 							timer = setTimeout(arguments_callee4, v || period);
 						}
 					}(500));
-					$([document.body, window]).on('touchend mouseup.xdsoft', function arguments_callee5() {
+					$([options.ownerDocument.body, options.contentWindow]).on('touchend mouseup.xdsoft', function arguments_callee5() {
 						clearTimeout(timer);
 						stop = true;
-						$([document.body, window])
+						$([options.ownerDocument.body, options.contentWindow])
 							.off('touchend mouseup.xdsoft', arguments_callee5);
 					});
 				});
@@ -2105,6 +2176,10 @@ var DateFormatter;
 					xchangeTimer = setTimeout(function () {
 
 						if (_xdsoft_datetime.currentTime === undefined || _xdsoft_datetime.currentTime === null) {
+							//In case blanks are allowed, delay construction until we have a valid date
+							if (options.allowBlank)
+								return;
+
 							_xdsoft_datetime.currentTime = _xdsoft_datetime.now();
 						}
 
@@ -2246,8 +2321,8 @@ var DateFormatter;
 
 						calendar.html(table);
 
-						mounth_picker.find('.xdsoft_label span').eq(0).text(options.i18n[globalLocale].months[_xdsoft_datetime.currentTime.getMonth()]);
-						mounth_picker.find('.xdsoft_label span').eq(1).text(_xdsoft_datetime.currentTime.getFullYear());
+						month_picker.find('.xdsoft_label span').eq(0).text(options.i18n[globalLocale].months[_xdsoft_datetime.currentTime.getMonth()]);
+						month_picker.find('.xdsoft_label span').eq(1).text(_xdsoft_datetime.currentTime.getFullYear());
 
 						// generate timebox
 						time = '';
@@ -2264,7 +2339,7 @@ var DateFormatter;
 							optionDateTime = new Date(_xdsoft_datetime.currentTime);
 							optionDateTime.setHours(h);
 							optionDateTime.setMinutes(m);
-							classes = [];			
+							classes = [];
 							if ((options.minDateTime !== false && options.minDateTime > optionDateTime) || (options.maxTime !== false && _xdsoft_datetime.strtotime(options.maxTime).getTime() < now.getTime()) || (options.minTime !== false && _xdsoft_datetime.strtotime(options.minTime).getTime() > now.getTime())) {
 								classes.push('xdsoft_disabled');
 							} else if ((options.minDateTime !== false && options.minDateTime > optionDateTime) || ((options.disabledMinTime !== false && now.getTime() > _xdsoft_datetime.strtotime(options.disabledMinTime).getTime()) && (options.disabledMaxTime !== false && now.getTime() < _xdsoft_datetime.strtotime(options.disabledMaxTime).getTime()))) {
@@ -2533,11 +2608,11 @@ var DateFormatter;
 				left = dateInputOffset.left;
 				position = "absolute";
 
-				windowWidth = $(window).width();
-				windowHeight = $(window).height();
-				windowScrollTop = $(window).scrollTop();
+				windowWidth = $(options.contentWindow).width();
+				windowHeight = $(options.contentWindow).height();
+				windowScrollTop = $(options.contentWindow).scrollTop();
 
-				if ((document.documentElement.clientWidth - dateInputOffset.left) < datepicker.parent().outerWidth(true)) {
+				if ((options.ownerDocument.documentElement.clientWidth - dateInputOffset.left) < datepicker.parent().outerWidth(true)) {
 					var diff = datepicker.parent().outerWidth(true) - dateInputElem.offsetWidth;
 					left = left - diff;
 				}
@@ -2548,13 +2623,13 @@ var DateFormatter;
 
 				if (options.fixed) {
 					verticalPosition -= windowScrollTop;
-					left -= $(window).scrollLeft();
+					left -= $(options.contentWindow).scrollLeft();
 					position = "fixed";
 				} else {
 					dateInputHasFixedAncestor = false;
 
 					forEachAncestorOf(dateInputElem, function (ancestorNode) {
-						if (window.getComputedStyle(ancestorNode).getPropertyValue('position') === 'fixed') {
+						if (options.contentWindow.getComputedStyle(ancestorNode).getPropertyValue('position') === 'fixed') {
 							dateInputHasFixedAncestor = true;
 							return false;
 						}
@@ -2590,7 +2665,7 @@ var DateFormatter;
 				forEachAncestorOf(datetimepickerElem, function (ancestorNode) {
 					var ancestorNodePosition;
 
-					ancestorNodePosition = window.getComputedStyle(ancestorNode).getPropertyValue('position');
+					ancestorNodePosition = options.contentWindow.getComputedStyle(ancestorNode).getPropertyValue('position');
 
 					if (ancestorNodePosition === 'relative' && windowWidth >= ancestorNode.offsetWidth) {
 						left = left - ((windowWidth - ancestorNode.offsetWidth) / 2);
@@ -2619,21 +2694,21 @@ var DateFormatter;
 					if (onShow !== false) {
 						datetimepicker.show();
 						setPos();
-						$(window)
+						$(options.contentWindow)
 							.off('resize.xdsoft', setPos)
 							.on('resize.xdsoft', setPos);
 
 						if (options.closeOnWithoutClick) {
-							$([document.body, window]).on('touchstart mousedown.xdsoft', function arguments_callee6() {
+							$([options.ownerDocument.body, options.contentWindow]).on('touchstart mousedown.xdsoft', function arguments_callee6() {
 								datetimepicker.trigger('close.xdsoft');
-								$([document.body, window]).off('touchstart mousedown.xdsoft', arguments_callee6);
+								$([options.ownerDocument.body, options.contentWindow]).off('touchstart mousedown.xdsoft', arguments_callee6);
 							});
 						}
 					}
 				})
 				.on('close.xdsoft', function (event) {
 					var onClose = true;
-					mounth_picker
+					month_picker
 						.find('.xdsoft_month,.xdsoft_year')
 							.find('.xdsoft_select')
 								.hide();
@@ -2700,8 +2775,8 @@ var DateFormatter;
 				},
 				getCaretPos = function (input) {
 					try {
-						if (document.selection && document.selection.createRange) {
-							var range = document.selection.createRange();
+						if (options.ownerDocument.selection && options.ownerDocument.selection.createRange) {
+							var range = options.ownerDocument.selection.createRange();
 							return range.getBookmark().charCodeAt(2) - 2;
 						}
 						if (input.setSelectionRange) {
@@ -2712,7 +2787,7 @@ var DateFormatter;
 					}
 				},
 				setCaretPos = function (node, pos) {
-					node = (typeof node === "string" || node instanceof String) ? document.getElementById(node) : node;
+					node = (typeof node === "string" || node instanceof String) ? options.ownerDocument.getElementById(node) : node;
 					if (!node) {
 						return false;
 					}
@@ -2830,7 +2905,7 @@ var DateFormatter;
 						}
 
 						triggerAfterOpen = true;
-						_xdsoft_datetime.setCurrentTime(getCurrentValue());
+						_xdsoft_datetime.setCurrentTime(getCurrentValue(), true);
 						if(options.mask) {
 							setMask(options);
 						}
@@ -2863,14 +2938,14 @@ var DateFormatter;
 				input
 					.data('xdsoft_datetimepicker', null)
 					.off('.xdsoft');
-				$(window).off('resize.xdsoft');
-				$([window, document.body]).off('mousedown.xdsoft touchstart');
+				$(options.contentWindow).off('resize.xdsoft');
+				$([options.contentWindow, options.ownerDocument.body]).off('mousedown.xdsoft touchstart');
 				if (input.unmousewheel) {
 					input.unmousewheel();
 				}
 			}
 		};
-		$(document)
+		$(options.ownerDocument)
 			.off('keydown.xdsoftctrl keyup.xdsoftctrl')
 			.on('keydown.xdsoftctrl', function (e) {
 				if (e.keyCode === CTRLKEY) {
@@ -2944,6 +3019,7 @@ var DateFormatter;
 		this.style = style;
 	}
 }));
+
 /*!
  * jQuery Mousewheel 3.1.13
  *

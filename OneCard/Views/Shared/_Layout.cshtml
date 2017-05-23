@@ -37,8 +37,10 @@
         @Scripts.Render("~/Content/js/charts.js") <!-- All the above chart related functions -->
 
         <!-- DatePicker-->
-        @Scripts.Render("~/Content/bower_components/datepicker/bootstrap-datepicker.js")
-        @Styles.Render("~/Content/bower_components/datepicker/datepicker.css")
+        
+        <!-- DateTimePicker-->
+        @Styles.Render("~/Content/bower_components/datetimepicker/jquery.datetimepicker.css")
+        @Scripts.Render("~/Content/bower_components/datetimepicker/build/jquery.datetimepicker.full.js")
     </head>
 @{
     var logoUrl = "https://ihg.scene7.com/is/image/ihg/HI_logo_LVP_@2x?fmt=png-alpha";
@@ -106,7 +108,7 @@
                                                 <li class="divider"></li>
                                                 <li>@Html.ActionLink("当日房间汇总", "DailyConsumption", "Report")</li>
                                                 <li class="divider"></li>
-                                                <li>@Html.ActionLink("历史数据明细", "ConsumptionHistory", "Report")</li>
+                                                <li>@Html.ActionLink("历史数据查询", "ConsumptionHistory", "Report")</li>
                                                 <li class="divider"></li>
                                                 <li>@Html.ActionLink("月度用餐统计", "MonthlyConsumption", "Report")</li>
                                                 <li class="divider"></li>

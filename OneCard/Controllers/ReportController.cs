@@ -129,16 +129,16 @@ namespace OneCard.Controllers
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ConsumptionHistory(string StartTime, string EndTime, int? room, bool exportCSV = false)
+        public ActionResult ConsumptionHistory(string StartDate, string EndDate, string StartTime, string EndTime, int? room, bool exportCSV = false)
         {
-            if (string.IsNullOrWhiteSpace(StartTime) || string.IsNullOrWhiteSpace(EndTime))
+            if (string.IsNullOrWhiteSpace(StartDate) || string.IsNullOrWhiteSpace(EndDate))
             {
-                ModelState.AddModelError("", "请输入查询起止时间");
+                ModelState.AddModelError("", "请输入查询起止日期");
                 return View();
             }
             
-            DateTime stTime = DateTime.Parse(StartTime + " 00:00:00");
-            DateTime edTime = DateTime.Parse(EndTime + " 23:59:59");
+            DateTime stTime = DateTime.Parse(StartDate + " 00:00:00");
+            DateTime edTime = DateTime.Parse(EndDate + " 23:59:59");
             IEnumerable<RoomCosumptionDataViewModel> model = from row in db.CardRecord_His
                                                    where row.ChkTime >= stTime && row.ChkTime <= edTime
                                                    orderby row.ChkTime
@@ -160,6 +160,38 @@ namespace OneCard.Controllers
                 model = model.Where(m => m.RoomNumber == room);
                 //ViewBag.Date = room + "房间" + ViewBag.Date;
             }
+            List<RoomCosumptionDataViewModel> filteredModel = new List<RoomCosumptionDataViewModel>();
+            if (!string.IsNullOrWhiteSpace(StartTime) && !string.IsNullOrWhiteSpace(EndTime))
+            {
+                try
+                {
+                    DateTime stt = DateTime.Parse("2017-05-23 " + StartTime + ":00");
+                    DateTime edt = DateTime.Parse("2017-05-23 " + EndTime + ":00");
+                    if (stt > edt)
+                    { 
+                        ModelState.AddModelError("", "截至时间不能小于起始时间");
+                        return View();
+                    }   
+
+                    foreach (RoomCosumptionDataViewModel item in model)
+                    {
+                        string date = item.CheckInTime.Value.ToString("yyyy-MM-dd") + " ";
+                        stt = DateTime.Parse(date + StartTime + ":00");
+                        edt = DateTime.Parse(date + EndTime + ":00");
+                        if(item.CheckInTime.Value>=stt && item.CheckInTime.Value <= edt)
+                            filteredModel.Add(item);
+                    }
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", "时间输入有误，请输入起始时间和截至时间.");
+                    return View();
+                }    
+            }
+            else
+            {
+                filteredModel = model.ToList();
+            }
             
             if (exportCSV)
             {
@@ -167,7 +199,7 @@ namespace OneCard.Controllers
                 if (room.HasValue)
                     filename = ViewBag.Date + " " + room.Value + "房间用餐详细记录.csv";
 
-                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数", "Package", "含早", "打卡时间", "打卡设备" }), "text/comma-separated-values", filename);
+                return File(CSVHelper.ExportCSV(filteredModel, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数", "Package", "含早", "打卡时间", "打卡设备" }), "text/comma-separated-values", filename);
             }
 
             //Store form values;
@@ -175,7 +207,7 @@ namespace OneCard.Controllers
             ViewBag.EndTime = EndTime;
             ViewBag.room = room;
 
-            return View(model);
+            return View(filteredModel);
         }
 
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]

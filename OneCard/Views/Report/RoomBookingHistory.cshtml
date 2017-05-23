@@ -36,7 +36,7 @@
 
                     <div class="form-group">
                         <div class='input-group date'>
-                            <input type='text' class="form-control" id='datetimepicker1' name="StartTime" placeholder="起始时间" />
+                            <input type='text' class="form-control" id='datetimepicker1' name="StartTime" placeholder="起始时间" autocomplete="off" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -45,7 +45,7 @@
 
                     <div class="form-group">
                         <div class='input-group date'>
-                            <input type='text' class="form-control" id='datetimepicker2' name="EndTime" placeholder="截至时间" />
+                            <input type='text' class="form-control" id='datetimepicker2' name="EndTime" placeholder="截至时间" autocomplete="off" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -73,15 +73,18 @@
     
     <script type="text/javascript">
         $(document).ready(function () {
-
-            $('#datetimepicker1').datepicker({
-                format: "yyyy/m/d"
+            jQuery.datetimepicker.setLocale('zh');
+            $('#datetimepicker1').datetimepicker({
+                timepicker: false,
+                format: 'Y/m/d',
+                mask: false,
             });
 
-            $('#datetimepicker2').datepicker({
-                format: "yyyy/m/d"
+            $('#datetimepicker2').datetimepicker({
+                timepicker: false,
+                format: 'Y/m/d',
+                mask: false,
             });
-
         });
     </script>
 }
