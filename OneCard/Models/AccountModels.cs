@@ -59,6 +59,9 @@ namespace OneCard.Models
         [Display(Name = "真实姓名")]
         public string RealName { get; set; }
 
+        [Display(Name = "邮箱地址")]
+        public string Email { get; set; }
+
         [Display(Name = "部门")]
         public string RoleName { get; set; }
 
@@ -87,6 +90,10 @@ namespace OneCard.Models
     {
         [Display(Name = "真实姓名")]
         public string RealName { get; set; }
+
+        [Display(Name = "邮箱地址")]
+        public string Email { get; set; }
+
 
         [DataType(DataType.Password)]
         [Display(Name = "当前密码")]

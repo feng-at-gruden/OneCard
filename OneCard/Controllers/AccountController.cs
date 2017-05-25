@@ -92,6 +92,7 @@ namespace OneCard.Controllers
             ChangeUserDetailModel model = new ChangeUserDetailModel
             { 
                 RealName = CurrentUser.RealName,
+                Email = CurrentUser.Email,
             };
             return View(model);
         }
@@ -124,6 +125,7 @@ namespace OneCard.Controllers
                 return View(model);
             }
 
+            CurrentUser.Email = model.Email;
             CurrentUser.RealName = model.RealName;
             CurrentUser.Password = model.NewPassword;
             db.SaveChanges();
@@ -382,6 +384,7 @@ namespace OneCard.Controllers
                         Password = row.Password,
                         LastLoginTime = row.LastLoginTime,
                         RegisterTime = row.RegisterTime,
+                        Email = row.Email,
                         Roles = from r in db.UserRole
                                 select new UserRoleViweModel
                                 {

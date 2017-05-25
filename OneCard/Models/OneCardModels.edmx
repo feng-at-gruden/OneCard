@@ -4,9 +4,9 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="onecardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'onecard.dbo.CardRecord' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+    <Schema Namespace="onecardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“OneCard.dbo.CardRecord”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="CardRecord">
           <Key>
             <PropertyRef Name="id" />
@@ -26,8 +26,8 @@ warning 6002: The table/view 'onecard.dbo.CardRecord' does not have a primary ke
           <Property Name="yes" Type="int" />
           <Property Name="no" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'onecard.dbo.CardRecord_His' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“OneCard.dbo.CardRecord_His”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="CardRecord_His">
           <Key>
             <PropertyRef Name="id" />
@@ -47,8 +47,8 @@ warning 6002: The table/view 'onecard.dbo.CardRecord_His' does not have a primar
           <Property Name="yes" Type="int" />
           <Property Name="no" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'onecard.dbo.ExFloor_Record' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“OneCard.dbo.ExFloor_Record”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="ExFloor_Record">
           <Key>
             <PropertyRef Name="id" />
@@ -60,8 +60,8 @@ warning 6002: The table/view 'onecard.dbo.ExFloor_Record' does not have a primar
           <Property Name="EndTime" Type="datetime" />
           <Property Name="ChkTime" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'onecard.dbo.ExFloor_Record24' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“OneCard.dbo.ExFloor_Record24”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="ExFloor_Record24">
           <Key>
             <PropertyRef Name="id" />
@@ -73,8 +73,8 @@ warning 6002: The table/view 'onecard.dbo.ExFloor_Record24' does not have a prim
           <Property Name="EndTime" Type="datetime" />
           <Property Name="ChkTime" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'onecard.dbo.Fitness' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“OneCard.dbo.Fitness”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="Fitness">
           <Key>
             <PropertyRef Name="id" />
@@ -86,8 +86,8 @@ warning 6002: The table/view 'onecard.dbo.Fitness' does not have a primary key d
           <Property Name="EndTime" Type="datetime" />
           <Property Name="ChkTime" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'onecard.dbo.Fitness24' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“OneCard.dbo.Fitness24”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="Fitness24">
           <Key>
             <PropertyRef Name="id" />
@@ -129,6 +129,7 @@ warning 6002: The table/view 'onecard.dbo.Fitness24' does not have a primary key
           <Property Name="LastLoginTime" Type="datetime" />
           <Property Name="RealName" Type="varchar" MaxLength="255" />
           <Property Name="Locked" Type="bit" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="ZaoCanIn">
           <Key>
@@ -162,7 +163,7 @@ warning 6002: The table/view 'onecard.dbo.Fitness24' does not have a primary key
           <Property Name="Package" Type="nchar" MaxLength="10" />
           <Property Name="ChineseName" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__Log__UserId__164452B1">
+        <Association Name="FK__Log__UserId__1ED998B2">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Log" Type="Self.Log" Multiplicity="*" />
           <ReferentialConstraint>
@@ -174,7 +175,7 @@ warning 6002: The table/view 'onecard.dbo.Fitness24' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Users__RoleId__173876EA">
+        <Association Name="FK__Users__RoleId__1FCDBCEB">
           <End Role="UserRole" Type="Self.UserRole" Multiplicity="0..1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -268,11 +269,11 @@ FROM [dbo].[Fitness] AS [Fitness]</DefiningQuery>
 [Fitness24].[ChkTime] AS [ChkTime]
 FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__Log__UserId__164452B1" Association="Self.FK__Log__UserId__164452B1">
+          <AssociationSet Name="FK__Log__UserId__1ED998B2" Association="Self.FK__Log__UserId__1ED998B2">
             <End Role="Users" EntitySet="Users" />
             <End Role="Log" EntitySet="Log" />
           </AssociationSet>
-          <AssociationSet Name="FK__Users__RoleId__173876EA" Association="Self.FK__Users__RoleId__173876EA">
+          <AssociationSet Name="FK__Users__RoleId__1FCDBCEB" Association="Self.FK__Users__RoleId__1FCDBCEB">
             <End Role="UserRole" EntitySet="UserRole" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
@@ -438,6 +439,7 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           <NavigationProperty Name="UserRole" Relationship="onecardModel.FK__Users__RoleId__173876EA" FromRole="Users" ToRole="UserRole" />
           <NavigationProperty Name="Log" Relationship="onecardModel.FK__Log__UserId__164452B1" FromRole="User" ToRole="Log" />
           <Property Name="Locked" Type="Boolean" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__Users__RoleId__173876EA">
           <End Type="onecardModel.UserRole" Role="UserRole" Multiplicity="0..1" />
@@ -614,6 +616,7 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="onecardModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Locked" ColumnName="Locked" />
                 <ScalarProperty Name="RealName" ColumnName="RealName" />
                 <ScalarProperty Name="LastLoginTime" ColumnName="LastLoginTime" />

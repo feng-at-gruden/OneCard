@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Mail;
 using System.Data.Objects.SqlClient;
 using OneCard.Models;
 using OneCard.Filters;
@@ -16,7 +17,7 @@ namespace OneCard.Controllers
 
         //餐饮信息
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
-        public ActionResult DailyConsumptionDetails(bool exportCSV = false)
+        public ActionResult DailyConsumptionDetails(bool exportCSV = false, bool mail = false)
         {
             IEnumerable<RoomCosumptionDataViewModel> model = from row in db.CardRecord
                                                              orderby row.ChkTime
@@ -34,9 +35,22 @@ namespace OneCard.Controllers
                                                              };
 
             ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
-            if (exportCSV)
+            if(exportCSV)
             {
                 return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数", "Package", "含早", "打卡时间", "打卡设备" }), "text/comma-separated-values", ViewBag.Date + "用餐明细记录.csv");
+            }
+            if(mail)
+            {
+
+                if(string.IsNullOrWhiteSpace(CurrentUser.Email))
+                {
+                    ViewBag.ErrorMessage = "请在个人设置中设置您的接收邮箱。";
+                }
+                else
+                {
+                    MailHelper.SendMail(ViewBag.Date + "用餐明细记录", CurrentUser.Email, null);
+                    ViewBag.SuccessMessage = "邮件发送成功";
+                }
             }
             return View(model);
         }
