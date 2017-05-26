@@ -478,7 +478,6 @@
     <Content Include="Content\bower_components\datepicker\datepicker.css" />
     <Content Include="Content\bower_components\datetimepicker\build\jquery.datetimepicker.full.js" />
     <Content Include="Content\bower_components\datetimepicker\build\jquery.datetimepicker.full.min.js" />
-    <Content Include="Content\bower_components\datetimepicker\build\jquery.datetimepicker.min.css" />
     <Content Include="Content\bower_components\datetimepicker\build\jquery.datetimepicker.min.js" />
     <Content Include="Content\bower_components\datetimepicker\index.html" />
     <Content Include="Content\bower_components\datetimepicker\jquery.datetimepicker.css" />

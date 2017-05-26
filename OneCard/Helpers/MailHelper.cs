@@ -19,17 +19,35 @@ namespace OneCard.Helpers
             string smtpHost = ConfigurationHelper.GetSystemSettingString(Constants.ConfigurationKey.CON_KEY_SMTP_HOST);
             int smtpPort = ConfigurationHelper.GetSystemSettingInt(Constants.ConfigurationKey.CON_KEY_SMTP_PORT);
             string fromAddress = ConfigurationHelper.GetSystemSettingString(Constants.ConfigurationKey.CON_KEY_SMTP_FROM_ADDRESS);
-            string fromPassword = ConfigurationHelper.GetSystemSettingString(Constants.ConfigurationKey.CON_KEY_SMTP_FROM_PASSWORD);
+            string fromPassword = ConfigurationHelper.GetSystemSettingString(Constants.ConfigurationKey.CON_KEY_SMTP_PASSWORD);
+            bool needAuth = ConfigurationHelper.GetSystemSettingBoolean(Constants.ConfigurationKey.CON_KEY_SMTP_NEED_AUTH);
 
-            var smtp = new SmtpClient
+            SmtpClient smtp;
+            if (needAuth)
             {
-                Host = smtpHost,
-                Port = smtpPort,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress, fromPassword)
-            };
+                smtp = new SmtpClient
+                {
+                    Host = smtpHost,
+                    Port = smtpPort,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress, fromPassword)
+                };                
+            }
+            else
+            {
+                smtp = new SmtpClient
+                {
+                    Host = smtpHost,
+                    Port = smtpPort,
+                    EnableSsl = false,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = true,
+                    Credentials = new NetworkCredential(fromAddress, fromPassword)
+                };
+            }
+
             using (var message = new MailMessage(
                 fromAddress,
                 toAddress, 

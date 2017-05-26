@@ -43,7 +43,7 @@ namespace OneCard.Controllers
             {
                 if(string.IsNullOrWhiteSpace(CurrentUser.Email))
                 {
-                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接收邮箱，请在个人设置中设置您的接收邮箱。";
                 }
                 else
                 {
@@ -116,7 +116,7 @@ namespace OneCard.Controllers
             {
                 if (string.IsNullOrWhiteSpace(CurrentUser.Email))
                 {
-                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接收邮箱，请在个人设置中设置您的接收邮箱。";
                 }
                 else
                 {
@@ -156,7 +156,7 @@ namespace OneCard.Controllers
             {
                 if (string.IsNullOrWhiteSpace(CurrentUser.Email))
                 {
-                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接收邮箱，请在个人设置中设置您的接收邮箱。";
                 }
                 else
                 {
@@ -256,7 +256,7 @@ namespace OneCard.Controllers
             {
                 if (string.IsNullOrWhiteSpace(CurrentUser.Email))
                 {
-                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接收邮箱，请在个人设置中设置您的接收邮箱。";
                 }
                 else
                 {
@@ -318,7 +318,7 @@ namespace OneCard.Controllers
             {
                 if (string.IsNullOrWhiteSpace(CurrentUser.Email))
                 {
-                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接收邮箱，请在个人设置中设置您的接收邮箱。";
                 }
                 else
                 {
@@ -372,7 +372,7 @@ namespace OneCard.Controllers
             {
                 if (string.IsNullOrWhiteSpace(CurrentUser.Email))
                 {
-                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接收邮箱，请在个人设置中设置您的接收邮箱。";
                 }
                 else
                 {
@@ -423,7 +423,7 @@ namespace OneCard.Controllers
             {
                 if (string.IsNullOrWhiteSpace(CurrentUser.Email))
                 {
-                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接收邮箱，请在个人设置中设置您的接收邮箱。";
                 }
                 else
                 {
@@ -500,7 +500,7 @@ namespace OneCard.Controllers
             {
                 if (string.IsNullOrWhiteSpace(CurrentUser.Email))
                 {
-                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接收邮箱，请在个人设置中设置您的接收邮箱。";
                 }
                 else
                 {
@@ -548,7 +548,7 @@ namespace OneCard.Controllers
             {
                 if (string.IsNullOrWhiteSpace(CurrentUser.Email))
                 {
-                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接收邮箱，请在个人设置中设置您的接收邮箱。";
                 }
                 else
                 {
@@ -617,7 +617,7 @@ namespace OneCard.Controllers
             {
                 if (string.IsNullOrWhiteSpace(CurrentUser.Email))
                 {
-                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接收邮箱，请在个人设置中设置您的接收邮箱。";
                 }
                 else
                 {

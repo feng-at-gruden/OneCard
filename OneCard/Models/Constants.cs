@@ -21,7 +21,8 @@ namespace OneCard.Models
             public const string CON_KEY_SMTP_HOST = "_smtpHost";
             public const string CON_KEY_SMTP_PORT = "_smtpHostPort";
             public const string CON_KEY_SMTP_FROM_ADDRESS = "_smtpFromAddress";
-            public const string CON_KEY_SMTP_FROM_PASSWORD = "_smtpFromPassword";
+            public const string CON_KEY_SMTP_PASSWORD = "_smtpFromPassword";
+            public const string CON_KEY_SMTP_NEED_AUTH = "_smtpAuth";
         }
 
 
