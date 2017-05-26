@@ -18,6 +18,7 @@
         <AssociationConnector Association="onecardModel.FK__Users__RoleId__173876EA" />
         <EntityTypeShape EntityType="onecardModel.Log" Width="1.5" PointX="9.875" PointY="8.25" />
         <AssociationConnector Association="onecardModel.FK__Log__UserId__164452B1" />
+        <EntityTypeShape EntityType="onecardModel.Configuration" Width="1.5" PointX="9.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

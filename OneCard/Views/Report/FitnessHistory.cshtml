@@ -99,6 +99,19 @@ else
             FITNESS CENTER HISTORY
         </div>
         <div class="panel-body">
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger">
+                    @ViewBag.ErrorMessage
+                </div>
+            }
+
+            @if (ViewBag.SuccessMessage != null)
+            {
+                <div class="alert alert-success">
+                    @ViewBag.SuccessMessage
+                </div>
+            }
             <div class="dataTable_wrapper" style="width: 720px; margin: auto auto;">
                 <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
                     <span>共<b>@Model.Count()</b>间客房 打卡<b>@total</b>次    日期:<b>@ViewBag.Date</b></span>
@@ -120,18 +133,29 @@ else
                         }
                     </tbody>
                 </table>
-                @using (Html.BeginForm("FitnessHistory", "Report", FormMethod.Post, new { role = "form" }))
+                <button type="button" class="btn btn-success" onclick="javastript: history.go(-1);" style="float: left; margin-top: -42px; ">
+                    返 回
+                </button>
+                @using (Html.BeginForm("FitnessHistory", "Report", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="StartTime" value="@ViewBag.StartTime" />
                     <input type="hidden" name="EndTime" value="@ViewBag.EndTime" />
                     <input type="hidden" name="room" value="@ViewBag.room" />
                     <input type="hidden" name="exportCSV" value="true" />
-                    <button type="button" class="btn btn-success" onclick="javastript: history.go(-1);" style="float: left; margin-top: -42px; margin-left: 65px;">
-                        返 回
-                    </button>
-                    <button type="submit" class="btn btn-success" style="float: left;margin-top: -42px;">
+                    <button type="submit" class="btn btn-success" style="float: left;margin-top: -42px; margin-left: 65px;">
                         导 出
+                    </button>
+                }
+                @using (Html.BeginForm("FitnessHistory", "Report", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="StartTime" value="@ViewBag.StartTime" />
+                    <input type="hidden" name="EndTime" value="@ViewBag.EndTime" />
+                    <input type="hidden" name="room" value="@ViewBag.room" />
+                    <input type="hidden" name="mail" value="true" />
+                    <button type="submit" class="btn btn-success" style="float: left; margin-top: -42px; margin-left: 130px;">
+                        发送至邮箱
                     </button>
                 }
             </div>

@@ -12,19 +12,20 @@ using OneCard.Models;
 
 namespace OneCard.Controllers
 {
-    [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY )]
     public class ToolsController : BaseController
     {
 
         private const String UploadFolder = "upload";
 
-       
+
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
         public ActionResult Import()
         {
             return View();
         }
 
 
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Import(String path)
@@ -109,6 +110,7 @@ namespace OneCard.Controllers
         }
 
 
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT)]
         public ActionResult Log()
         {
             DateTime et = DateTime.Now.AddMonths(-1);
@@ -126,6 +128,41 @@ namespace OneCard.Controllers
             return View(model);
         }
 
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT)]
+        public ActionResult Configuration()
+        {
+            return View(getSystemConfigurations());
+        }
+
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT)]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Configuration(object model)
+        {
+            ViewBag.SuccessMessage = "保存成功！";
+
+            foreach(string k in Request.Form.Keys)
+            {
+                var con = db.Configuration.FirstOrDefault(m => k.Equals(m.Key));
+                if (con != null)
+                    con.Value = Request.Form[k.ToString()];
+                db.SaveChanges();
+            }
+            return View(getSystemConfigurations());
+        }
+
+        private IEnumerable<ConfigurationViewModel> getSystemConfigurations()
+        {
+            IEnumerable<ConfigurationViewModel> model = from row in db.Configuration
+                                                 select new ConfigurationViewModel
+                                                 {
+                                                     Id = row.Id,
+                                                     Name = row.Name,
+                                                     Key = row.Key,
+                                                     Value = row.Value,
+                                                 };
+            return model;
+        }
 
         private bool IsValidaDataFile(string filename)
         {

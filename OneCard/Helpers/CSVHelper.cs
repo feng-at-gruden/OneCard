@@ -14,9 +14,9 @@ namespace OneCard.Helpers
         public static MemoryStream ExportCSV(IEnumerable<object> data, string[] columns)
         {
             System.IO.MemoryStream output = new System.IO.MemoryStream();
-            System.IO.StreamWriter writer = new System.IO.StreamWriter(output, System.Text.Encoding.UTF8);
+            System.IO.StreamWriter writer = new System.IO.StreamWriter(output, System.Text.Encoding.GetEncoding("gb2312"));
             StringBuilder sb = new StringBuilder();
-
+            
             string header = "";
             for (int i = 0; i < columns.Length; i++)
             {

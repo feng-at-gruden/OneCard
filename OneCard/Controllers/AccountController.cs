@@ -106,28 +106,36 @@ namespace OneCard.Controllers
         {
             ViewBag.ReturnUrl = Url.Action("Manage");
             var cu = CurrentUser;
-            if (string.IsNullOrWhiteSpace(model.RealName) ||
-                string.IsNullOrWhiteSpace(model.OldPassword) ||
-                string.IsNullOrWhiteSpace(model.NewPassword) ||
-                string.IsNullOrWhiteSpace(model.ConfirmPassword))
+            if (string.IsNullOrWhiteSpace(model.RealName))
             {
-                ModelState.AddModelError("", "请输入完整信息。");
+                ModelState.AddModelError("", "请输入真实姓名。");
                 return View(model);
             }
-            if(!model.OldPassword.Equals(cu.Password))
+            if( !string.IsNullOrWhiteSpace(model.OldPassword) ||
+                !string.IsNullOrWhiteSpace(model.NewPassword) ||
+                !string.IsNullOrWhiteSpace(model.ConfirmPassword))
             {
-                ModelState.AddModelError("", "请输入正确的当前密码。");
-                return View(model);
-            }
-            if(!model.NewPassword.Equals(model.ConfirmPassword))
-            {
-                ModelState.AddModelError("", "新密码不一致，请重试。");
-                return View(model);
+                if (!model.OldPassword.Equals(cu.Password))
+                {
+                    ModelState.AddModelError("", "请输入正确的当前密码。");
+                    return View(model);
+                }
+                if(string.IsNullOrWhiteSpace(model.NewPassword) ||
+                    string.IsNullOrWhiteSpace(model.ConfirmPassword))
+                {
+                    ModelState.AddModelError("", "请输入新密码及确认密码。");
+                    return View(model);
+                }
+                if (!model.NewPassword.Equals(model.ConfirmPassword))
+                {
+                    ModelState.AddModelError("", "新密码/确认密码不一致，请重试。");
+                    return View(model);
+                }
+                CurrentUser.Password = model.NewPassword;
             }
 
             CurrentUser.Email = model.Email;
             CurrentUser.RealName = model.RealName;
-            CurrentUser.Password = model.NewPassword;
             db.SaveChanges();
             ViewBag.SuccessMessage = "你的信息已更新";
 

@@ -21,7 +21,7 @@
             CONSUMPTION HISTORY
         </div>
         <div class="panel-body">
-            @if(!ViewData.ModelState.IsValid)
+            @if (!ViewData.ModelState.IsValid)
             {
             <div class="alert alert-danger">
                 @Html.ValidationSummary()
@@ -168,6 +168,19 @@ else
                 CONSUMPTION HISTORY
             </div>
             <div class="panel-body">
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <div class="alert alert-danger">
+                        @ViewBag.ErrorMessage
+                    </div>
+                }
+
+                @if (ViewBag.SuccessMessage != null)
+                {
+                    <div class="alert alert-success">
+                        @ViewBag.SuccessMessage
+                    </div>
+                }
                 <div class="dataTable_wrapper">
                     <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
                         <span> 总计用餐<b>@total</b>次    日期:<b>@ViewBag.Date</b></span>
@@ -203,9 +216,14 @@ else
                             }
                         </tbody>
                     </table>
-                    @using (Html.BeginForm("ConsumptionHistory", "Report", FormMethod.Post, new { role = "form" }))
+                    <button type="button" class="btn btn-success" onclick="javastript: history.go(-1);" style="float: left; margin-top: -42px; ">
+                        返 回
+                    </button>
+                    @using (Html.BeginForm("ConsumptionHistory", "Report", FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
+                        <input type="hidden" name="StartDate" value="@ViewBag.StartDate" />
+                        <input type="hidden" name="EndDate" value="@ViewBag.EndDate" />
                         <input type="hidden" name="StartTime" value="@ViewBag.StartTime" />
                         <input type="hidden" name="EndTime" value="@ViewBag.EndTime" />
                         <input type="hidden" name="room" value="@ViewBag.room" />
@@ -213,8 +231,18 @@ else
                         <button type="submit" class="btn btn-success" style="float: left; margin-top: -42px; margin-left: 65px;">
                             导 出
                         </button>
-                        <button type="button" class="btn btn-success" onclick="javastript: history.go(-1);" style="float: left; margin-top: -42px; ">
-                            返 回
+                    }
+                    @using (Html.BeginForm("ConsumptionHistory", "Report", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="StartDate" value="@ViewBag.StartDate" />
+                        <input type="hidden" name="EndDate" value="@ViewBag.EndDate" />
+                        <input type="hidden" name="StartTime" value="@ViewBag.StartTime" />
+                        <input type="hidden" name="EndTime" value="@ViewBag.EndTime" />
+                        <input type="hidden" name="room" value="@ViewBag.room" />
+                        <input type="hidden" name="mail" value="true" />
+                        <button type="submit" class="btn btn-success" style="float: left; margin-top: -42px; margin-left: 130px;">
+                            发送至邮箱
                         </button>
                     }
                     

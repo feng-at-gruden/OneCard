@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Net.Mail;
 using System.Net;
+using System.IO;
+using OneCard.Models;
 
 namespace OneCard.Helpers
 {
@@ -12,13 +14,13 @@ namespace OneCard.Helpers
         public const int RESULT_SUCCESS = 0;
         public const int RESULT_NO_ADDRESS = -1;
 
-        public static string smtpHost = "smtp.qq.com";
-        public static int smtpPort = 25;
-        public static string fromAddress = "691427@qq.com";
-        public static string fromPassword = "dadbvlhgkswzcbdi";
-
-        public static int SendMail(string title, string toAddress, string filePath)
+        public static int SendMail(string title, string toAddress, Stream attachmentStream, string attachmentName)
         {
+            string smtpHost = ConfigurationHelper.GetSystemSettingString(Constants.ConfigurationKey.CON_KEY_SMTP_HOST);
+            int smtpPort = ConfigurationHelper.GetSystemSettingInt(Constants.ConfigurationKey.CON_KEY_SMTP_PORT);
+            string fromAddress = ConfigurationHelper.GetSystemSettingString(Constants.ConfigurationKey.CON_KEY_SMTP_FROM_ADDRESS);
+            string fromPassword = ConfigurationHelper.GetSystemSettingString(Constants.ConfigurationKey.CON_KEY_SMTP_FROM_PASSWORD);
+
             var smtp = new SmtpClient
             {
                 Host = smtpHost,
@@ -28,8 +30,17 @@ namespace OneCard.Helpers
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(fromAddress, fromPassword)
             };
-            using (var message = new MailMessage(fromAddress, toAddress, title, HttpUtility.HtmlEncode("<h1>Test</h1>")))
+            using (var message = new MailMessage(
+                fromAddress,
+                toAddress, 
+                title, 
+                HttpUtility.HtmlEncode(title + "\r\n\r\n\r\n发自酒店一卡通查询系统")))
             {
+                if(attachmentStream != null)
+                {
+                    Attachment objMailAttachment = new Attachment(attachmentStream, attachmentName);
+                    message.Attachments.Add(objMailAttachment);
+                }
                 smtp.Send(message);
             }
 

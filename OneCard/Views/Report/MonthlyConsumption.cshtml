@@ -77,6 +77,19 @@ else
             MONTHLY CONSUMPTION
         </div>
         <div class="panel-body">
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger">
+                    @ViewBag.ErrorMessage
+                </div>
+            }
+
+            @if (ViewBag.SuccessMessage != null)
+            {
+                <div class="alert alert-success">
+                    @ViewBag.SuccessMessage
+                </div>
+            }
             <div class="dataTable_wrapper">
                 <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
                     <span> <b>@ViewBag.Year</b>年<b>@ViewBag.Month</b>月总计用餐:<b>@total</b>次 </span>
@@ -108,7 +121,10 @@ else
                         }
                     </tbody>
                 </table>
-                @using (Html.BeginForm("MonthlyConsumption", "Report", FormMethod.Post, new { role = "form" }))
+                <button type="button" class="btn btn-success" onclick="javastript: history.go(-1);" style="float: left; margin-top: -42px; ">
+                    返 回
+                </button>
+                @using (Html.BeginForm("MonthlyConsumption", "Report", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="Year" value="@ViewBag.Year" />
@@ -117,8 +133,15 @@ else
                     <button type="submit" class="btn btn-success" style="float: left; margin-top: -42px; margin-left: 65px;">
                         导 出
                     </button>
-                    <button type="button" class="btn btn-success" onclick="javastript: history.go(-1);" style="float: left; margin-top: -42px; ">
-                        返 回
+                }
+                @using (Html.BeginForm("MonthlyConsumption", "Report", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="Year" value="@ViewBag.Year" />
+                    <input type="hidden" name="Month" value="@ViewBag.Month" />
+                    <input type="hidden" name="mail" value="true" />
+                    <button type="submit" class="btn btn-success" style="float: left; margin-top: -42px; margin-left: 130px;">
+                        发送至邮箱
                     </button>
                 }
             </div>

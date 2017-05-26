@@ -36,5 +36,6 @@ namespace OneCard.Models
         public DbSet<UserRole> UserRole { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Log> Log { get; set; }
+        public DbSet<Configuration> Configuration { get; set; }
     }
 }

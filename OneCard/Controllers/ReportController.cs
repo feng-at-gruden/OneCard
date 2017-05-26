@@ -41,14 +41,18 @@ namespace OneCard.Controllers
             }
             if(mail)
             {
-
                 if(string.IsNullOrWhiteSpace(CurrentUser.Email))
                 {
-                    ViewBag.ErrorMessage = "请在个人设置中设置您的接收邮箱。";
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
                 }
                 else
                 {
-                    MailHelper.SendMail(ViewBag.Date + "用餐明细记录", CurrentUser.Email, null);
+                    MailHelper.SendMail(
+                        ViewBag.Date + "用餐明细记录", 
+                        CurrentUser.Email,
+                        CSVHelper.ExportCSV(model, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数", "Package", "含早", "打卡时间", "打卡设备" }),
+                        ViewBag.Date + "用餐明细记录.csv" );
+
                     ViewBag.SuccessMessage = "邮件发送成功";
                 }
             }
@@ -56,7 +60,7 @@ namespace OneCard.Controllers
         }
 
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
-        public ActionResult DailyConsumptionSummary(int? year, int? month, int? day, bool exportCSV = false)
+        public ActionResult DailyConsumptionSummary(int? year, int? month, int? day, bool exportCSV = false, bool mail = false)
         {
             var count1 = 0;
             var count2 = 0;
@@ -108,11 +112,28 @@ namespace OneCard.Controllers
             {
                 return File(CSVHelper.ExportCSV(new List<DailyCosumptionSummaryViewModel> { model }, new string[] { "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "A-BF", "F-BF", "含早", "不含早", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "用餐汇总.csv");
             }
+            if (mail)
+            {
+                if (string.IsNullOrWhiteSpace(CurrentUser.Email))
+                {
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                }
+                else
+                {
+                    MailHelper.SendMail(
+                        ViewBag.Date + "用餐汇总",
+                        CurrentUser.Email,
+                        CSVHelper.ExportCSV(new List<DailyCosumptionSummaryViewModel> { model }, new string[] { "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "A-BF", "F-BF", "含早", "不含早", "用餐总数" }),
+                        ViewBag.Date + "用餐汇总.csv");
+
+                    ViewBag.SuccessMessage = "邮件发送成功";
+                }
+            }
             return View(model);
         }
 
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
-        public ActionResult DailyConsumption(bool exportCSV = false)
+        public ActionResult DailyConsumption(bool exportCSV = false, bool mail = false)
         {
             IEnumerable<RoomCosumptionDataViewModel> model = from row in db.CardRecord
                                                    group row by new { row.Room } into b
@@ -131,6 +152,23 @@ namespace OneCard.Controllers
             {
                 return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "用餐按房间汇总.csv");
             }
+            if (mail)
+            {
+                if (string.IsNullOrWhiteSpace(CurrentUser.Email))
+                {
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                }
+                else
+                {
+                    MailHelper.SendMail(
+                        ViewBag.Date + "用餐按房间汇总",
+                        CurrentUser.Email,
+                        CSVHelper.ExportCSV(model, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数" }),
+                        ViewBag.Date + "用餐按房间汇总.csv");
+
+                    ViewBag.SuccessMessage = "邮件发送成功";
+                }
+            }
             return View(model);
         }
 
@@ -143,7 +181,7 @@ namespace OneCard.Controllers
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ConsumptionHistory(string StartDate, string EndDate, string StartTime, string EndTime, int? room, bool exportCSV = false)
+        public ActionResult ConsumptionHistory(string StartDate, string EndDate, string StartTime, string EndTime, int? room, bool exportCSV = false, bool mail = false)
         {
             if (string.IsNullOrWhiteSpace(StartDate) || string.IsNullOrWhiteSpace(EndDate))
             {
@@ -206,19 +244,37 @@ namespace OneCard.Controllers
             {
                 filteredModel = model.ToList();
             }
-            
+
+            var filename = ViewBag.Date + "用餐详细记录";
+            if (room.HasValue)
+                filename = ViewBag.Date + " " + room.Value + "房间用餐详细记录";
             if (exportCSV)
             {
-                var filename = ViewBag.Date + "用餐详细记录.csv";
-                if (room.HasValue)
-                    filename = ViewBag.Date + " " + room.Value + "房间用餐详细记录.csv";
+                return File(CSVHelper.ExportCSV(filteredModel, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数", "Package", "含早", "打卡时间", "打卡设备" }), "text/comma-separated-values", filename + ".csv");
+            }
+            if (mail)
+            {
+                if (string.IsNullOrWhiteSpace(CurrentUser.Email))
+                {
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                }
+                else
+                {
+                    MailHelper.SendMail(
+                        filename,
+                        CurrentUser.Email,
+                        CSVHelper.ExportCSV(filteredModel, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数", "Package", "含早", "打卡时间", "打卡设备" }),
+                        filename + ".csv");
 
-                return File(CSVHelper.ExportCSV(filteredModel, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数", "Package", "含早", "打卡时间", "打卡设备" }), "text/comma-separated-values", filename);
+                    ViewBag.SuccessMessage = "邮件发送成功";
+                }
             }
 
             //Store form values;
             ViewBag.StartTime = StartTime;
             ViewBag.EndTime = EndTime;
+            ViewBag.StartDate = StartDate;
+            ViewBag.EndDate = EndDate;
             ViewBag.room = room;
 
             return View(filteredModel);
@@ -233,7 +289,7 @@ namespace OneCard.Controllers
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult YearlyConsumption(int? Year, bool exportCSV = false)
+        public ActionResult YearlyConsumption(int? Year, bool exportCSV = false, bool mail = false)
         {
             int mYear = DateTime.Now.Year;
 
@@ -258,6 +314,23 @@ namespace OneCard.Controllers
             {
                 return File(CSVHelper.ExportCSV(model, new string[] { "月份", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "当月总计" }), "text/comma-separated-values", ViewBag.Year + "年度用餐统计.csv");
             }
+            if (mail)
+            {
+                if (string.IsNullOrWhiteSpace(CurrentUser.Email))
+                {
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                }
+                else
+                {
+                    MailHelper.SendMail(
+                        ViewBag.Year + "年度用餐统计",
+                        CurrentUser.Email,
+                        CSVHelper.ExportCSV(model, new string[] { "月份", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "当月总计" }),
+                        ViewBag.Year + "年度用餐统计.csv");
+
+                    ViewBag.SuccessMessage = "邮件发送成功";
+                }
+            }
             return View(model);
         }
 
@@ -270,7 +343,7 @@ namespace OneCard.Controllers
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult MonthlyConsumption(int Year, int Month, bool exportCSV = false)
+        public ActionResult MonthlyConsumption(int Year, int Month, bool exportCSV = false, bool mail = false)
         {
 
             DateTime st = new DateTime(Year, Month, 1, 0, 0, 0);
@@ -295,6 +368,23 @@ namespace OneCard.Controllers
             {
                 return File(CSVHelper.ExportCSV(model, new string[] { "日期", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "当天总计" }), "text/comma-separated-values", Year + "年" + Month + "月用餐统计.csv");
             }
+            if (mail)
+            {
+                if (string.IsNullOrWhiteSpace(CurrentUser.Email))
+                {
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                }
+                else
+                {
+                    MailHelper.SendMail(
+                        Year + "年" + Month + "月用餐统计",
+                        CurrentUser.Email,
+                        CSVHelper.ExportCSV(model, new string[] { "日期", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "当天总计" }),
+                        Year + "年" + Month + "月用餐统计.csv");
+
+                    ViewBag.SuccessMessage = "邮件发送成功";
+                }
+            }
             return View(model);
         }
 
@@ -305,7 +395,7 @@ namespace OneCard.Controllers
 
         //客房信息
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
-        public ActionResult DailyRoomBooking(bool exportCSV = false)
+        public ActionResult DailyRoomBooking(bool exportCSV = false, bool mail = false)
         {
             IEnumerable<RoomBookingDataViewModel> model = from row in db.ZaoCanIn24                                                             
                                                              orderby row.Room
@@ -324,10 +414,27 @@ namespace OneCard.Controllers
                                                              };
 
             ViewBag.Date = db.ZaoCanIn24.FirstOrDefault().InTime.Value.ToString("yyyy-MM-dd");
-
+            model = filterGuestName(model);
             if (exportCSV)
             {
                 return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "客人姓名", "中文名", "入住时间", "退房时间", "Adults", "VIP", "Pax", "Package", "录入时间" }), "text/comma-separated-values", ViewBag.Date + "客房数据.csv");
+            }
+            if (mail)
+            {
+                if (string.IsNullOrWhiteSpace(CurrentUser.Email))
+                {
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                }
+                else
+                {
+                    MailHelper.SendMail(
+                        ViewBag.Date + "客房数据",
+                        CurrentUser.Email,
+                        CSVHelper.ExportCSV(model, new string[] { "房间号", "客人姓名", "中文名", "入住时间", "退房时间", "Adults", "VIP", "Pax", "Package", "录入时间" }),
+                        ViewBag.Date + "客房数据.csv");
+
+                    ViewBag.SuccessMessage = "邮件发送成功";
+                }
             }
             return View(model);
         }
@@ -341,7 +448,7 @@ namespace OneCard.Controllers
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RoomBookingHistory(string StartTime, string EndTime, int? room, bool exportCSV = false)
+        public ActionResult RoomBookingHistory(string StartTime, string EndTime, int? room, bool exportCSV = false, bool mail = false)
         {
             DateTime edTime = DateTime.Now.AddDays(-1);
             DateTime stTime = DateTime.MinValue;
@@ -375,6 +482,7 @@ namespace OneCard.Controllers
             if (room.HasValue)
                 model = model.Where(m => m.RoomNumber == room);
 
+            model = filterGuestName(model);
             if (!string.IsNullOrWhiteSpace(StartTime))
             {
                 ViewBag.Date = stTime.ToString("yyyy-MM-dd") + "至" + edTime.ToString("yyyy-MM-dd");
@@ -387,6 +495,23 @@ namespace OneCard.Controllers
             if (exportCSV)
             {
                 return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "客人姓名", "中文名", "入住时间", "退房时间", "Adults", "VIP", "Pax", "Package", "录入时间" }), "text/comma-separated-values", ViewBag.Date + "客房数据.csv");
+            }
+            if (mail)
+            {
+                if (string.IsNullOrWhiteSpace(CurrentUser.Email))
+                {
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                }
+                else
+                {
+                    MailHelper.SendMail(
+                        ViewBag.Date + "客房数据",
+                        CurrentUser.Email,
+                        CSVHelper.ExportCSV(model, new string[] { "房间号", "客人姓名", "中文名", "入住时间", "退房时间", "Adults", "VIP", "Pax", "Package", "录入时间" }),
+                        ViewBag.Date + "客房数据.csv");
+
+                    ViewBag.SuccessMessage = "邮件发送成功";
+                }
             }
 
             //Store form values;
@@ -404,7 +529,7 @@ namespace OneCard.Controllers
 
         //健身中心
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
-        public ActionResult DailyFitness(bool exportCSV = false)
+        public ActionResult DailyFitness(bool exportCSV = false, bool mail = false)
         {
             IEnumerable<FitnessDataViewModel> model = from row in db.Fitness24
                                                              orderby row.Room
@@ -419,6 +544,23 @@ namespace OneCard.Controllers
             {
                 return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数", "打卡时间" }), "text/comma-separated-values", ViewBag.Date + "健身中心数据.csv");
             }
+            if (mail)
+            {
+                if (string.IsNullOrWhiteSpace(CurrentUser.Email))
+                {
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                }
+                else
+                {
+                    MailHelper.SendMail(
+                        ViewBag.Date + "健身中心数据",
+                        CurrentUser.Email,
+                        CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数", "打卡时间" }),
+                        ViewBag.Date + "健身中心数据.csv");
+
+                    ViewBag.SuccessMessage = "邮件发送成功";
+                }
+            }
             return View(model);
         }
 
@@ -431,7 +573,7 @@ namespace OneCard.Controllers
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult FitnessHistory(string StartTime, string EndTime, int? room, bool exportCSV = false)
+        public ActionResult FitnessHistory(string StartTime, string EndTime, int? room, bool exportCSV = false, bool mail = false)
         {
             DateTime edTime = DateTime.Now.AddDays(-1);
             DateTime stTime = DateTime.MinValue;
@@ -471,7 +613,23 @@ namespace OneCard.Controllers
             {
                 return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数" }), "text/comma-separated-values", ViewBag.Date + "健身中心数据.csv");
             }
+            if (mail)
+            {
+                if (string.IsNullOrWhiteSpace(CurrentUser.Email))
+                {
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接受邮箱，请在个人设置中设置您的接收邮箱。";
+                }
+                else
+                {
+                    MailHelper.SendMail(
+                        ViewBag.Date + "健身中心数据",
+                        CurrentUser.Email,
+                        CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数" }),
+                        ViewBag.Date + "健身中心数据.csv");
 
+                    ViewBag.SuccessMessage = "邮件发送成功";
+                }
+            }
             //Store form values;
             ViewBag.StartTime = StartTime;
             ViewBag.EndTime = EndTime;
@@ -480,6 +638,39 @@ namespace OneCard.Controllers
             return View(model);
         }
 
+
+
+
+
+        private IEnumerable<RoomBookingDataViewModel> filterGuestName(IEnumerable<RoomBookingDataViewModel> model)
+        {
+
+            if(CurrentUser.UserRole.Role.Equals(Constants.Roles.ROLE_ADMIN) ||
+                CurrentUser.UserRole.Role.Equals(Constants.Roles.ROLE_IT))
+            {
+                return model;
+            }
+            List<RoomBookingDataViewModel> filteredModel = new List<RoomBookingDataViewModel>();
+            foreach(RoomBookingDataViewModel m in model)
+            {
+                m.ChineseName = addMaskToName(m.ChineseName, 1);
+                m.GuestName = addMaskToName(m.GuestName, 3);
+                filteredModel.Add(m);
+            }
+            return filteredModel;
+        }
+
+        private string addMaskToName(string name, int len)
+        {
+            if(!string.IsNullOrWhiteSpace(name) && name.Length > 1)
+            {
+                int st = Math.Min(2, name.Length - len - 1);
+                st = Math.Max(st, 0);
+                string k = name.Substring(st, len);
+                return name.Replace(k, "*");
+            }
+            return name;
+        }
 
     }
 

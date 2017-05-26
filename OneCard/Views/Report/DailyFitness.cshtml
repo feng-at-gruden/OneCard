@@ -20,6 +20,19 @@
         FITNESS CENTER DAILY REPORT
     </div>
     <div class="panel-body">
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+
+        @if (ViewBag.SuccessMessage != null)
+        {
+            <div class="alert alert-success">
+                @ViewBag.SuccessMessage
+            </div>
+        }
         <div class="dataTable_wrapper" style="margin:auto auto;">
             <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
                 <span>共<b>@Model.Count()</b>间客房 打卡<b>@total</b>次    日期:<b>@ViewBag.Date</b></span>
@@ -44,6 +57,7 @@
                 </tbody>
             </table>
             <a href="~/Report/DailyFitness?exportCSV=true" class="btn btn-success" style="float: left;margin-top: -42px; color:white;">导 出</a>
+            <a href="~/Report/DailyFitness?mail=true" class="btn btn-success" style="float: left;margin-top: -42px; margin-left:63px; color:white;" on>发送至邮箱</a>
         </div>
         <!-- /.Table -->
     </div>

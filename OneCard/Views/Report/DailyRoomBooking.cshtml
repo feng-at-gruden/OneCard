@@ -19,6 +19,19 @@
         DAILY ROOM BOOKING
     </div>
     <div class="panel-body">
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+
+        @if (ViewBag.SuccessMessage != null)
+        {
+            <div class="alert alert-success">
+                @ViewBag.SuccessMessage
+            </div>
+        }
         <div class="dataTable_wrapper">
             <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
                 <span>共<b>@Model.Count()</b>间客房   数据导入时间:<b>@ViewBag.Date</b></span>
@@ -55,6 +68,7 @@
                 </tbody>
             </table>
             <a href="~/Report/DailyRoomBooking?exportCSV=true" class="btn btn-success" style="float: left;margin-top: -42px; color:white;">导 出</a>
+            <a href="~/Report/DailyRoomBooking?mail=true" class="btn btn-success" style="float: left;margin-top: -42px; margin-left:63px; color:white;" on>发送至邮箱</a>
         </div>
         <!-- /.Table -->
     </div>

@@ -21,6 +21,19 @@
         DAILY CONSUMPTION
     </div>
     <div class="panel-body">
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+
+        @if (ViewBag.SuccessMessage != null)
+        {
+            <div class="alert alert-success">
+                @ViewBag.SuccessMessage
+            </div>
+        }
         <div class="chart_wrapper">
             <div style="text-align: right; float: right; margin: 10px 10px 0 0; display:block;width:100%;">
                 <span>总计用餐<b>@total</b>次    日期:<b>@ViewBag.Date</b></span><br/>
@@ -51,6 +64,7 @@
             </div>
 
             <a href="~/Report/DailyConsumptionSummary?exportCSV=true&year=@date.Year&month=@date.Month&day=@date.Day" class="btn btn-success" style="float: left;margin-top: 20px; color:white;">导 出</a>
+            <a href="~/Report/DailyConsumptionSummary?mail=true&year=@date.Year&month=@date.Month&day=@date.Day" class="btn btn-success" style="float: left;margin-top: 20px; margin-left:10px; color:white;" on>发送至邮箱</a>
         </div>
         <!-- /.Table -->
     </div>

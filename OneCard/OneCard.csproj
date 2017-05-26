@@ -185,6 +185,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ConfigurationHelper.cs" />
     <Compile Include="Helpers\CSVHelper.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\NetworkHelper.cs" />
@@ -193,6 +194,9 @@
       <DependentUpon>OneCardModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CardRecord_His.cs">
+      <DependentUpon>OneCardModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Configuration.cs">
       <DependentUpon>OneCardModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Constants.cs" />
@@ -211,7 +215,7 @@
     <Compile Include="Models\Log.cs">
       <DependentUpon>OneCardModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LogViewModel.cs" />
+    <Compile Include="Models\SystemViewModels.cs" />
     <Compile Include="Models\OneCardModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1250,6 +1254,7 @@
     <Content Include="Views\Report\MonthlyConsumption.cshtml" />
     <Content Include="Views\Report\DailyConsumptionDetails.cshtml" />
     <Content Include="Views\Report\DailyConsumptionSummary.cshtml" />
+    <Content Include="Views\Tools\Configuration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

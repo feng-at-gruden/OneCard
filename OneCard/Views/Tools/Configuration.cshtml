@@ -1,0 +1,67 @@
+﻿@model IEnumerable<OneCard.Models.ConfigurationViewModel>
+@{
+    ViewBag.Title = "系统参数设置";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title  </h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        SYSTEM CONFIGURATION
+    </div>
+    <div class="panel-body">
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @Html.ValidationSummary()
+            </div>
+        }
+
+        @if (ViewBag.SuccessMessage != null)
+        {
+            <div class="alert alert-success">
+                @ViewBag.SuccessMessage
+            </div>
+        }
+
+
+        @using (Html.BeginForm("Configuration", "Tools", FormMethod.Post, new { role = "form"}) )
+        {
+            @Html.AntiForgeryToken()
+            <div style="max-width:600px; margin:auto; text-align:center;">
+
+                @foreach (OneCard.Models.ConfigurationViewModel con in Model)
+                {
+                    <div class="input-group">
+                       
+                        <div class="controls" >
+                            @Html.TextBox(con.Key, con.Value, new { @class = "form-control" })
+                        </div>
+                        <span class="input-group-addon" id="basic-addon2" >
+                            @con.Name
+                            <small>(@con.Key)</small>
+                        </span>
+                    </div>
+                    <br />
+                }
+                
+                <button type="submit" class="btn btn-success">保 存</button>
+            </div>
+
+        }
+
+
+
+    </div>
+</div>

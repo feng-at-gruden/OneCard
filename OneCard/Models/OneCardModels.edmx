@@ -47,6 +47,15 @@
           <Property Name="yes" Type="int" />
           <Property Name="no" Type="int" />
         </EntityType>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Key" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“OneCard.dbo.ExFloor_Record”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="ExFloor_Record">
@@ -188,6 +197,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="onecardModelStoreContainer">
+          <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -416,6 +426,7 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
             <End Role="User" EntitySet="Users" />
             <End Role="Log" EntitySet="Log" />
           </AssociationSet>
+          <EntitySet Name="Configuration" EntityType="onecardModel.Configuration" />
         </EntityContainer>
         <EntityType Name="UserRole">
           <Key>
@@ -477,6 +488,15 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -636,6 +656,16 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="ActionTime" ColumnName="ActionTime" />
                 <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configuration">
+            <EntityTypeMapping TypeName="onecardModel.Configuration">
+              <MappingFragment StoreEntitySet="Configuration">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
