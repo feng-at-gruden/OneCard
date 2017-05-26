@@ -41,15 +41,17 @@
             <table class="table table-striped table-bordered table-hover" id="dataTables-example" style="font-size:12px;">
                 <thead>
                     <tr>
-                        <th>房间号</th>
+                        <th style="text-align: center;">房间号</th>
+                        <!--
                         <th>6:30 - 7:30</th>
                         <th>7:30 - 9:00</th>
                         <th>9:00 - 10:30</th>
                         <th>其他时段</th>
-                        <th>Package</th>
-                        <th>含早</th>
-                        <th>打卡时间</th>
-                        <th>终端</th>
+                        -->
+                        <th style="text-align: center;">Package</th>
+                        <th style="text-align: center;">含早</th>
+                        <th style="text-align: center;">打卡时间</th>
+                        <th style="text-align: center;">终端</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,10 +59,12 @@
                     {
                         <tr class="odd">
                             <td style="text-align: center; font-weight: bold;">@Html.DisplayFor(modelItem => item.RoomNumber)</td>
+                            <!--
                             <td style="text-align: center;">@Html.DisplayFor(modelItem => item.Count1)</td>
                             <td style="text-align: center;">@Html.DisplayFor(modelItem => item.Count2)</td>
                             <td style="text-align: center;">@Html.DisplayFor(modelItem => item.Count3)</td>
                             <td style="text-align: center;">@Html.DisplayFor(modelItem => item.Count4)</td>
+                            -->
                             <td style="text-align: center;">@Html.DisplayFor(modelItem => item.Package)</td>
                             <td style="text-align: center;">@Html.DisplayFor(modelItem => item.IncludeBreakfast)</td>
                             <td style="text-align: center;">@Html.DisplayFor(modelItem => item.CheckInTime)</td>
