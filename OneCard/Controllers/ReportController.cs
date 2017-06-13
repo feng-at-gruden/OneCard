@@ -101,7 +101,16 @@ namespace OneCard.Controllers
                 if (db.CardRecord.Count() <= 0)
                 {
                     ViewBag.ErrorMessage = "对不起，当日没有就餐记录。";
-                    return View(new DailyCosumptionSummaryViewModel());
+                    ViewBag.Date = DateTime.Now.ToString("yyyy-M-d");
+                    return View(new DailyCosumptionSummaryViewModel
+                    {
+                        Count1 = 0,
+                        Count2 = 0,
+                        Count3 = 0,
+                        Count4 = 0,
+                        ABNCount = 0,
+                        YesCount = 0,
+                    });
                 }
                 ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
             }
