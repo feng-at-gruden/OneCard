@@ -26,5 +26,11 @@ namespace OneCard.Models
         }
 
 
+        public class PackageDisplay
+        {
+            public const string Package1 = "R-BF";
+            public const string Package2 = "F-BF";
+        }
+
     }
 }

@@ -76,7 +76,7 @@ namespace OneCard.Controllers
                         Num = int.Parse(row["Adults"].ToString()),
                         Package = row["Package"].ToString(),
                         Pax = string.IsNullOrWhiteSpace(row["Pax"].ToString()) ? 0 : int.Parse(row["Pax"].ToString()),
-                        Vip = string.IsNullOrWhiteSpace(row["VIP"].ToString()) ? 0 : int.Parse(row["VIP"].ToString()),
+                        Vip = string.IsNullOrWhiteSpace(row["VIP"].ToString()) ? "0" : row["VIP"].ToString(),
                     }); 
                 }
                 db.SaveChanges();

@@ -168,7 +168,7 @@ namespace OneCard.Models
         public int? Adults { get; set; }
 
         [Display(Name = "VIP")]
-        public int? VIP { get; set; }
+        public string VIP { get; set; }
 
         [Display(Name = "Pax")]
         public int? Pax { get; set; }

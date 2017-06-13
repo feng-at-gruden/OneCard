@@ -1,5 +1,5 @@
 ﻿@model OneCard.Models.DailyCosumptionSummaryViewModel
-
+@using OneCard.Models
 @{
     ViewBag.Title = ViewBag.Date + "日用餐汇总";
     int total = Model.Count1.Value + Model.Count2.Value + Model.Count3.Value + Model.Count4.Value;
@@ -41,7 +41,7 @@
                      7:30-9:00 <b>@(Model.Count2)</b>次
                      9:00-10:30 <b>@(Model.Count3)</b>次
                      其他时段 <b>@(Model.Count4)</b>次</small></i> <br/>
-                <i><small>A-BF: <b>@(Model.ABNCount)</b>次 F-BF: <b>@(Model.FBNCount)</b>次</small></i><br />
+                <i><small>@Constants.PackageDisplay.Package1: <b>@(Model.ABNCount)</b>次 Constants.PackageDisplay.Package2: <b>@(Model.FBNCount)</b>次</small></i><br />
                 <i><small>含早: <b>@(Model.YesCount)</b>次 不含早: <b>@(Model.NoCount)</b>次</small></i>
             </div>
             
@@ -106,8 +106,8 @@
     });
 
     var data2 = [];
-    data2[0] = {label: "A-BF", data: @Model.ABNCount };
-    data2[1] = {label: "F-BF", data: @Model.FBNCount };
+    data2[0] = {label: "@Constants.PackageDisplay.Package1", data: @Model.ABNCount };
+    data2[1] = {label: "@Constants.PackageDisplay.Package2", data: @Model.FBNCount };
     $.plot(placeholder2, data2, {
         series: {
             pie: {

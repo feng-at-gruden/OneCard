@@ -28,12 +28,16 @@ namespace OneCard.Controllers
                                                                  Count2 = row.time2,
                                                                  Count3 = row.time3,
                                                                  Count4 = row.time4,
-                                                                 Package = row.Package1==1 ? "A-BF" : "F-BF",
+                                                                 Package = row.Package1==1 ? Constants.PackageDisplay.Package1 : Constants.PackageDisplay.Package2,
                                                                  DeviceID = row.StationID,
                                                                  CheckInTime = row.ChkTime,
                                                                  IncludeBreakfast = row.yes==1 ? "Yes" : "No",
                                                              };
-
+            if (db.CardRecord.Count() <= 0)
+            {
+                ViewBag.ErrorMessage = "对不起，当日没有就餐记录。";
+                return View(model);
+            }
             ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
             if(exportCSV)
             {
@@ -94,6 +98,11 @@ namespace OneCard.Controllers
                 //mFBNCount = db.CardRecord.Count(m => m.package2 == 1);
                 mYesCount = db.CardRecord.Count(m => m.yes == 1);
                 //mNoCount = db.CardRecord.Count(m => m.yes != 1);
+                if (db.CardRecord.Count() <= 0)
+                {
+                    ViewBag.ErrorMessage = "对不起，当日没有就餐记录。";
+                    return View(new DailyCosumptionSummaryViewModel());
+                }
                 ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
             }
 
@@ -110,7 +119,7 @@ namespace OneCard.Controllers
             };
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(new List<DailyCosumptionSummaryViewModel> { model }, new string[] { "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "A-BF", "F-BF", "含早", "不含早", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "用餐汇总.csv");
+                return File(CSVHelper.ExportCSV(new List<DailyCosumptionSummaryViewModel> { model }, new string[] { "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", Constants.PackageDisplay.Package1, Constants.PackageDisplay.Package2, "含早", "不含早", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "用餐汇总.csv");
             }
             if (mail)
             {
@@ -123,7 +132,7 @@ namespace OneCard.Controllers
                     MailHelper.SendMail(
                         ViewBag.Date + "用餐汇总",
                         CurrentUser.Email,
-                        CSVHelper.ExportCSV(new List<DailyCosumptionSummaryViewModel> { model }, new string[] { "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "A-BF", "F-BF", "含早", "不含早", "用餐总数" }),
+                        CSVHelper.ExportCSV(new List<DailyCosumptionSummaryViewModel> { model }, new string[] { "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", Constants.PackageDisplay.Package1, Constants.PackageDisplay.Package2, "含早", "不含早", "用餐总数" }),
                         ViewBag.Date + "用餐汇总.csv");
 
                     ViewBag.SuccessMessage = "邮件发送成功";
@@ -146,7 +155,11 @@ namespace OneCard.Controllers
                                                        Count3 = b.Sum(c => c.time3),
                                                        Count4 = b.Sum(c => c.time4),
                                                    };
-
+            if (db.CardRecord.Count() <= 0)
+            {
+                ViewBag.ErrorMessage = "对不起，当日没有就餐记录。";
+                return View(model);
+            }
             ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
             if (exportCSV)
             {
@@ -201,7 +214,7 @@ namespace OneCard.Controllers
                                                        Count2 = row.time2,
                                                        Count3 = row.time3,
                                                        Count4 = row.time4,
-                                                       Package = row.package1 == 1 ? "A-BF" : "F-BF",
+                                                       Package = row.package1 == 1 ? Constants.PackageDisplay.Package1 : Constants.PackageDisplay.Package2,
                                                        DeviceID = row.StationID,
                                                        CheckInTime = row.ChkTime,
                                                        IncludeBreakfast = row.yes == 1 ? "Yes" : "No",
@@ -412,7 +425,11 @@ namespace OneCard.Controllers
                                                                 Package = row.Package, 
                                                                 Pax = row.Pax,
                                                              };
-
+            if (db.ZaoCanIn24.Count() <= 0)
+            {
+                ViewBag.ErrorMessage = "对不起，暂无当日入住信息。";
+                return View(model);
+            }
             ViewBag.Date = db.ZaoCanIn24.FirstOrDefault().InTime.Value.ToString("yyyy-MM-dd");
             model = filterGuestName(model);
             if (exportCSV)
@@ -539,7 +556,12 @@ namespace OneCard.Controllers
                                                                  Count = 1,
                                                                  CheckInTime = row.ChkTime,
                                                              };
-            ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
+            if(db.Fitness24.Count()<=0)
+            {
+                ViewBag.ErrorMessage = "对不起，当日没有健身记录。";
+                return View(model);
+            }
+            ViewBag.Date = db.Fitness24.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
             if (exportCSV)
             {
                 return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数", "打卡时间" }), "text/comma-separated-values", ViewBag.Date + "健身中心数据.csv");
