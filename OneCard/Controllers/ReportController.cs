@@ -567,13 +567,13 @@ namespace OneCard.Controllers
                                                              };
             if(db.Fitness24.Count()<=0)
             {
-                ViewBag.ErrorMessage = "对不起，当日没有健身记录。";
+                ViewBag.ErrorMessage = "对不起，没有当日健身记录。";
                 return View(model);
             }
             ViewBag.Date = db.Fitness24.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数", "打卡时间" }), "text/comma-separated-values", ViewBag.Date + "健身中心数据.csv");
+                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数", "打卡时间" }), "text/comma-separated-values", ViewBag.Date + "健身中心当日数据.csv");
             }
             if (mail)
             {
@@ -584,10 +584,10 @@ namespace OneCard.Controllers
                 else
                 {
                     MailHelper.SendMail(
-                        ViewBag.Date + "健身中心数据",
+                        ViewBag.Date + "健身中心当日数据",
                         CurrentUser.Email,
                         CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数", "打卡时间" }),
-                        ViewBag.Date + "健身中心数据.csv");
+                        ViewBag.Date + "健身中心当日数据.csv");
 
                     ViewBag.SuccessMessage = "邮件发送成功";
                 }
@@ -668,6 +668,127 @@ namespace OneCard.Controllers
 
             return View(model);
         }
+
+
+
+        //行政酒廊
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
+        public ActionResult DailyBar(bool exportCSV = false, bool mail = false)
+        {
+            IEnumerable<FitnessDataViewModel> model = from row in db.ExFloor_Record24
+                                                      orderby row.Room
+                                                      select new FitnessDataViewModel
+                                                      {
+                                                          RoomNumber = row.Room,
+                                                          Count = 1,
+                                                          CheckInTime = row.ChkTime,
+                                                      };
+            if (db.ExFloor_Record24.Count() <= 0)
+            {
+                ViewBag.ErrorMessage = "对不起，没有当日消费记录。";
+                return View(model);
+            }
+            ViewBag.Date = db.ExFloor_Record24.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
+            if (exportCSV)
+            {
+                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数", "打卡时间" }), "text/comma-separated-values", ViewBag.Date + "行政酒廊当日数据.csv");
+            }
+            if (mail)
+            {
+                if (string.IsNullOrWhiteSpace(CurrentUser.Email))
+                {
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接收邮箱，请在个人设置中设置您的接收邮箱。";
+                }
+                else
+                {
+                    MailHelper.SendMail(
+                        ViewBag.Date + "行政酒廊当日数据",
+                        CurrentUser.Email,
+                        CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数", "打卡时间" }),
+                        ViewBag.Date + "行政酒廊当日数据.csv");
+
+                    ViewBag.SuccessMessage = "邮件发送成功";
+                }
+            }
+            return View(model);
+        }
+
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
+        public ActionResult BarHistory()
+        {
+            return View();
+        }
+
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BarHistory(string StartTime, string EndTime, int? room, bool exportCSV = false, bool mail = false)
+        {
+            DateTime edTime = DateTime.Now.AddDays(-1);
+            DateTime stTime = DateTime.MinValue;
+            if (!string.IsNullOrWhiteSpace(StartTime))
+            {
+                stTime = DateTime.Parse(StartTime + " 00:00:00");
+            }
+            if (!string.IsNullOrWhiteSpace(EndTime))
+            {
+                edTime = DateTime.Parse(EndTime + " 23:59:59");
+            }
+
+
+            IEnumerable<FitnessDataViewModel> model = from row in db.ExFloor_Record
+                                                      where row.StartTime >= stTime && row.StartTime <= edTime
+                                                      group row by new { row.Room } into b
+                                                      orderby b.Key.Room
+                                                      select new FitnessDataViewModel
+                                                      {
+                                                          RoomNumber = b.Key.Room,
+                                                          Count = b.Count(),
+                                                      };
+
+            if (room.HasValue)
+                model = model.Where(m => m.RoomNumber == room);
+
+            if (!string.IsNullOrWhiteSpace(StartTime))
+            {
+                ViewBag.Date = stTime.ToString("yyyy-MM-dd") + "至" + edTime.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                ViewBag.Date = "截至" + edTime.ToString("yyyy-MM-dd");
+            }
+
+            if (exportCSV)
+            {
+                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数" }), "text/comma-separated-values", ViewBag.Date + "行政酒廊数据.csv");
+            }
+            if (mail)
+            {
+                if (string.IsNullOrWhiteSpace(CurrentUser.Email))
+                {
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接收邮箱，请在个人设置中设置您的接收邮箱。";
+                }
+                else
+                {
+                    MailHelper.SendMail(
+                        ViewBag.Date + "行政酒廊数据",
+                        CurrentUser.Email,
+                        CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数" }),
+                        ViewBag.Date + "行政酒廊数据.csv");
+
+                    ViewBag.SuccessMessage = "邮件发送成功";
+                }
+            }
+            //Store form values;
+            ViewBag.StartTime = StartTime;
+            ViewBag.EndTime = EndTime;
+            ViewBag.room = room;
+
+            return View(model);
+        }
+
+
+
 
 
 

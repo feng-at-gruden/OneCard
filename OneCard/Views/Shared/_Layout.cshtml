@@ -142,6 +142,21 @@
                                             </ul>
                                         </li>
                                     }
+                                    @if (User.IsInRole(OneCard.Models.Constants.Roles.ROLE_ADMIN)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_IT)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_LOBBY))
+                                    {
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                行政酒廊数据 <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu ">
+                                                <li>@Html.ActionLink("行政酒廊当日数据", "DailyBar", "Report")</li>
+                                                <li class="divider"></li>
+                                                <li>@Html.ActionLink("行政酒廊历史数据", "BarHistory", "Report")</li>
+                                            </ul>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>

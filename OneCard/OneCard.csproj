@@ -1254,6 +1254,8 @@
     <Content Include="Views\Report\DailyConsumptionDetails.cshtml" />
     <Content Include="Views\Report\DailyConsumptionSummary.cshtml" />
     <Content Include="Views\Tools\Configuration.cshtml" />
+    <Content Include="Views\Report\DailyBar.cshtml" />
+    <Content Include="Views\Report\BarHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
