@@ -642,7 +642,7 @@ namespace OneCard.Controllers
 
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数" }), "text/comma-separated-values", ViewBag.Date + "健身中心数据.csv");
+                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数", "打卡时间" }), "text/comma-separated-values", ViewBag.Date + "健身中心数据.csv");
             }
             if (mail)
             {
@@ -655,7 +655,7 @@ namespace OneCard.Controllers
                     MailHelper.SendMail(
                         ViewBag.Date + "健身中心数据",
                         CurrentUser.Email,
-                        CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数" }),
+                        CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数", "打卡时间" }),
                         ViewBag.Date + "健身中心数据.csv");
 
                     ViewBag.SuccessMessage = "邮件发送成功";
@@ -760,7 +760,7 @@ namespace OneCard.Controllers
 
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数" }), "text/comma-separated-values", ViewBag.Date + "行政酒廊数据.csv");
+                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数", "打卡时间" }), "text/comma-separated-values", ViewBag.Date + "行政酒廊数据.csv");
             }
             if (mail)
             {
@@ -773,7 +773,7 @@ namespace OneCard.Controllers
                     MailHelper.SendMail(
                         ViewBag.Date + "行政酒廊数据",
                         CurrentUser.Email,
-                        CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数" }),
+                        CSVHelper.ExportCSV(model, new string[] { "房间号", "打卡次数", "打卡时间" }),
                         ViewBag.Date + "行政酒廊数据.csv");
 
                     ViewBag.SuccessMessage = "邮件发送成功";
