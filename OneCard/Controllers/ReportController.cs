@@ -618,15 +618,15 @@ namespace OneCard.Controllers
             }
 
 
-            IEnumerable<FitnessDataViewModel> model = from row in db.Fitness24
+            IEnumerable<FitnessDataViewModel> model = from row in db.Fitness
                                                       where row.StartTime >= stTime && row.StartTime <= edTime
-                                                        group row by new { row.Room } into b
-                                                        orderby b.Key.Room
+                                                      orderby row.ChkTime
                                                       select new FitnessDataViewModel
-                                                          {
-                                                              RoomNumber = b.Key.Room,
-                                                              Count = b.Count(),
-                                                          };
+                                                        {
+                                                            RoomNumber = row.Room,
+                                                            Count = 1,
+                                                            CheckInTime = row.ChkTime,
+                                                        };
 
             if (room.HasValue)
                 model = model.Where(m => m.RoomNumber == room);
@@ -738,12 +738,12 @@ namespace OneCard.Controllers
 
             IEnumerable<FitnessDataViewModel> model = from row in db.ExFloor_Record
                                                       where row.StartTime >= stTime && row.StartTime <= edTime
-                                                      group row by new { row.Room } into b
-                                                      orderby b.Key.Room
+                                                      orderby row.ChkTime
                                                       select new FitnessDataViewModel
                                                       {
-                                                          RoomNumber = b.Key.Room,
-                                                          Count = b.Count(),
+                                                          RoomNumber = row.Room,
+                                                          Count = 1,
+                                                          CheckInTime = row.ChkTime,
                                                       };
 
             if (room.HasValue)

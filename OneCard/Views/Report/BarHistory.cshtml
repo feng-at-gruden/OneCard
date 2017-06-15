@@ -29,7 +29,7 @@
                 </div>
             }
 
-            @using (Html.BeginForm("FitnessHistory", "Report", FormMethod.Post, new { role = "form" }))
+            @using (Html.BeginForm("BarHistory", "Report", FormMethod.Post, new { role = "form" }))
             {
                 @Html.AntiForgeryToken()
 
@@ -96,7 +96,7 @@ else
     
     <div class="panel panel-default">
         <div class="panel-heading">
-            FITNESS CENTER HISTORY
+            CLUB HISTORY
         </div>
         <div class="panel-body">
             @if (ViewBag.ErrorMessage != null)
@@ -112,7 +112,7 @@ else
                     @ViewBag.SuccessMessage
                 </div>
             }
-            <div class="dataTable_wrapper" style="width: 720px; margin: auto auto;">
+            <div class="dataTable_wrapper" style="margin: auto auto;">
                 <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
                     <span>共<b>@Model.Count()</b>间客房 消费<b>@total</b>次    日期:<b>@ViewBag.Date</b></span>
                 </div>
@@ -121,6 +121,7 @@ else
                         <tr>
                             <th>房间号</th>
                             <th style="text-align: center;">打卡次数</th>
+                            <th style="text-align: center;">打卡时间</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -129,6 +130,7 @@ else
                             <tr class="odd">
                                 <td style="text-align: left; font-weight: bold; padding-left:20px;">@Html.DisplayFor(modelItem => item.RoomNumber)</td>
                                 <td style="text-align: center; font-weight:bold;">@Html.DisplayFor(modelItem => item.Count)</td>
+                                <td style="text-align: center; font-weight:bold;">@Html.DisplayFor(modelItem => item.CheckInTime)</td>
                             </tr>
                         }
                     </tbody>
@@ -136,7 +138,7 @@ else
                 <button type="button" class="btn btn-success" onclick="javastript: history.go(-1);" style="float: left; margin-top: -42px; ">
                     返 回
                 </button>
-                @using (Html.BeginForm("FitnessHistory", "Report", FormMethod.Post))
+                @using (Html.BeginForm("BarHistory", "Report", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="StartTime" value="@ViewBag.StartTime" />
@@ -147,7 +149,7 @@ else
                         导 出
                     </button>
                 }
-                @using (Html.BeginForm("FitnessHistory", "Report", FormMethod.Post))
+                @using (Html.BeginForm("BarHistory", "Report", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="StartTime" value="@ViewBag.StartTime" />
