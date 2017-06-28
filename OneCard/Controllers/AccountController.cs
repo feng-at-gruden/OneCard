@@ -191,7 +191,7 @@ namespace OneCard.Controllers
             return View(getUserInfoViewModel(model.ID));
         }
 
-        [OneCardAuth(Roles = "管理员")]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT)]
         public ActionResult Create()
         {
             var model = new UserViewModel
