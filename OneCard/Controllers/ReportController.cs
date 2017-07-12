@@ -16,7 +16,10 @@ namespace OneCard.Controllers
         
 
         //餐饮信息
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + "," 
+            + Constants.Roles.ROLE_FINANCE + "," 
+            + Constants.Roles.ROLE_DIET)]
         public ActionResult DailyConsumptionDetails(bool exportCSV = false, bool mail = false)
         {
             IEnumerable<RoomCosumptionDataViewModel> model = from row in db.CardRecord
@@ -63,7 +66,10 @@ namespace OneCard.Controllers
             return View(model);
         }
 
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + "," 
+            + Constants.Roles.ROLE_FINANCE + "," 
+            + Constants.Roles.ROLE_DIET)]
         public ActionResult DailyConsumptionSummary(int? year, int? month, int? day, bool exportCSV = false, bool mail = false)
         {
             var count1 = 0;
@@ -150,7 +156,10 @@ namespace OneCard.Controllers
             return View(model);
         }
 
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + "," 
+            + Constants.Roles.ROLE_FINANCE + "," 
+            + Constants.Roles.ROLE_DIET)]
         public ActionResult DailyConsumption(bool exportCSV = false, bool mail = false)
         {
             IEnumerable<RoomCosumptionDataViewModel> model = from row in db.CardRecord
@@ -194,13 +203,19 @@ namespace OneCard.Controllers
             return View(model);
         }
 
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + "," 
+            + Constants.Roles.ROLE_FINANCE + "," 
+            + Constants.Roles.ROLE_DIET)]
         public ActionResult ConsumptionHistory()
         {
             return View();
         }
 
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + "," 
+            + Constants.Roles.ROLE_FINANCE + "," 
+            + Constants.Roles.ROLE_DIET)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ConsumptionHistory(string StartDate, string EndDate, string StartTime, string EndTime, int? room, bool exportCSV = false, bool mail = false)
@@ -302,13 +317,19 @@ namespace OneCard.Controllers
             return View(filteredModel);
         }
 
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + "," 
+            + Constants.Roles.ROLE_FINANCE + "," 
+            + Constants.Roles.ROLE_DIET)]
         public ActionResult YearlyConsumption()
         {
             return View();
         }
 
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + "," 
+            + Constants.Roles.ROLE_FINANCE + "," 
+            + Constants.Roles.ROLE_DIET)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult YearlyConsumption(int? Year, bool exportCSV = false, bool mail = false)
@@ -356,13 +377,19 @@ namespace OneCard.Controllers
             return View(model);
         }
 
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + "," 
+            + Constants.Roles.ROLE_FINANCE + "," 
+            + Constants.Roles.ROLE_DIET)]
         public ActionResult MonthlyConsumption()
         {
             return View();
         }
 
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_FINANCE + "," + Constants.Roles.ROLE_DIET)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + "," 
+            + Constants.Roles.ROLE_FINANCE + "," 
+            + Constants.Roles.ROLE_DIET)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult MonthlyConsumption(int Year, int Month, bool exportCSV = false, bool mail = false)
@@ -416,7 +443,10 @@ namespace OneCard.Controllers
 
 
         //客房信息
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + ","
+            + Constants.Roles.ROLE_FINANCE + ","
+            + Constants.Roles.ROLE_LOBBY)]
         public ActionResult DailyRoomBooking(bool exportCSV = false, bool mail = false)
         {
             IEnumerable<RoomBookingDataViewModel> model = from row in db.ZaoCanIn24                                                             
@@ -465,13 +495,19 @@ namespace OneCard.Controllers
             return View(model);
         }
 
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + ","
+            + Constants.Roles.ROLE_FINANCE + ","
+            + Constants.Roles.ROLE_LOBBY)]
         public ActionResult RoomBookingHistory()
         {
             return View();
         }
 
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + ","
+            + Constants.Roles.ROLE_FINANCE + ","
+            + Constants.Roles.ROLE_LOBBY)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult RoomBookingHistory(string StartTime, string EndTime, int? room, bool exportCSV = false, bool mail = false)
@@ -554,7 +590,10 @@ namespace OneCard.Controllers
 
 
         //健身中心
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + ","
+            + Constants.Roles.ROLE_FINANCE + ","
+            + Constants.Roles.ROLE_LOBBY)]
         public ActionResult DailyFitness(bool exportCSV = false, bool mail = false)
         {
             IEnumerable<FitnessDataViewModel> model = from row in db.Fitness24
@@ -595,13 +634,19 @@ namespace OneCard.Controllers
             return View(model);
         }
 
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + ","
+            + Constants.Roles.ROLE_FINANCE + ","
+            + Constants.Roles.ROLE_LOBBY)]
         public ActionResult FitnessHistory()
         {
             return View();
         }
 
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + ","
+            + Constants.Roles.ROLE_FINANCE + ","
+            + Constants.Roles.ROLE_LOBBY)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult FitnessHistory(string StartTime, string EndTime, int? room, bool exportCSV = false, bool mail = false)
@@ -672,7 +717,11 @@ namespace OneCard.Controllers
 
 
         //行政酒廊
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + ","
+            + Constants.Roles.ROLE_FINANCE + ","
+            + Constants.Roles.ROLE_DIET + ","
+            + Constants.Roles.ROLE_LOBBY)]
         public ActionResult DailyBar(bool exportCSV = false, bool mail = false)
         {
             IEnumerable<FitnessDataViewModel> model = from row in db.ExFloor_Record24
@@ -713,13 +762,21 @@ namespace OneCard.Controllers
             return View(model);
         }
 
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + ","
+            + Constants.Roles.ROLE_FINANCE + ","
+            + Constants.Roles.ROLE_DIET + ","
+            + Constants.Roles.ROLE_LOBBY)]
         public ActionResult BarHistory()
         {
             return View();
         }
 
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
+            + Constants.Roles.ROLE_IT + ","
+            + Constants.Roles.ROLE_FINANCE + ","
+            + Constants.Roles.ROLE_DIET + ","
+            + Constants.Roles.ROLE_LOBBY)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult BarHistory(string StartTime, string EndTime, int? room, bool exportCSV = false, bool mail = false)

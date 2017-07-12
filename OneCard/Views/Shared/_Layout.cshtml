@@ -88,6 +88,7 @@
                                 <ul class="nav navbar-nav navbar-left">
                                     @if (User.IsInRole(OneCard.Models.Constants.Roles.ROLE_ADMIN)
                                         || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_IT)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_FINANCE)
                                         || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_LOBBY))
                                     {
                                         <li class="dropdown">
@@ -95,8 +96,11 @@
                                                 客房数据 <b class="caret"></b>
                                             </a>
                                             <ul class="dropdown-menu ">
-                                                <li>@Html.ActionLink("客房数据导入", "import", "tools")</li>
-                                                <li class="divider"></li>
+                                                @if (!User.IsInRole(OneCard.Models.Constants.Roles.ROLE_FINANCE))
+                                                {
+                                                    <li>@Html.ActionLink("客房数据导入", "import", "tools")</li>
+                                                    <li class="divider"></li>
+                                                }
                                                 <li>@Html.ActionLink("当日客房数据", "DailyRoomBooking", "Report")</li>
                                                 <li class="divider"></li>
                                                 <li>@Html.ActionLink("客房历史数据", "RoomBookingHistory", "Report")</li>
@@ -129,7 +133,8 @@
                                     }
                                     @if (User.IsInRole(OneCard.Models.Constants.Roles.ROLE_ADMIN)
                                         || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_IT)
-                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_LOBBY))
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_LOBBY)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_FINANCE))
                                     {
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -144,7 +149,9 @@
                                     }
                                     @if (User.IsInRole(OneCard.Models.Constants.Roles.ROLE_ADMIN)
                                         || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_IT)
-                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_LOBBY))
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_LOBBY)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_FINANCE)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_DIET))
                                     {
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
