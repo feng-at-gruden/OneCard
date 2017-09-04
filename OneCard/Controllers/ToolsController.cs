@@ -152,7 +152,7 @@ namespace OneCard.Controllers
         }
 
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
-        public ActionResult SwimCard()
+        public ActionResult SwimmingCard()
         {
             return View();
         }
@@ -160,7 +160,7 @@ namespace OneCard.Controllers
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SwimCard()
+        public ActionResult SwimmingCard()
         {
             return View();
         }

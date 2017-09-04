@@ -201,4 +201,34 @@ namespace OneCard.Models
     }
 
 
+
+    //游泳池数据
+    public class SwimmingCardViewModel
+    {
+        [Display(Name = "卡号")]
+        public string CardNumber { get; set; }
+
+        [Display(Name = "卡ID")]
+        public string CardID { get; set; }
+
+        [Display(Name = "姓名")]
+        public string Name { get; set; }
+
+        [Display(Name = "性别")]
+        public string Gender { get; set; }
+
+        [Display(Name = "打卡次数")]
+        public int Count { get; set; }
+
+        [Display(Name = "发卡时间")]
+        public DateTime? IssueTime { get; set; }
+
+        [Display(Name = "有效期")]
+        public DateTime? EndTime { get; set; }
+
+        [Display(Name = "上次打卡时间")]
+        public DateTime? LastTime { get; set; }
+    }
+
+
 }

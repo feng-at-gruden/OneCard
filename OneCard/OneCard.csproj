@@ -1256,7 +1256,10 @@
     <Content Include="Views\Tools\Configuration.cshtml" />
     <Content Include="Views\Report\DailyBar.cshtml" />
     <Content Include="Views\Report\BarHistory.cshtml" />
-    <Content Include="Views\Tools\SwimCard.cshtml" />
+    <Content Include="Views\Tools\SwimmingCard.cshtml" />
+    <Content Include="Views\Report\SwimmingHistory.cshtml" />
+    <Content Include="Views\Report\DailySwimming.cshtml" />
+    <Content Include="Views\Report\SwimmingCards.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
