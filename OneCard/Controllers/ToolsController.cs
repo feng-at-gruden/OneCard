@@ -151,6 +151,22 @@ namespace OneCard.Controllers
             return View(getSystemConfigurations());
         }
 
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
+        public ActionResult SwimCard()
+        {
+            return View();
+        }
+
+        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SwimCard()
+        {
+            return View();
+        }
+
+
+
         private IEnumerable<ConfigurationViewModel> getSystemConfigurations()
         {
             IEnumerable<ConfigurationViewModel> model = from row in db.Configuration
@@ -180,7 +196,6 @@ namespace OneCard.Controllers
             }
             return false;
         }
-
 
         private static DataTable GetDataFromCVS(string filepath)
         {

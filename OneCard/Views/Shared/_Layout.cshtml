@@ -164,6 +164,28 @@
                                             </ul>
                                         </li>
                                     }
+                                    @if (User.IsInRole(OneCard.Models.Constants.Roles.ROLE_ADMIN)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_IT)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_LOBBY)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_FINANCE)
+                                        || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_DIET))
+                                    {
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                游泳池数据 <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu ">
+                                                <li>@Html.ActionLink("游泳卡登记", "SwimCard", "Tool")</li>
+                                                <li class="divider"></li>
+                                                <li>@Html.ActionLink("游泳卡一览", "SwimCards", "Report")</li>
+                                                <li class="divider"></li>
+                                                <li>@Html.ActionLink("游泳池当日数据", "DailySwim", "Report")</li>
+                                                <li class="divider"></li>
+                                                <li>@Html.ActionLink("游泳池历史数据", "SwimHistory", "Report")</li>
+                                            </ul>
+                                        </li>
+                                    }
+
                                 </ul>
                             </div>
                         </div>
