@@ -864,7 +864,7 @@ namespace OneCard.Controllers
             + Constants.Roles.ROLE_LOBBY)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SwimmingCards()
+        public ActionResult SwimmingCards(string StartTime, string EndTime, bool exportCSV = false, bool mail = false)
         {
             return View();
         }
@@ -886,7 +886,7 @@ namespace OneCard.Controllers
             + Constants.Roles.ROLE_LOBBY)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DailySwimming()
+        public ActionResult DailySwimming(string StartTime, string EndTime, bool exportCSV = false, bool mail = false)
         {
             return View();
         }
@@ -908,7 +908,7 @@ namespace OneCard.Controllers
             + Constants.Roles.ROLE_LOBBY)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SwimmingHistory()
+        public ActionResult SwimmingHistory(string StartTime, string EndTime, bool exportCSV = false, bool mail = false)
         {
             return View();
         }

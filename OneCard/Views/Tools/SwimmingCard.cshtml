@@ -1,5 +1,114 @@
-﻿@{
-    ViewBag.Title = "SwimCard";
+﻿@model OneCard.Models.SwimmingCardViewModel
+@{
+    ViewBag.Title = "游泳卡登记";
+
+    var GenderList = new List<string>();
+    GenderList.Add("男");
+    GenderList.Add("女");
+
 }
 
-<h2>SwimCard</h2>
+@section featured {
+<section class="featured">
+    <div class="content-wrapper">
+        <hgroup class="title">
+            <h1>@ViewBag.Title  </h1>
+        </hgroup>
+    </div>
+</section>
+}
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        ISSUE SWIMMING CARD
+    </div>
+    <div class="panel-body">
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @Html.ValidationSummary()
+            </div>
+        }
+
+        @if (ViewBag.SuccessMessage != null)
+        {
+            <div class="alert alert-success">
+                @ViewBag.SuccessMessage
+            </div>
+        }
+
+
+        @using (Html.BeginForm("SwimmingCard", "Tools", FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div style="width:400px; margin:auto; text-align:center;">
+
+                <div class="form-group">
+                    <div class="input-group date">
+                        @Html.TextBoxFor(m => m.CardID, new { @class = "form-control", placeholder = "卡ID", maxlength = 30 })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-lock"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group date">
+                        @Html.TextBoxFor(m => m.CardNumber, new { @class = "form-control", placeholder = "卡号", maxlength = 30 })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-lock"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group date">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "姓名", maxlength = 20 })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class='input-group date'>
+                        @Html.DropDownListFor(m => m.Gender, new SelectList(GenderList), new { @class = "form-control" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class='input-group date'>
+                        <input type='text' class="form-control" id='datetimepicker1' name="ExpiredTime" placeholder="有效期" autocomplete="off" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success">发 卡</button>
+            </div>
+
+        }
+
+
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            jQuery.datetimepicker.setLocale('zh');
+            $('#datetimepicker1').datetimepicker({
+                timepicker: false,
+                format: 'Y/m/d',
+                mask: false,
+            });
+        });
+</script>

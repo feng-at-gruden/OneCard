@@ -13,12 +13,15 @@
         <EntityTypeShape EntityType="onecardModel.Fitness24" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="onecardModel.ZaoCanIn" Width="1.5" PointX="2.625" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="onecardModel.ZaoCanIn24" Width="1.5" PointX="0.625" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="onecardModel.UserRole" Width="1.5" PointX="5.375" PointY="8.5" />
-        <EntityTypeShape EntityType="onecardModel.User" Width="1.5" PointX="7.625" PointY="8" />
+        <EntityTypeShape EntityType="onecardModel.UserRole" Width="1.5" PointX="5.375" PointY="7.125" />
+        <EntityTypeShape EntityType="onecardModel.User" Width="1.5" PointX="7.375" PointY="7.125" />
         <AssociationConnector Association="onecardModel.FK__Users__RoleId__173876EA" />
-        <EntityTypeShape EntityType="onecardModel.Log" Width="1.5" PointX="9.875" PointY="8.25" />
+        <EntityTypeShape EntityType="onecardModel.Log" Width="1.5" PointX="9.5" PointY="7.125" />
         <AssociationConnector Association="onecardModel.FK__Log__UserId__164452B1" />
         <EntityTypeShape EntityType="onecardModel.Configuration" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="onecardModel.SwimmingCard" Width="1.5" PointX="0.75" PointY="9.375" />
+        <EntityTypeShape EntityType="onecardModel.SwimmingRecord" Width="1.5" PointX="2.625" PointY="9.375" />
+        <EntityTypeShape EntityType="onecardModel.SwimmingRecord24" Width="1.5" PointX="4.5" PointY="9.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

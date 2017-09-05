@@ -119,6 +119,38 @@
           <Property Name="IP" Type="varchar" MaxLength="50" />
           <Property Name="Client" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="SwimmingCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CardId" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="CardNumber" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Gender" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="ExpiredAt" Type="datetime" />
+          <Property Name="LastTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SwimmingRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CardId" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="CardNumber" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="ChkTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SwimmingRecord24">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CardId" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="CardNumber" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="ChkTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="UserRole">
           <Key>
             <PropertyRef Name="Id" />
@@ -199,6 +231,9 @@
         <EntityContainer Name="onecardModelStoreContainer">
           <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SwimmingCard" EntityType="Self.SwimmingCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SwimmingRecord" EntityType="Self.SwimmingRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SwimmingRecord24" EntityType="Self.SwimmingRecord24" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZaoCanIn" EntityType="Self.ZaoCanIn" Schema="dbo" store:Type="Tables" />
@@ -427,6 +462,9 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
             <End Role="Log" EntitySet="Log" />
           </AssociationSet>
           <EntitySet Name="Configuration" EntityType="onecardModel.Configuration" />
+          <EntitySet Name="SwimmingCard" EntityType="onecardModel.SwimmingCard" />
+          <EntitySet Name="SwimmingRecord" EntityType="onecardModel.SwimmingRecord" />
+          <EntitySet Name="SwimmingRecord24" EntityType="onecardModel.SwimmingRecord24" />
         </EntityContainer>
         <EntityType Name="UserRole">
           <Key>
@@ -496,6 +534,38 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Key" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SwimmingCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CardId" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="CardNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpiredAt" Type="DateTime" Precision="3" />
+          <Property Name="LastTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SwimmingRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CardId" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="CardNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="ChkTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SwimmingRecord24">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CardId" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="CardNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="ChkTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -666,6 +736,41 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Key" ColumnName="Key" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SwimmingCard">
+            <EntityTypeMapping TypeName="onecardModel.SwimmingCard">
+              <MappingFragment StoreEntitySet="SwimmingCard">
+                <ScalarProperty Name="LastTime" ColumnName="LastTime" />
+                <ScalarProperty Name="ExpiredAt" ColumnName="ExpiredAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="CardId" ColumnName="CardId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SwimmingRecord">
+            <EntityTypeMapping TypeName="onecardModel.SwimmingRecord">
+              <MappingFragment StoreEntitySet="SwimmingRecord">
+                <ScalarProperty Name="ChkTime" ColumnName="ChkTime" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="CardId" ColumnName="CardId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SwimmingRecord24">
+            <EntityTypeMapping TypeName="onecardModel.SwimmingRecord24">
+              <MappingFragment StoreEntitySet="SwimmingRecord24">
+                <ScalarProperty Name="ChkTime" ColumnName="ChkTime" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="CardId" ColumnName="CardId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

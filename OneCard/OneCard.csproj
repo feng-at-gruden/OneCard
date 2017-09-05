@@ -215,6 +215,15 @@
     <Compile Include="Models\Log.cs">
       <DependentUpon>OneCardModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SwimmingCard.cs">
+      <DependentUpon>OneCardModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SwimmingRecord.cs">
+      <DependentUpon>OneCardModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SwimmingRecord24.cs">
+      <DependentUpon>OneCardModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SystemViewModels.cs" />
     <Compile Include="Models\OneCardModels.Context.cs">
       <AutoGen>True</AutoGen>

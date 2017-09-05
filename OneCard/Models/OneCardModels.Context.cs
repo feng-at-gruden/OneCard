@@ -37,5 +37,8 @@ namespace OneCard.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Log> Log { get; set; }
         public DbSet<Configuration> Configuration { get; set; }
+        public DbSet<SwimmingCard> SwimmingCard { get; set; }
+        public DbSet<SwimmingRecord> SwimmingRecord { get; set; }
+        public DbSet<SwimmingRecord24> SwimmingRecord24 { get; set; }
     }
 }
