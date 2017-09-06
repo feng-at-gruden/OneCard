@@ -854,21 +854,23 @@ namespace OneCard.Controllers
             + Constants.Roles.ROLE_LOBBY)]
         public ActionResult SwimmingCards()
         {
-            return View();
+            var model = from row in db.SwimmingCard
+                        select new SwimmingCardViewModel
+                        {
+                            Id = row.Id,
+                            CardID = row.CardId,
+                            CardNumber = row.CardNumber,
+                            Name = row.UserName,
+                            Gender = row.Gender,
+                            Count = row.Count,
+                            IssueTime = row.CreatedAt,
+                            ExpiredTime = row.ExpiredAt,
+                            LastTime = row.LastTime,
+                        };
+            return View(model);
         }
 
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + ","
-            + Constants.Roles.ROLE_IT + ","
-            + Constants.Roles.ROLE_FINANCE + ","
-            + Constants.Roles.ROLE_DIET + ","
-            + Constants.Roles.ROLE_LOBBY)]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult SwimmingCards(string StartTime, string EndTime, bool exportCSV = false, bool mail = false)
-        {
-            return View();
-        }
-
+       
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + ","
             + Constants.Roles.ROLE_IT + ","
             + Constants.Roles.ROLE_FINANCE + ","

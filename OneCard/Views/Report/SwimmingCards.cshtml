@@ -1,5 +1,77 @@
-﻿@{
-    ViewBag.Title = "SwimmingCards";
+﻿@model IEnumerable<OneCard.Models.SwimmingCardViewModel>
+
+@{
+    ViewBag.Title = "游泳卡一览";
 }
 
-<h2>SwimmingCards</h2>
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title  </h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        SWIMMING CARDS LIST
+    </div>
+    <div class="panel-body">
+        
+        <div class="dataTable_wrapper">
+            <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
+                <span> </span>
+            </div>
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example" style="font-size:0.9em;">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">CardID</th>
+                        <th>卡号</th>
+                        <th>真实姓名</th>
+                        <th>性别</th>
+                        <th style="text-align: center;">注册时间</th>
+                        <th style="text-align: center;">最后打卡时间</th>
+                        <th style="text-align: center;">有效期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (OneCard.Models.SwimmingCardViewModel item in Model)
+                    {
+                        <tr class="odd">
+                            <td style="text-align: center; font-weight: bold;">@item.CardID</td>
+                            <td style="text-align: left; padding-left:15px;">@item.CardNumber</td>
+                            <td style="text-align: left; padding-left: 15px;">@item.Name</td>
+                            <td style="text-align: left; padding-left: 15px;">@item.Gender</td>
+                            <td style="text-align: center;">@Html.DisplayFor(modelItem => item.IssueTime)</td>
+                            <td style="text-align: center;">@Html.DisplayFor(modelItem => item.LastTime)</td>
+                            <td style="text-align: center;">@Html.DisplayFor(modelItem => item.ExpiredTime)</td>
+                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a href="~/Tools/SwimmingCard" class="btn btn-success" style="float: left; margin-top: -42px; color:white;">登记游泳卡</a>
+        </div>
+        <!-- /.Table -->
+    </div>
+    <!-- /.panel-body -->
+    <div class="panel-footer">
+        &nbsp;
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').DataTable({
+            "responsive": true,
+            "paging": true,
+            "ordering": true,
+            "info": false,
+            "searching": false,
+            "pageLength": 25,
+        });
+    });
+    var uid;
+</script>

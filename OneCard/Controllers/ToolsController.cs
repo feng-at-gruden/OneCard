@@ -154,15 +154,30 @@ namespace OneCard.Controllers
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
         public ActionResult SwimmingCard()
         {
-            return View();
+            return View(new SwimmingCardViewModel());
         }
 
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," + Constants.Roles.ROLE_IT + "," + Constants.Roles.ROLE_LOBBY)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SwimmingCard(string k)
+        public ActionResult SwimmingCard(SwimmingCardViewModel model)
         {
-            return View();
+            if(ModelState.IsValid)
+            {
+                ViewBag.SuccessMessage = "登记成功！";
+                db.SwimmingCard.Add(new SwimmingCard
+                {
+                    CardId = model.CardID,
+                    CardNumber = model.CardNumber,
+                    UserName = model.Name,
+                    Gender = model.Gender,
+                    Count = 0,
+                    CreatedAt = DateTime.Now,
+                    ExpiredAt = model.ExpiredTime,
+                });
+                db.SaveChanges();
+            }
+            return View(model);
         }
 
 
