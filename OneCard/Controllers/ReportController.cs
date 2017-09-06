@@ -846,6 +846,7 @@ namespace OneCard.Controllers
 
 
 
+
         //游泳池
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + ","
             + Constants.Roles.ROLE_IT + ","
@@ -876,19 +877,7 @@ namespace OneCard.Controllers
             + Constants.Roles.ROLE_FINANCE + ","
             + Constants.Roles.ROLE_DIET + ","
             + Constants.Roles.ROLE_LOBBY)]
-        public ActionResult DailySwimming()
-        {
-            return View();
-        }
-
-        [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + ","
-            + Constants.Roles.ROLE_IT + ","
-            + Constants.Roles.ROLE_FINANCE + ","
-            + Constants.Roles.ROLE_DIET + ","
-            + Constants.Roles.ROLE_LOBBY)]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DailySwimming(string StartTime, string EndTime, bool exportCSV = false, bool mail = false)
+        public ActionResult DailySwimming(bool exportCSV = false, bool mail = false)
         {
             return View();
         }
