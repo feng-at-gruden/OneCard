@@ -11,11 +11,13 @@ using OneCard.Helpers;
 
 namespace OneCard.Controllers
 {
+
     public class ReportController : BaseController
     {
-        
 
-        //餐饮信息
+
+    #region 餐饮信息
+
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
             + Constants.Roles.ROLE_IT + "," 
             + Constants.Roles.ROLE_FINANCE + "," 
@@ -437,12 +439,12 @@ namespace OneCard.Controllers
             return View(model);
         }
 
+    #endregion
         
 
 
 
-
-        //客房信息
+    #region 客房信息
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
             + Constants.Roles.ROLE_IT + ","
             + Constants.Roles.ROLE_FINANCE + ","
@@ -584,12 +586,13 @@ namespace OneCard.Controllers
             return View(model);
         }
 
+    #endregion
 
 
 
 
+    #region 健身中心
 
-        //健身中心
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
             + Constants.Roles.ROLE_IT + ","
             + Constants.Roles.ROLE_FINANCE + ","
@@ -714,9 +717,13 @@ namespace OneCard.Controllers
             return View(model);
         }
 
+    #endregion
 
 
-        //行政酒廊
+
+
+    #region 行政酒廊
+
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
             + Constants.Roles.ROLE_IT + ","
             + Constants.Roles.ROLE_FINANCE + ","
@@ -844,10 +851,13 @@ namespace OneCard.Controllers
             return View(model);
         }
 
+    #endregion
 
 
 
-        //游泳池
+
+    #region 游泳池
+
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + ","
             + Constants.Roles.ROLE_IT + ","
             + Constants.Roles.ROLE_FINANCE + ","
@@ -879,7 +889,42 @@ namespace OneCard.Controllers
             + Constants.Roles.ROLE_LOBBY)]
         public ActionResult DailySwimming(bool exportCSV = false, bool mail = false)
         {
-            return View();
+            IEnumerable<SwimmingHistoryViewModel> model = from row in db.SwimmingRecord24
+                                                      orderby row.CardNumber
+                                                      select new SwimmingHistoryViewModel
+                                                      {
+                                                          CardNumber = row.CardNumber,
+                                                          Count = 1,
+                                                          CheckInTime = row.ChkTime,
+                                                      };
+            if (db.SwimmingRecord24.Count() <= 0)
+            {
+                ViewBag.ErrorMessage = "对不起，没有当日游泳记录。";
+                return View(model);
+            }
+            ViewBag.Date = db.SwimmingRecord24.FirstOrDefault().ChkTime.ToString("yyyy-M-d");
+            if (exportCSV)
+            {
+                return File(CSVHelper.ExportCSV(model, new string[] { "游泳卡号", "打卡次数", "打卡时间" }), "text/comma-separated-values", ViewBag.Date + "游泳池当日数据.csv");
+            }
+            if (mail)
+            {
+                if (string.IsNullOrWhiteSpace(CurrentUser.Email))
+                {
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接收邮箱，请在个人设置中设置您的接收邮箱。";
+                }
+                else
+                {
+                    MailHelper.SendMail(
+                        ViewBag.Date + "游泳池当日数据",
+                        CurrentUser.Email,
+                        CSVHelper.ExportCSV(model, new string[] { "游泳卡号", "打卡次数", "打卡时间" }),
+                        ViewBag.Date + "游泳池当日数据.csv");
+
+                    ViewBag.SuccessMessage = "邮件发送成功";
+                }
+            }
+            return View(model);            
         }
 
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + ","
@@ -899,11 +944,72 @@ namespace OneCard.Controllers
             + Constants.Roles.ROLE_LOBBY)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SwimmingHistory(string StartTime, string EndTime, bool exportCSV = false, bool mail = false)
+        public ActionResult SwimmingHistory(string StartTime, string EndTime, string? card, bool exportCSV = false, bool mail = false)
         {
-            return View();
+            DateTime edTime = DateTime.Now.AddDays(-1);
+            DateTime stTime = DateTime.MinValue;
+            if (!string.IsNullOrWhiteSpace(StartTime))
+            {
+                stTime = DateTime.Parse(StartTime + " 00:00:00");
+            }
+            if (!string.IsNullOrWhiteSpace(EndTime))
+            {
+                edTime = DateTime.Parse(EndTime + " 23:59:59");
+            }
+
+
+            IEnumerable<SwimmingHistoryViewModel> model = from row in db.SwimmingRecord
+                                                          where row.ChkTime >= stTime && row.ChkTime <= edTime
+                                                          orderby row.ChkTime
+                                                        select new SwimmingHistoryViewModel
+                                                          {
+                                                              CardNumber = row.CardNumber,
+                                                              Count = 1,
+                                                              CheckInTime = row.ChkTime,
+                                                          };
+
+            if (card.HasValue)
+                model = model.Where(m => m.CardNumber == card.Value);
+
+            if (!string.IsNullOrWhiteSpace(StartTime))
+            {
+                ViewBag.Date = stTime.ToString("yyyy-MM-dd") + "至" + edTime.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                ViewBag.Date = "截至" + edTime.ToString("yyyy-MM-dd");
+            }
+
+            if (exportCSV)
+            {
+                return File(CSVHelper.ExportCSV(model, new string[] { "游泳卡号", "打卡次数", "打卡时间" }), "text/comma-separated-values", ViewBag.Date + "游泳池数据.csv");
+            }
+            if (mail)
+            {
+                if (string.IsNullOrWhiteSpace(CurrentUser.Email))
+                {
+                    ViewBag.ErrorMessage = "对不起，您还没有设置接收邮箱，请在个人设置中设置您的接收邮箱。";
+                }
+                else
+                {
+                    MailHelper.SendMail(
+                        ViewBag.Date + "游泳池数据",
+                        CurrentUser.Email,
+                        CSVHelper.ExportCSV(model, new string[] { "游泳卡号", "打卡次数", "打卡时间" }),
+                        ViewBag.Date + "游泳池数据.csv");
+
+                    ViewBag.SuccessMessage = "邮件发送成功";
+                }
+            }
+            //Store form values;
+            ViewBag.StartTime = StartTime;
+            ViewBag.EndTime = EndTime;
+            ViewBag.card = card;
+
+            return View(model);
         }
 
+    #endregion
 
 
 

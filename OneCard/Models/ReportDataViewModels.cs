@@ -237,5 +237,17 @@ namespace OneCard.Models
         public DateTime? LastTime { get; set; }
     }
 
+    public class SwimmingHistoryViewModel
+    {
+        [Display(Name = "卡号")]
+        public string CardNumber { get; set; }
+
+        [Display(Name = "打卡次数")]
+        public int Count { get; set; }
+
+        [Display(Name = "打卡时间")]
+        public DateTime? CheckInTime { get; set; }
+    }
+
 
 }
