@@ -944,7 +944,7 @@ namespace OneCard.Controllers
             + Constants.Roles.ROLE_LOBBY)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SwimmingHistory(string StartTime, string EndTime, string? card, bool exportCSV = false, bool mail = false)
+        public ActionResult SwimmingHistory(string StartTime, string EndTime, String card, bool exportCSV = false, bool mail = false)
         {
             DateTime edTime = DateTime.Now.AddDays(-1);
             DateTime stTime = DateTime.MinValue;
@@ -968,8 +968,8 @@ namespace OneCard.Controllers
                                                               CheckInTime = row.ChkTime,
                                                           };
 
-            if (card.HasValue)
-                model = model.Where(m => m.CardNumber == card.Value);
+            if (!String.IsNullOrWhiteSpace(card))
+                model = model.Where(m => m.CardNumber == card);
 
             if (!string.IsNullOrWhiteSpace(StartTime))
             {
