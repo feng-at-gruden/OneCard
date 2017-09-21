@@ -116,6 +116,10 @@ h5 a:link, h5 a:visited, h5 a:active {
 
 header .content-wrapper {
     padding-top: 20px; 
+    background: #830051;
+    padding: 10px;
+    color: white;
+    min-height: 75px;
 }
 
 footer {
@@ -137,7 +141,7 @@ footer {
 
 .site-title a, .site-title a:hover, .site-title a:active {
     background: none;
-    color: #c8c8c8;
+    color: #fff;
     outline: none;
     text-decoration: none;
 }
@@ -158,6 +162,7 @@ footer {
         margin-right: 3px;
         padding: 2px 3px;
         text-decoration: none;
+        color:white !important;
     }
 
     #login a.username {
@@ -796,13 +801,13 @@ tr.pager td {
 
 ul.dropdown-menu 
 {
-    border: solid 2px #4f9c33;
+    border: solid 2px #830051;
     padding: 0px 0;
 }
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover
 {
-    border: solid 2px #4f9c33;
-    background-color: #4f9c33 !important;
+    border: solid 2px #830051;
+    background-color: #830051 !important;
     color:white !important;
     border-bottom:none;
 }

@@ -43,7 +43,7 @@
         @Scripts.Render("~/Content/bower_components/datetimepicker/build/jquery.datetimepicker.full.js")
     </head>
 @{
-    var logoUrl = "https://ihg.scene7.com/is/image/ihg/HI_logo_LVP_@2x?fmt=png-alpha";
+    var logoUrl = "https://ihg.scene7.com/is/image/ihg/uhf_cp_logo@2x1?fmt=png-alpha";
 }
     <body>
         <header>
@@ -56,6 +56,7 @@
                         @Html.Partial("_LoginPartial")
                     </section>
                 </div>
+                <br class="clear" />
                 @if (User.Identity.IsAuthenticated) { 
                     <nav class="navbar navbar-default" role="navigation" style="clear:both;">
                         <div class="container-fluid">
@@ -136,14 +137,14 @@
                                         || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_LOBBY)
                                         || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_FINANCE))
                                     {
-                                        <li class="dropdown">
+                                        <li class="dropdown disabled">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                                 健身中心数据 <b class="caret"></b>
                                             </a>
                                             <ul class="dropdown-menu ">
-                                                <li>@Html.ActionLink("健身中心当日数据", "DailyFitness", "Report")</li>
+                                                <li class="disabled"><a href="#">健身中心当日数据</a></li>
                                                 <li class="divider"></li>
-                                                <li>@Html.ActionLink("健身中心历史数据", "FitnessHistory", "Report")</li>
+                                                <li class="disabled"><a href="#">健身中心历史数据</a></li>
                                             </ul>
                                         </li>
                                     }
@@ -170,18 +171,18 @@
                                         || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_FINANCE)
                                         || User.IsInRole(OneCard.Models.Constants.Roles.ROLE_DIET))
                                     {
-                                        <li class="dropdown">
+                                        <li class="dropdown disabled">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                                 游泳卡数据 <b class="caret"></b>
                                             </a>
-                                            <ul class="dropdown-menu ">
-                                                <li>@Html.ActionLink("游泳卡登记", "SwimmingCard", "Tools")</li>
+                                            <ul class="dropdown-menu">
+                                                <li class="disabled"><a href="#">游泳卡登记</a></li>
                                                 <li class="divider"></li>
-                                                <li>@Html.ActionLink("游泳卡一览", "SwimmingCards", "Report")</li>
+                                                <li class="disabled"><a href="#">游泳卡一览</a></li>
                                                 <li class="divider"></li>
-                                                <li>@Html.ActionLink("游泳池当日数据", "DailySwimming", "Report")</li>
+                                                <li class="disabled"><a href="#">游泳池当日数据</a></li>
                                                 <li class="divider"></li>
-                                                <li>@Html.ActionLink("游泳池历史数据", "SwimmingHistory", "Report")</li>
+                                                <li class="disabled"><a href="#">游泳池历史数据</a></li>
                                             </ul>
                                         </li>
                                     }
