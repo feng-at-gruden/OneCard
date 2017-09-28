@@ -528,7 +528,7 @@ namespace OneCard.Controllers
 
             IEnumerable<RoomBookingDataViewModel> model = from row in db.ZaoCanIn
                                                           orderby row.Room
-                                                          where row.StartTime >= stTime && row.StartTime<= edTime
+                                                          where row.InTime >= stTime && row.InTime<= edTime
                                                           select new RoomBookingDataViewModel
                                                           {
                                                               RoomNumber = row.Room,
