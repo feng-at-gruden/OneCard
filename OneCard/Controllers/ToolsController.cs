@@ -74,7 +74,7 @@ namespace OneCard.Controllers
                         EndTime = Convert.ToDateTime(row["Depart Date"].ToString(), dtFormat),
                         InTime = DateTime.Now,
                         Num = int.Parse(row["Adults"].ToString()),
-                        Package = row["Package"].ToString(),
+                        Package = row["Pkg In Rate"].ToString(),
                         Pax = string.IsNullOrWhiteSpace(row["Pax"].ToString()) ? 0 : int.Parse(row["Pax"].ToString()),
                         Vip = string.IsNullOrWhiteSpace(row["VIP"].ToString()) ? "0" : row["VIP"].ToString(),
                     }); 
@@ -218,17 +218,19 @@ namespace OneCard.Controllers
             using (FileStream fs = new FileStream(filepath, FileMode.Open))
             {
                 StreamReader sr = new StreamReader(fs, Encoding.UTF8);
+                
+                /*
                 string strTitle = sr.ReadLine();
                 string[] strColumTitle = strTitle.Split('\t');   //CVS 文件默认以逗号隔开
                 
-                /*
+                
                 //Read columns name from first line
                 for (int i = 0; i < strColumTitle.Length; i++)
                 {
                     dt.Columns.Add(strColumTitle[i]);
                 }*/
 
-                string[] columns = new string[]{"Room", "Full Name", "Chinese Name", "VIP", "Adults", "Arrive Date", "Depart Date", "Pax", "Package"};
+                string[] columns = new string[]{"Room", "Full Name", "Chinese Name", "VIP", "Adults", "Arrive Date", "Depart Date", "Pax", "Pkg In Resv", "Pkg In Rate" };
                 for (int i = 0; i < columns.Length; i++)
                 {
                     dt.Columns.Add(columns[i]);
