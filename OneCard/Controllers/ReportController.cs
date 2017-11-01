@@ -33,7 +33,7 @@ namespace OneCard.Controllers
                                                                  Count2 = row.time2,
                                                                  Count3 = row.time3,
                                                                  Count4 = row.time4,
-                                                                 Package = row.Package1==1 ? Constants.PackageDisplay.Package1 : Constants.PackageDisplay.Package2,
+                                                                 Package = row.Pkg,
                                                                  DeviceID = row.StationID,
                                                                  CheckInTime = row.ChkTime,
                                                                  IncludeBreakfast = row.yes==1 ? "Yes" : "No",
@@ -44,6 +44,9 @@ namespace OneCard.Controllers
                 return View(model);
             }
             ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
+            //Display Pkg summary
+            ViewBag.PackageData = CalculatePkgSummary(model);
+
             if(exportCSV)
             {
                 return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数", "Package", "含早", "打卡时间", "打卡设备" }), "text/comma-separated-values", ViewBag.Date + "用餐明细记录.csv");
@@ -78,10 +81,10 @@ namespace OneCard.Controllers
             var count2 = 0;
             var count3 = 0;
             var count4 = 0;
-            var mABNCount = 0;
-            var mFBNCount = 0;
             var mYesCount = 0;
             var mNoCount = 0;
+            int[] pkgRate;
+
             if(year.HasValue && month.HasValue && day.HasValue)
             {
                 DateTime st = new DateTime(year.Value, month.Value, day.Value, 0, 0, 0);
@@ -90,10 +93,15 @@ namespace OneCard.Controllers
                 count2 = db.CardRecord_His.Count(m => m.time2 == 1 && m.ChkTime >= st && m.ChkTime <= et);
                 count3 = db.CardRecord_His.Count(m => m.time3 == 1 && m.ChkTime >= st && m.ChkTime <= et);
                 count4 = db.CardRecord_His.Count(m => m.time4 == 1 && m.ChkTime >= st && m.ChkTime <= et);
-                mABNCount = db.CardRecord_His.Count(m => m.package1 == 1 && m.ChkTime >= st && m.ChkTime <= et);
-                //mFBNCount = db.CardRecord_His.Count(m => m.package2 == 1 && m.ChkTime >= st && m.ChkTime <= et);
                 mYesCount = db.CardRecord_His.Count(m => m.yes == 1 && m.ChkTime >= st && m.ChkTime <= et);
-                //mNoCount = db.CardRecord_His.Count(m => m.yes != 1 && m.ChkTime >= st && m.ChkTime <= et);
+                pkgRate = new int[Constants.PackageCode.Length];
+                for (int i = 1; i < pkgRate.Length; i++)
+                {
+                    pkgRate[i] = db.CardRecord.Count(m => m.Pkg.Contains(Constants.PackageCode[i]) && m.ChkTime >= st && m.ChkTime <= et);
+                }
+                pkgRate[0] = db.CardRecord.Count(m => (m.Pkg.Equals(Constants.PackageCode[0])
+                    || m.Pkg.Contains(Constants.PackageCode[0] + ",")) && m.ChkTime >= st && m.ChkTime <= et);
+
                 ViewBag.Date = st.ToString("yyyy-M-d");
             }
             else
@@ -102,10 +110,15 @@ namespace OneCard.Controllers
                 count2 = db.CardRecord.Count(m => m.time2 == 1);
                 count3 = db.CardRecord.Count(m => m.time3 == 1);
                 count4 = db.CardRecord.Count(m => m.time4 == 1);
-                mABNCount = db.CardRecord.Count(m => m.Package1 == 1);
-                //mFBNCount = db.CardRecord.Count(m => m.package2 == 1);
                 mYesCount = db.CardRecord.Count(m => m.yes == 1);
-                //mNoCount = db.CardRecord.Count(m => m.yes != 1);
+                pkgRate = new int[Constants.PackageCode.Length];
+                for (int i = 1; i < pkgRate.Length; i++)
+                {
+                    pkgRate[i] = db.CardRecord.Count(m => m.Pkg.Contains(Constants.PackageCode[i]));
+                }
+                pkgRate[0] = db.CardRecord.Count(m => m.Pkg.Equals(Constants.PackageCode[0])
+                    || m.Pkg.Contains(Constants.PackageCode[0] + ","));
+                
                 if (db.CardRecord.Count() <= 0)
                 {
                     ViewBag.ErrorMessage = "对不起，当日没有就餐记录。";
@@ -116,7 +129,6 @@ namespace OneCard.Controllers
                         Count2 = 0,
                         Count3 = 0,
                         Count4 = 0,
-                        ABNCount = 0,
                         YesCount = 0,
                     });
                 }
@@ -129,10 +141,8 @@ namespace OneCard.Controllers
                 Count2 = count2,
                 Count3 = count3,
                 Count4 = count4,
-                ABNCount = mABNCount,
-                //FBNCount = mFBNCount,
                 YesCount = mYesCount,
-                //NoCount = mNoCount,
+                PackageRate = pkgRate,
             };
             if (exportCSV)
             {
@@ -181,6 +191,9 @@ namespace OneCard.Controllers
                 return View(model);
             }
             ViewBag.Date = db.CardRecord.FirstOrDefault().ChkTime.Value.ToString("yyyy-M-d");
+            //Display Pkg summary
+            ViewBag.PackageData = CalculatePkgSummary(model);
+
             if (exportCSV)
             {
                 return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "用餐按房间汇总.csv");
@@ -240,12 +253,15 @@ namespace OneCard.Controllers
                                                        Count2 = row.time2,
                                                        Count3 = row.time3,
                                                        Count4 = row.time4,
-                                                       Package = row.package1 == 1 ? Constants.PackageDisplay.Package1 : Constants.PackageDisplay.Package2,
+                                                       Package = row.Pkg,
                                                        DeviceID = row.StationID,
                                                        CheckInTime = row.ChkTime,
                                                        IncludeBreakfast = row.yes == 1 ? "Yes" : "No",
                                                    };
             ViewBag.Date = stTime.ToString("yyyy-M-d") + "至" + edTime.ToString("yyyy-M-d");
+            //Display Pkg summary
+            ViewBag.PackageData = CalculatePkgSummary(model);
+
             if (room.HasValue)
             {
                 model = model.Where(m => m.RoomNumber == room);
@@ -355,6 +371,16 @@ namespace OneCard.Controllers
                                              });
 
             ViewBag.Year = mYear;
+            //Display Pkg summary
+            int[] result = new int[Constants.PackageCode.Length];
+            for (int i = 1; i < result.Length; i++)
+            {
+                result[i] = db.CardRecord_His.Count(m => m.Pkg.Contains(Constants.PackageCode[i]));
+            }
+            result[0] = db.CardRecord_His.Count(m => m.Pkg.Equals(Constants.PackageCode[0])
+                || m.Pkg.Contains(Constants.PackageCode[0] + ","));
+            ViewBag.PackageData = result;
+
             if (exportCSV)
             {
                 return File(CSVHelper.ExportCSV(model, new string[] { "月份", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "当月总计" }), "text/comma-separated-values", ViewBag.Year + "年度用餐统计.csv");
@@ -414,6 +440,16 @@ namespace OneCard.Controllers
 
             ViewBag.Year = Year;
             ViewBag.Month = Month;
+
+            //Display Pkg summary
+            int[] result = new int[Constants.PackageCode.Length];
+            for (int i = 1; i < result.Length; i++)
+            {
+                result[i] = db.CardRecord_His.Count(m => m.Pkg.Contains(Constants.PackageCode[i]));
+            }
+            result[0] = db.CardRecord_His.Count(m => m.Pkg.Equals(Constants.PackageCode[0])
+                || m.Pkg.Contains(Constants.PackageCode[0] + ","));
+            ViewBag.PackageData = result;
 
             if (exportCSV)
             {
@@ -1043,6 +1079,20 @@ namespace OneCard.Controllers
             }
             return name;
         }
+
+        private int[] CalculatePkgSummary(IEnumerable<RoomCosumptionDataViewModel> model)
+        {
+            int[] result = new int[Constants.PackageCode.Length];
+            for (int i = 1; i < result.Length; i++)
+            {
+                result[i] = model.Count(m => m.Package.Contains(Constants.PackageCode[i]));
+            }
+            result[0] = model.Count(m => m.Package.Equals(Constants.PackageCode[0])
+                || m.Package.Contains(Constants.PackageCode[0] + ","));
+
+            return result;
+        }
+
 
     }
 

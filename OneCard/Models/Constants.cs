@@ -32,7 +32,7 @@ namespace OneCard.Models
             public const string Package2 = "F-BF";
         }
 
-        public string[] PackageCode = new string[] { "ABF", "ABF 350", "ABF 550", "ABF BFR", "ABF COMP", "ABF COR", "ABF CPC", "ABF TEST", "ABF VAT", "ABF - CPC" };
+        public const string[] PackageCode = new string[] { "ABF", "ABF 350", "ABF 550", "ABF BFR", "ABF COMP", "ABF COR", "ABF CPC", "ABF TEST", "ABF VAT", "ABF - CPC" };
 
        
 

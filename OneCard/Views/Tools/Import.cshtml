@@ -69,6 +69,28 @@
                 </tbody>
             </table>
             
+            @if (ViewBag.PackageData != null)
+            {
+                <table>
+                    <thead>
+                        <tr>
+                            @for (int i = 0; i < OneCard.Models.Constants.PackageCode.Length; i++ )
+                            {
+                                <td>@OneCard.Models.Constants.PackageCode[i]</td>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @foreach (var s in ViewBag.PackageData)
+                            {
+                                <td>s</td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            }
+            
             using (Html.BeginForm("Import", "Tools", FormMethod.Post, new { role = "form" }))
             {
                 @Html.AntiForgeryToken()

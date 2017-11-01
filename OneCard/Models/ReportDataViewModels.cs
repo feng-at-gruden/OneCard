@@ -123,11 +123,15 @@ namespace OneCard.Models
         [Display(Name = "时段4")]
         public int? Count4 { get; set; }
 
+        /*
         [Display(Name = "ABN")]
         public int? ABNCount { get; set; }
 
         [Display(Name = "FBN")]
         public int? FBNCount { get { return Total - ABNCount; } }
+        */
+
+        public int[] PackageRate { get; set; }
 
         [Display(Name = "含早")]
         public int? YesCount { get; set; }
