@@ -185,6 +185,7 @@ else
                 <div>
                     @if (ViewBag.PackageData != null)
                     {
+                        int t = 0;
                         <table class="table table-striped table-bordered table-hover" style="font-size:12px;">
                             <thead>
                                 <tr style="font-weight:bold;">
@@ -192,14 +193,17 @@ else
                                     {
                                         <td>@OneCard.Models.Constants.PackageCode[i]</td>
                                     }
+                                    <td style="text-align:center;">TOTAL</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     @foreach (var s in ViewBag.PackageData)
                                     {
+                                        t += s;
                                         <td>@s</td>
                                     }
+                                    <td style="text-align:center; font-weight:bold;">@t</td>
                                 </tr>
                             </tbody>
                         </table>

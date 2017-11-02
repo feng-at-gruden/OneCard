@@ -108,6 +108,26 @@ namespace OneCard.Controllers
 
                 //Display Pkg summary
                 int[] result = new int[Constants.PackageCode.Length];
+                foreach (var row in data.AsEnumerable())
+                {
+                    for (int i = 1; i < result.Length; i++)
+                    {
+                        if(row.Field<string>("Pkg In Rate") != null && row.Field<string>("Pkg In Rate").Trim().Contains(Constants.PackageCode[i]))
+                        {
+                            int num = int.Parse(row.Field<string>("Adults"));
+                            result[i] += num;
+                        }
+                    }
+                    if( (row.Field<string>("Pkg In Rate") != null && row.Field<string>("Pkg In Rate").Trim().Equals(Constants.PackageCode[0]))
+                      ||(row.Field<string>("Pkg In Rate") != null && row.Field<string>("Pkg In Rate").Trim().Contains(Constants.PackageCode[0] + ",")))
+                    {
+                        int num = int.Parse(row.Field<string>("Adults"));
+                        result[0] += num;
+                    }
+                }
+                ViewBag.PackageData = result;
+                /*
+                int[] result = new int[Constants.PackageCode.Length];
                 for (int i = 1; i < result.Length; i++ )
                 {
                     result[i] = data.AsEnumerable().Count(m => m.Field<string>("Pkg In Rate")!=null && m.Field<string>("Pkg In Rate").Contains(Constants.PackageCode[i]));
@@ -115,7 +135,7 @@ namespace OneCard.Controllers
                 result[0] = data.AsEnumerable().Count(m => (m.Field<string>("Pkg In Rate") != null && m.Field<string>("Pkg In Rate").Equals(Constants.PackageCode[0]))
                     || (m.Field<string>("Pkg In Rate") != null && m.Field<string>("Pkg In Rate").Contains(Constants.PackageCode[0] + ",")));
                 ViewBag.PackageData = result;
-
+                */
                 return View(data);
             }            
         }

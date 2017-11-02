@@ -98,11 +98,11 @@ namespace OneCard.Controllers
                 for (int i = 1; i < pkgRate.Length; i++)
                 {
                     var r = Constants.PackageCode[i];
-                    pkgRate[i] = db.CardRecord.Count(m => m.Pkg.Contains(r) && m.ChkTime >= st && m.ChkTime <= et);
+                    pkgRate[i] = db.CardRecord.Count(m => m.Pkg.Trim().Contains(r) && m.ChkTime >= st && m.ChkTime <= et);
                 }
                 var r0 = Constants.PackageCode[0];
                 pkgRate[0] = db.CardRecord.Count(m => ((m.Pkg!=null && m.Pkg.Trim().Equals(r0))
-                    || (m.Pkg!=null && m.Pkg.Contains(r0 + ",")) && m.ChkTime >= st && m.ChkTime <= et));
+                    || (m.Pkg!=null && m.Pkg.Trim().Contains(r0 + ",")) && m.ChkTime >= st && m.ChkTime <= et));
 
                 ViewBag.Date = st.ToString("yyyy-M-d");
             }
@@ -117,11 +117,11 @@ namespace OneCard.Controllers
                 for (int i = 1; i < pkgRate.Length; i++)
                 {
                     var r = Constants.PackageCode[i];
-                    pkgRate[i] = db.CardRecord.Count(m => m.Pkg!=null && m.Pkg.Contains(r));
+                    pkgRate[i] = db.CardRecord.Count(m => m.Pkg!=null && m.Pkg.Trim().Contains(r));
                 }
                 var r0 = Constants.PackageCode[0];
                 pkgRate[0] = db.CardRecord.Count(m => (m.Pkg != null && m.Pkg.Trim().Equals(r0))
-                    || (m.Pkg != null && m.Pkg.Contains(r0 + ",")));
+                    || (m.Pkg != null && m.Pkg.Trim().Contains(r0 + ",")));
                 
                 if (db.CardRecord.Count() <= 0)
                 {
@@ -500,12 +500,29 @@ namespace OneCard.Controllers
             model = filterGuestName(model);
             //Display Pkg summary
             int[] result = new int[Constants.PackageCode.Length];
+            foreach (var row in model)
+            {
+                for (int i = 1; i < result.Length; i++)
+                {
+                    if (row.Package != null && row.Package.Trim().Contains(Constants.PackageCode[i]))
+                    {
+                        result[i] += row.Adults.Value;
+                    }
+                }
+                if ((row.Package != null && row.Package.Trim().Equals(Constants.PackageCode[0]))
+                  || (row.Package != null && row.Package.Trim().Contains(Constants.PackageCode[0] + ",")))
+                {
+                    result[0] += row.Adults.Value;
+                }
+            }
+            /*
             for (int i = 1; i < result.Length; i++)
             {
-                result[i] = model.Count(m => m.Package != null && m.Package.Contains(Constants.PackageCode[i]));
+                result[i] = model.Count(m => m.Package != null && m.Package.Trim().Contains(Constants.PackageCode[i]));
             }
             result[0] = model.Count(m => (m.Package != null && m.Package.Trim().Equals(Constants.PackageCode[0]))
-                || (m.Package != null && m.Package.Contains(Constants.PackageCode[0] + ",")));
+                || (m.Package != null && m.Package.Trim().Contains(Constants.PackageCode[0] + ",")));
+            */
             ViewBag.PackageData = result;
 
             if (exportCSV)
@@ -586,10 +603,10 @@ namespace OneCard.Controllers
             int[] result = new int[Constants.PackageCode.Length];
             for (int i = 1; i < result.Length; i++)
             {
-                result[i] = model.Count(m => m.Package != null && m.Package.Contains(Constants.PackageCode[i]));
+                result[i] = model.Count(m => m.Package != null && m.Package.Trim().Contains(Constants.PackageCode[i]));
             }
             result[0] = model.Count(m => (m.Package != null && m.Package.Trim().Equals(Constants.PackageCode[0]))
-                || (m.Package != null && m.Package.Contains(Constants.PackageCode[0] + ",")));
+                || (m.Package != null && m.Package.Trim().Contains(Constants.PackageCode[0] + ",")));
             ViewBag.PackageData = result;
 
             if (!string.IsNullOrWhiteSpace(StartTime))
@@ -1094,10 +1111,10 @@ namespace OneCard.Controllers
             int[] result = new int[Constants.PackageCode.Length];
             for (int i = 1; i < result.Length; i++)
             {
-                result[i] = model.Count(m => m.Package!=null && m.Package.Contains(Constants.PackageCode[i]));
+                result[i] = model.Count(m => m.Package!=null && m.Package.Trim().Contains(Constants.PackageCode[i]));
             }
             result[0] = model.Count(m => (m.Package != null && m.Package.Trim().Equals(Constants.PackageCode[0]))
-                || (m.Package != null && m.Package.Contains(Constants.PackageCode[0] + ",")));
+                || (m.Package != null && m.Package.Trim().Contains(Constants.PackageCode[0] + ",")));
 
             return result;
         }
