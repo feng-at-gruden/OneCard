@@ -41,8 +41,31 @@
                      7:30-9:00 <b>@(Model.Count2)</b>次
                      9:00-10:30 <b>@(Model.Count3)</b>次
                      其他时段 <b>@(Model.Count4)</b>次</small></i> <br/>
-                <i><small>@Constants.PackageDisplay.Package1: <b>@(Model.ABNCount)</b>次 Constants.PackageDisplay.Package2: <b>@(Model.FBNCount)</b>次</small></i><br />
                 <i><small>含早: <b>@(Model.YesCount)</b>次 不含早: <b>@(Model.NoCount)</b>次</small></i>
+            </div>
+
+            <div>
+                @if (Model.PackageRate != null)
+                {
+                    <table class="table table-striped table-bordered table-hover" style="font-size:12px;">
+                        <thead>
+                            <tr style="font-weight:bold;">
+                                @for (int i = 0; i < OneCard.Models.Constants.PackageCode.Length; i++)
+                                {
+                                    <td>@OneCard.Models.Constants.PackageCode[i]</td>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach (var s in Model.PackageRate)
+                                {
+                                    <td>@s</td>
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                }
             </div>
             
             <!-- Bar Chart-->
@@ -106,17 +129,20 @@
     });
 
     var data2 = [];
-    data2[0] = {label: "@Constants.PackageDisplay.Package1", data: @Model.ABNCount };
-    data2[1] = {label: "@Constants.PackageDisplay.Package2", data: @Model.FBNCount };
+    @for(int i=0;i< Constants.PackageCode.Length; i++)
+    {
+        <text>data2[@i] = {label: "@Constants.PackageCode[i]", data: @Model.PackageRate[i] };</text>
+    }
+
     $.plot(placeholder2, data2, {
         series: {
             pie: {
                 show: true,
                 radius: 3 / 4,
                 label: {
-                    show: true,
+                    show: false,
                     radius: 2 / 4,
-                    formatter: labelFormatter,
+                    formatter: null,
                     background: {
                         opacity: 0.3,
                         color: "#000"

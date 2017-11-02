@@ -50,11 +50,22 @@ namespace OneCard.Helpers
                     {
                         PropertyInfo pi = pis[i];
                         object v = pi.GetValue(item, null);
-                        string v1 = v == null ? "" : v.ToString().Replace(",", " ");
-                        if (i != pis.Length - 1)
-                            sb.Append(v1 + ",");
+                        if (v!=null && v.GetType()==typeof(int[]))
+                        {
+                            int[] kk = (int[])v;
+                            foreach(int k in kk)
+                            {
+                                sb.Append(k + ",");
+                            }
+                        }
                         else
-                            sb.Append(v1 + "\r\n");
+                        {
+                            string v1 = v == null ? "" : v.ToString().Replace(",", " ");
+                            if (i != pis.Length - 1)
+                                sb.Append(v1 + ",");
+                            else
+                                sb.Append(v1 + "\r\n");
+                        }
                     }
                 }
             }

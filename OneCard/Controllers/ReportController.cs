@@ -97,10 +97,12 @@ namespace OneCard.Controllers
                 pkgRate = new int[Constants.PackageCode.Length];
                 for (int i = 1; i < pkgRate.Length; i++)
                 {
-                    pkgRate[i] = db.CardRecord.Count(m => m.Pkg.Contains(Constants.PackageCode[i]) && m.ChkTime >= st && m.ChkTime <= et);
+                    var r = Constants.PackageCode[i];
+                    pkgRate[i] = db.CardRecord.Count(m => m.Pkg.Contains(r) && m.ChkTime >= st && m.ChkTime <= et);
                 }
-                pkgRate[0] = db.CardRecord.Count(m => (m.Pkg.Equals(Constants.PackageCode[0])
-                    || m.Pkg.Contains(Constants.PackageCode[0] + ",")) && m.ChkTime >= st && m.ChkTime <= et);
+                var r0 = Constants.PackageCode[0];
+                pkgRate[0] = db.CardRecord.Count(m => ((m.Pkg!=null && m.Pkg.Trim().Equals(r0))
+                    || (m.Pkg!=null && m.Pkg.Contains(r0 + ",")) && m.ChkTime >= st && m.ChkTime <= et));
 
                 ViewBag.Date = st.ToString("yyyy-M-d");
             }
@@ -114,10 +116,12 @@ namespace OneCard.Controllers
                 pkgRate = new int[Constants.PackageCode.Length];
                 for (int i = 1; i < pkgRate.Length; i++)
                 {
-                    pkgRate[i] = db.CardRecord.Count(m => m.Pkg.Contains(Constants.PackageCode[i]));
+                    var r = Constants.PackageCode[i];
+                    pkgRate[i] = db.CardRecord.Count(m => m.Pkg!=null && m.Pkg.Contains(r));
                 }
-                pkgRate[0] = db.CardRecord.Count(m => m.Pkg.Equals(Constants.PackageCode[0])
-                    || m.Pkg.Contains(Constants.PackageCode[0] + ","));
+                var r0 = Constants.PackageCode[0];
+                pkgRate[0] = db.CardRecord.Count(m => (m.Pkg != null && m.Pkg.Trim().Equals(r0))
+                    || (m.Pkg != null && m.Pkg.Contains(r0 + ",")));
                 
                 if (db.CardRecord.Count() <= 0)
                 {
@@ -144,9 +148,13 @@ namespace OneCard.Controllers
                 YesCount = mYesCount,
                 PackageRate = pkgRate,
             };
+
+            string[] headers = new string[] { "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段" };
+            headers = headers.Concat(Constants.PackageCode).ToArray();
+            headers = headers.Concat(new string[] { "含早", "不含早", "用餐总数" }).ToArray();
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(new List<DailyCosumptionSummaryViewModel> { model }, new string[] { "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", Constants.PackageDisplay.Package1, Constants.PackageDisplay.Package2, "含早", "不含早", "用餐总数" }), "text/comma-separated-values", ViewBag.Date + "用餐汇总.csv");
+                return File(CSVHelper.ExportCSV(new List<DailyCosumptionSummaryViewModel> { model }, headers), "text/comma-separated-values", ViewBag.Date + "用餐汇总.csv");
             }
             if (mail)
             {
@@ -159,7 +167,7 @@ namespace OneCard.Controllers
                     MailHelper.SendMail(
                         ViewBag.Date + "用餐汇总",
                         CurrentUser.Email,
-                        CSVHelper.ExportCSV(new List<DailyCosumptionSummaryViewModel> { model }, new string[] { "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", Constants.PackageDisplay.Package1, Constants.PackageDisplay.Package2, "含早", "不含早", "用餐总数" }),
+                        CSVHelper.ExportCSV(new List<DailyCosumptionSummaryViewModel> { model }, headers),
                         ViewBag.Date + "用餐汇总.csv");
 
                     ViewBag.SuccessMessage = "邮件发送成功";
@@ -371,15 +379,6 @@ namespace OneCard.Controllers
                                              });
 
             ViewBag.Year = mYear;
-            //Display Pkg summary
-            int[] result = new int[Constants.PackageCode.Length];
-            for (int i = 1; i < result.Length; i++)
-            {
-                result[i] = db.CardRecord_His.Count(m => m.Pkg.Contains(Constants.PackageCode[i]));
-            }
-            result[0] = db.CardRecord_His.Count(m => m.Pkg.Equals(Constants.PackageCode[0])
-                || m.Pkg.Contains(Constants.PackageCode[0] + ","));
-            ViewBag.PackageData = result;
 
             if (exportCSV)
             {
@@ -440,17 +439,7 @@ namespace OneCard.Controllers
 
             ViewBag.Year = Year;
             ViewBag.Month = Month;
-
-            //Display Pkg summary
-            int[] result = new int[Constants.PackageCode.Length];
-            for (int i = 1; i < result.Length; i++)
-            {
-                result[i] = db.CardRecord_His.Count(m => m.Pkg.Contains(Constants.PackageCode[i]));
-            }
-            result[0] = db.CardRecord_His.Count(m => m.Pkg.Equals(Constants.PackageCode[0])
-                || m.Pkg.Contains(Constants.PackageCode[0] + ","));
-            ViewBag.PackageData = result;
-
+            
             if (exportCSV)
             {
                 return File(CSVHelper.ExportCSV(model, new string[] { "日期", "6:30 - 7:30", "7:30 - 9:00", "9:00 - 10:30", "其他时段", "当天总计" }), "text/comma-separated-values", Year + "年" + Month + "月用餐统计.csv");
@@ -509,6 +498,16 @@ namespace OneCard.Controllers
             }
             ViewBag.Date = db.ZaoCanIn24.FirstOrDefault().InTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
             model = filterGuestName(model);
+            //Display Pkg summary
+            int[] result = new int[Constants.PackageCode.Length];
+            for (int i = 1; i < result.Length; i++)
+            {
+                result[i] = model.Count(m => m.Package != null && m.Package.Contains(Constants.PackageCode[i]));
+            }
+            result[0] = model.Count(m => (m.Package != null && m.Package.Trim().Equals(Constants.PackageCode[0]))
+                || (m.Package != null && m.Package.Contains(Constants.PackageCode[0] + ",")));
+            ViewBag.PackageData = result;
+
             if (exportCSV)
             {
                 return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "客人姓名", "中文名", "入住时间", "退房时间", "Adults", "VIP", "Pax", "Package", "录入时间" }), "text/comma-separated-values", ViewBag.Date + "客房数据.csv");
@@ -583,6 +582,16 @@ namespace OneCard.Controllers
                 model = model.Where(m => m.RoomNumber == room);
 
             model = filterGuestName(model);
+            //Display Pkg summary
+            int[] result = new int[Constants.PackageCode.Length];
+            for (int i = 1; i < result.Length; i++)
+            {
+                result[i] = model.Count(m => m.Package != null && m.Package.Contains(Constants.PackageCode[i]));
+            }
+            result[0] = model.Count(m => (m.Package != null && m.Package.Trim().Equals(Constants.PackageCode[0]))
+                || (m.Package != null && m.Package.Contains(Constants.PackageCode[0] + ",")));
+            ViewBag.PackageData = result;
+
             if (!string.IsNullOrWhiteSpace(StartTime))
             {
                 ViewBag.Date = stTime.ToString("yyyy-MM-dd") + "至" + edTime.ToString("yyyy-MM-dd");
@@ -1085,10 +1094,10 @@ namespace OneCard.Controllers
             int[] result = new int[Constants.PackageCode.Length];
             for (int i = 1; i < result.Length; i++)
             {
-                result[i] = model.Count(m => m.Package.Contains(Constants.PackageCode[i]));
+                result[i] = model.Count(m => m.Package!=null && m.Package.Contains(Constants.PackageCode[i]));
             }
-            result[0] = model.Count(m => m.Package.Equals(Constants.PackageCode[0])
-                || m.Package.Contains(Constants.PackageCode[0] + ","));
+            result[0] = model.Count(m => (m.Package != null && m.Package.Trim().Equals(Constants.PackageCode[0]))
+                || (m.Package != null && m.Package.Contains(Constants.PackageCode[0] + ",")));
 
             return result;
         }

@@ -110,10 +110,10 @@ namespace OneCard.Controllers
                 int[] result = new int[Constants.PackageCode.Length];
                 for (int i = 1; i < result.Length; i++ )
                 {
-                    result[i] = data.AsEnumerable().Count(m => m.Field<string>("Pkg In Rate").Contains(Constants.PackageCode[i]));
+                    result[i] = data.AsEnumerable().Count(m => m.Field<string>("Pkg In Rate")!=null && m.Field<string>("Pkg In Rate").Contains(Constants.PackageCode[i]));
                 }
-                result[0] = data.AsEnumerable().Count(m => m.Field<string>("Pkg In Rate").Equals(Constants.PackageCode[0])
-                    || m.Field<string>("Pkg In Rate").Contains(Constants.PackageCode[0] + ","));
+                result[0] = data.AsEnumerable().Count(m => (m.Field<string>("Pkg In Rate") != null && m.Field<string>("Pkg In Rate").Equals(Constants.PackageCode[0]))
+                    || (m.Field<string>("Pkg In Rate") != null && m.Field<string>("Pkg In Rate").Contains(Constants.PackageCode[0] + ",")));
                 ViewBag.PackageData = result;
 
                 return View(data);

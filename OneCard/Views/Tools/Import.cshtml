@@ -68,38 +68,42 @@
                     }
                 </tbody>
             </table>
-            
-            @if (ViewBag.PackageData != null)
-            {
-                <table>
-                    <thead>
-                        <tr>
-                            @for (int i = 0; i < OneCard.Models.Constants.PackageCode.Length; i++ )
-                            {
-                                <td>@OneCard.Models.Constants.PackageCode[i]</td>
-                            }
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            @foreach (var s in ViewBag.PackageData)
-                            {
-                                <td>s</td>
-                            }
-                        </tr>
-                    </tbody>
-                </table>
-            }
-            
+
             using (Html.BeginForm("Import", "Tools", FormMethod.Post, new { role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <div style="margin:auto; text-align:center;">
+                <div style="margin:auto; text-align:center; float:left; margin-top:-42px;">
                     <input type="hidden" name="path" value="@ViewBag.path" />
                     <button type="button" class="btn btn-success" onclick="javastript: history.go(-1);" style="margin:auto;">返 回</button>
                     <button type="submit" class="btn btn-success" style="margin:auto;">导 入</button>
                 </div>
             }
+
+            <div>
+                @if (ViewBag.PackageData != null)
+                {
+                    <table class="table table-striped table-bordered table-hover" style="font-size:12px;">
+                        <thead>
+                            <tr style="font-weight:bold;">
+                                @for (int i = 0; i < OneCard.Models.Constants.PackageCode.Length; i++)
+                                {
+                                    <td>@OneCard.Models.Constants.PackageCode[i]</td>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach (var s in ViewBag.PackageData)
+                                {
+                                    <td>@s</td>
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+            </div>
+
+            
             
             <script>
                 $(document).ready(function () {
