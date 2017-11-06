@@ -26,7 +26,7 @@ namespace OneCard.Models
         }
 
 
-        public static string[] PackageCode = new string[] { "ABF", "ABF 350", "ABF 550", "ABF BFR", "ABF COMP", "ABF COR", "ABF CPC", "ABF TEST", "ABF VAT", "ABF - CPC" };
+        public static string[] PackageCode = new string[] { "ABF", "ABF 350", "ABF 550", "ABF BFR", "ABF COMP", "ABF COR", "ABF CPC", "ABF TEST", "ABF VAT", "ABF-CPC" };
 
        
 
