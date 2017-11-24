@@ -1,0 +1,204 @@
+1601	Zou, Yan Crystal	邹艳		1	03-31-17	09-30-17	1	ABF COMP	
+1610	*Yang, Wen	杨文		2	09-25-17	09-29-17	2	ABF 550	
+1610	*Mo, Yi Xiang	莫易翔		0	09-25-17	09-29-17	0	ABF 550	
+1611	Hao, Xudong	郝旭东	1	2	09-26-17	09-28-17	3		
+1613	Cui, Wenke	崔文珂	3	1	09-27-17	09-28-17	1		
+1615	Zhang, Qi			1	09-27-17	09-29-17	1	ABF 550	
+1616	Yoshitake, Shunichi			2	09-27-17	09-29-17	2		
+1618	Morioka, Kozo	守罔幸三		2	09-27-17	09-30-17	2		
+1702	Wu, Yi Long	吴一龙	2	1	08-21-17	09-30-17	1		
+1703	Cong, Yu Hua	从玉华		2	09-28-17	10-01-17	2		
+1706	Cong, Yu Hua	从玉华		2	09-28-17	10-01-17	2		
+1708	Leest, Peter Michael Van			1	09-23-17	10-03-17	1		
+1710	Gu, Xiao Feng	谷晓峰		1	09-27-17	09-29-17	1		
+1712	Cong, Yu Hua	从玉华		2	09-28-17	10-01-17	2		
+1713	Wang, Zhe	王喆	1	2	09-25-17	09-28-17	2		
+1714	Li, Hui You	李会友		1	09-27-17	09-28-17	1		
+1716	Cong, Yu Hua	从玉华		2	09-28-17	10-01-17	2		
+1718	Miranda, Damien			2	09-27-17	09-28-17	2		
+1719	*Liu, Qi	刘奇		2	09-25-17	09-29-17	2	ABF 550	
+1719	*Sa, Lan kai	撒兰开		0	09-25-17	09-29-17	0	ABF 550	
+1720	Shigeta, Takayoshi			1	09-27-17	09-29-17	1		
+1801	Chen, Huai Yu	陈怀宇		1	09-28-17	09-29-17	1		
+1802	liu, jichen	刘继臣		1	09-28-17	09-29-17	1		
+1804	You, Xinli	尤新丽		1	09-26-17	09-29-17	1		
+1805	*li, zhiyong	李智勇		0	09-25-17	09-29-17	0	ABF 550	
+1805	*yu, peng	郁鹏		2	09-25-17	09-29-17	2	ABF 550	
+1806	*Zhang, Jie	张洁		0	09-25-17	09-29-17	0	ABF 550	
+1806	*Man, Yan Jun	满延军		2	09-25-17	09-29-17	2	ABF 550	
+1807	Zhu, Liang	朱亮		1	09-27-17	09-30-17	1	ABF 550	
+1810	*Kang, Qing	康庆		0	09-25-17	09-29-17	0	ABF 550	
+1810	*Lu, Chun Lei	鲁春磊		2	09-25-17	09-29-17	2	ABF 550	
+1813	Yang, Yuan Bo	杨远渤	9	1	09-18-17	10-01-17	1	ABF CPC	
+1817	Chen, Yu Yeh	陈宥烨		1	09-27-17	09-28-17	1		
+1819	*Wang, Zhen Feng	王振锋		0	09-25-17	09-29-17	0	ABF 550	
+1819	*Wang, Guang Yao	汪光尧		2	09-25-17	09-29-17	2	ABF 550	
+1820	Iwagishi, Yosiyuki	岩岸仁行		1	09-27-17	09-29-17	1		
+1901	Cheng, Yi Ling	程褘玲	4	2	09-24-17	09-30-17	2	ABF 550	
+1902	Xia, Zhen	夏真	2	2	09-25-17	09-29-17	2		
+1903	*Lu, Wei	鲁巍		0	09-25-17	09-29-17	0	ABF 550	
+1903	*Li, Hao	李浩		2	09-25-17	09-29-17	2	ABF 550	
+1904	Pradhan, Manas			2	09-26-17	09-29-17	2		
+1906	Sorpitiporn, Natee		2	2	09-26-17	09-29-17	2		
+1907	*Chen, Zhen Hua	陈振华		0	09-25-17	09-29-17	0	ABF 550	
+1907	*Yang, Wei Wen	杨伟文		2	09-25-17	09-29-17	2	ABF 550	
+1910	Li, Wan	李莞		2	09-25-17	09-29-17	2	ABF 550	
+1912	*Gu, Qing Chun	顾庆春		0	09-25-17	09-29-17	0	ABF 550	
+1912	*Gao, Hua Yong	高华永		2	09-25-17	09-29-17	2	ABF 550	
+1921	Tamura, Kei	田村 圭		1	09-26-17	09-29-17	1		
+2002	Li, Jian min	李建敏		2	09-27-17	09-29-17	2	ABF CPC	
+2003	Chen, Libo	陈立波	1	2	09-27-17	10-01-17	2		
+2006	*Nan, Bao Cheng	南保成		2	09-25-17	09-29-17	2	ABF 550	
+2006	*Wei, Ya Mei	魏亚梅		0	09-25-17	09-29-17	0	ABF 550	
+2007	Gu, Wei	古巍	2	1	09-28-17	09-29-17	1		
+2008	Ochiai, Kiyoshi	落合潔	2	1	09-24-17	09-29-17	1		
+2009	*Shih, Yi-Hong	施义弘		0	09-27-17	09-29-17	0		
+2009	*Hu, Xingyue	胡兴月		2	09-27-17	09-29-17	2		
+2010	*Shi, Wei	师伟		0	09-25-17	09-29-17	0	ABF 550	
+2010	*Cao, Yong	曹勇		2	09-25-17	09-29-17	2	ABF 550	
+2012	Fu, Huan Huan	符换换		2	09-27-17	09-29-17	2		
+2013	Liang, Xin	梁欣	3	1	09-25-17	09-30-17	1		
+2015	*Jiao, Yu Quan	焦玉泉		0	09-25-17	09-29-17	0	ABF 550	
+2015	*Fan, Rui Qiang	樊锐强		2	09-25-17	09-29-17	2	ABF 550	
+2016	Kobayashi, Yasushi	小林康		1	09-27-17	09-29-17	1		
+2017	*Zhang, Fu Dong	张福东		0	09-25-17	09-29-17	0	ABF 550	
+2017	*Cheng, Jin Ru	程金儒		2	09-25-17	09-29-17	2	ABF 550	
+2018	Yao, Dan Hua	姚旦华		2	09-25-17	09-29-17	2	ABF 550	
+2019	Zhang, Liu Feng	张刘锋		2	09-25-17	09-29-17	2	ABF 550	
+2101	Oki, Kazuhiro	大木一浩	3	2	09-27-17	09-29-17	2		
+2102	Du, Xiao Hui	杜晓晖		2	09-27-17	09-29-17	2		
+2105	*Liu, Wen Tao	刘文涛		0	09-25-17	09-29-17	0	ABF 550	
+2105	*Wu, Chao	邬超		2	09-25-17	09-29-17	2	ABF 550	
+2106	Guo, Jian	郭健		1	09-22-17	09-29-17	1		
+2107	*wu, xiaodong	吴晓东		0	09-25-17	09-29-17	0	ABF 550	
+2107	*Gao, Jian Qing	高健清		2	09-25-17	09-29-17	2	ABF 550	
+2109	Zheng, Yi	郑祎	3	1	09-27-17	09-30-17	1		
+2110	Jiang, Min	江敏		2	09-27-17	09-29-17	2	ABF BFR	
+2112	*Xu, Jin Yang	许金阳		0	09-25-17	09-29-17	0	ABF 550	
+2112	*Zhang, Ju Cheng	张鞠成		2	09-25-17	09-29-17	2	ABF 550	
+2113	Li, Zhi Rui	李祉睿	1	2	09-27-17	09-29-17	2		
+2114	Bo, Li			2	09-24-17	09-29-17	2		
+2115	*Huang, Jin Ping	黄金平		0	09-25-17	09-29-17	0	ABF 550	
+2115	*Yan, Ang	严昂		2	09-25-17	09-29-17	2	ABF 550	
+2116	Gao, Ying Yue	高莹月		2	09-24-17	09-29-17	2	ABF 550	
+2119	Wang, Ru Biao	王儒标		2	09-25-17	09-29-17	2	ABF 550	
+2121	Takami, Kenji	高見 圭司		1	09-27-17	09-29-17	1		
+2209	Lu, Ming	陆鸣		1	09-28-17	09-30-17	1		
+2212	*Cubasov, Ghenadie			0	09-25-17	10-02-17	0		
+2212	*Siretsky, Samuil			2	09-25-17	10-02-17	2		
+2213	Cinar, Levent		3	1	09-13-17	09-29-17	1		
+2214	*Wang, Li Xue	王立学	4	2	02-28-17	02-28-18	2	ABF CPC	
+2214	*Liu, Yun Ting	刘昀庭		0	02-28-17	02-28-18	0		
+2214	*Wang, Hong Peng	王宏鹏		0	05-26-17	02-28-18	0		
+2217	cui, lei	崔雷	1	1	09-22-17	09-29-17	1		
+2218	Zhang, Dong Jie	张东杰	1	2	09-26-17	09-30-17	2		
+2220	Ma, DongPeng	马东鹏		1	09-22-17	09-29-17	1		
+2221	Suh, Jiri			1	09-27-17	09-29-17	1		
+2304	Ma, Ru	马茹		2	09-24-17	09-29-17	2	ABF 550	
+2306	Chen, Han	陈菡		2	09-25-17	09-30-17	2	ABF 550	
+2308	Jongwon, Sung		2	1	09-27-17	10-01-17	1		
+2309	Akgul, Selcuk			1	09-17-17	09-29-17	1		
+2311	Fukushima, Keinosuke	福山启之辅	1	1	09-27-17	09-29-17	1		
+2312	Bruno, Juan Manuel			2	09-28-17	09-30-17	2		
+2314	Zheng, Jiancong	郑建聪	2	2	09-18-17	09-29-17	2		
+2315	Zhang, Li Fang	张立芳		1	09-26-17	09-29-17	1		
+2316	Maressa, Raul Armand			2	09-28-17	09-30-17	2		
+2318	Platia, Nitansh			2	09-26-17	09-29-17	2		
+2401	Li, Lisha	李霞	2	2	09-27-17	09-30-17	3		
+2402	Jiang, Ai Zhong	江爱忠		2	09-28-17	09-29-17	2		
+2403	Guo, Da Wei	郭大为		1	09-28-17	09-30-17	1		
+2404	Wang, Hui Hui	汪慧慧		1	09-28-17	09-30-17	1		
+2405	Jiang, Xing	江星		2	09-28-17	09-29-17	2		
+2406	Chen, Xing Jian	陈兴建		1	09-28-17	09-30-17	1		
+2407	Sawayama, Shinichi			2	09-27-17	09-30-17	2		
+2411	Yan, Hui	严辉	1	2	09-25-17	09-29-17	2		
+2412	Liang, Ying	梁瑛		2	09-27-17	09-30-17	2		
+2414	Goto, Masahiko	后藤真彦	3	1	09-27-17	09-30-17	1		
+2415	Wu, Ri Bing	吴日兵		2	09-25-17	09-29-17	2	ABF 550	
+2417	Kong Kar yee, Malaysia			1	09-19-17	10-01-17	1		
+2418	Peng, Yu Hua	彭玉华		2	09-28-17	09-29-17	2		
+2501	Sun, Guo Jian	孙国坚	9	1	09-23-17	07-01-18	1	ABF CPC	
+2504	Li, Wan Lin	李万林	1	1	09-22-17	09-29-17	1		
+2506	Xue, Yan Bing	薛岩冰		2	09-25-17	09-29-17	2	ABF 550	
+2510	Wu, Yuan-Liang	吴永良		1	09-27-17	09-29-17	1		
+2511	*Li, Xu Xia	李旭霞		2	09-25-17	09-29-17	2		
+2511	*Jiang, Chao Zhong	蒋朝忠		0	09-25-17	09-29-17	0		
+2512	Ying, Jiang	蒋莹		2	09-25-17	09-29-17	2		
+2514	Grondin, Jacques		9	2	09-21-17	10-01-17	2	ABF CPC	
+2515	Wang, Kai	汪凯		2	09-25-17	09-29-17	2	ABF 550	
+2516	Curry, Daniel		1	1	09-28-17	09-29-17	1		
+2520	Smith, Roy			1	09-28-17	09-29-17	1		
+2701	*Kim, Youngdae		9	1	09-01-17	10-08-17	1	ABF 550	
+2701	*Park, Jungsik			0	09-01-17	10-08-17	0		
+2708	Wang, He Xiang	王禾湘	1	3	06-01-17	09-29-17	3		
+2710	Ruggiero, Alessandro		9	1	09-01-17	12-31-17	1	ABF CPC	
+2714	Laupenmuhlen, Matthias Ronny			3	08-08-17	07-26-18	3		
+2721	Kiuchi, Takafumi	木内隆文	5	1	09-01-17	11-19-17	1		
+2801	Fukunaga, Mamoru	福永護	5	1	09-01-17	12-22-17	1	ABF CPC	
+2805	*Lee, Hyesun			0	09-01-17	12-30-17	0		
+2805	*Ryu, Minseong		9	1	09-01-17	12-30-17	1	ABF CPC	
+2810	Li, Zhen	李震	3	2	07-01-17	07-28-18	2	ABF 550,ABF VAT	
+2814	Valeri, Pier Giorgio		3	1	09-01-17	09-30-17	1	ABF CPC	
+2819	*Holtskog, Terje		9	2	09-01-17	01-06-18	2	ABF CPC	
+2819	*Sohannam, Binti Nanang			0	09-01-17	01-06-18	0		
+2821	Hata, Shoichiro	端彰一郎	5	1	04-01-17	01-16-18	1	ABF CPC	
+2907	Yu, Dan	于丹		2	09-27-17	09-30-17	2	ABF BFR	
+2910	*Wang, Yong Xin	王永新		0	09-25-17	09-29-17	0	ABF 550	
+2910	*Chen, Jun Jie	陈俊杰		2	09-25-17	09-29-17	2	ABF 550	
+2915	Niu, Jian Zhong	钮建忠		2	09-28-17	09-29-17	2		
+2917	Li, Guobin	李国斌		2	09-27-17	09-29-17	2		
+2919	Ji, Xue Feng	纪雪峰		2	09-28-17	09-30-17	2		
+2921	Qu, Jie	曲洁	1	2	09-25-17	09-29-17	2		
+3001	Han, Kun	韩昆		2	09-27-17	09-30-17	2	ABF BFR	
+3007	Chen, Dong Hui	陈东辉	9	2	08-27-17	10-01-17	2		
+3009	Wang, Xiao Ming	王晓明		1	09-24-17	10-01-17	1		
+3010	*Su, Ming	苏明		0	09-25-17	09-29-17	0	ABF 550	
+3010	*Lu, Fei	陆非		2	09-25-17	09-29-17	2	ABF 550	
+3012	*Liu, Yang	柳洋		2	09-25-17	09-29-17	2	ABF 550	
+3012	*Luo, Zhao Ming	骆朝明		0	09-25-17	09-29-17	0	ABF 550	
+3021	Littlejohn, Andrew		1	2	09-23-17	09-30-17	2	ABF BFR,USI100	
+3101	Lin, Xiao Yuan	林晓源		2	09-27-17	09-30-17	2	ABF BFR	
+3107	Nie, LiuJian	聂留建		1	09-27-17	09-28-17	1		
+3111	Zhang, Yi Lun	张轶伦	2	1	09-27-17	09-29-17	1		
+3112	Xiang, Xin Rong	向新荣		2	09-28-17	09-29-17	2		
+3114	Zhang, Li	张立	4	2	09-25-17	09-28-17	2	ABF CPC	
+3115	Wang, Jianjun	王建军	9	1	09-15-17	09-30-17	1	ABF CPC	
+3117	Li, Yan Fang	李艳芳		1	09-27-17	09-29-17	1		
+3121	Liu, Li Xin	刘立新	9	1	09-25-17	09-30-17	1	ABF CPC	
+3211	Hart, Louise Rachel			2	09-27-17	09-29-17	2		
+3219	Fujita, Yuki	藤田侑希		1	09-01-17	04-21-18	1		
+3315	Yuji, Konno	昆野裕治	4	1	09-01-17	11-20-17	1	ABF CPC	
+3321	Yang, Hua	杨华	9	1	09-27-17	09-29-17	1		
+3401	Xian, Ming Xing	咸明星		2	03-02-16	10-23-17	2	ABF CPC	
+3405	Zhang, Qing Shou	张青寿		2	09-26-17	09-29-17	2		
+3409	Kang, Jusin			1	09-27-17	09-29-17	1		
+3411	Whytock, Laura Anne			2	09-27-17	09-29-17	2		
+3413	Zhang, Wei	张卫		2	09-27-17	09-29-17	2	ABF CPC	
+3414	Schaeffer, Joseph Clayton			1	09-28-17	09-30-17	1		
+3415	Meduna, Chad Robert			1	09-28-17	09-30-17	1		
+3419	Donovan, Mark Jermiah			1	09-27-17	09-28-17	1		
+3421	Halsey, Jenna			1	09-27-17	09-28-17	1		
+3511	Li, Hua	李华		2	09-27-17	09-29-17	2		
+3519	Yoshiaki, Kitada	比用芳章		1	09-26-17	09-28-17	1		
+3521	Xin Gai Nian Ta Qingdao CLDBB-5S-17 11, X			2	09-27-17	09-28-17	2	ABF 550	
+3609	*tang, chuan	唐川  ***		0	08-31-17	10-11-17	0		
+3609	*Fu, Shu Fang	傅淑芳 ***		2	08-30-17	10-11-17	2	ABF CPC	
+3612	*Chou, Yang	仇阳		0	09-02-17	10-14-17	0		
+3612	*Xiao, Shan	肖姗		2	09-02-17	10-14-17	2	ABF CPC	
+3613	Guan, Yu Chen	***		2	09-05-17	10-17-17	2	ABF CPC	
+3614	Chen, Bo	陈波		2	09-27-17	09-29-17	2	ABF CPC	
+3617	Fan, Ping Li	***	1	2	09-01-17	04-30-18	2		
+3619	Zhao, Ming	赵明	9	1	09-27-17	09-29-17	1	ABF CPC	
+3621	Fan, Ping Li	***	1	2	09-01-17	04-30-18	2		
+3712	Hu, Chang Yin	胡昌银		2	09-28-17	09-29-17	2	ABF CPC	
+3713	Jin, Guang	金光	1	1	09-27-17	09-29-17	1		
+3719	Christophe, Almeida		5	1	09-24-17	09-29-17	1	ABF CPC	
+3721	Xia, Alan Zhe			2	09-28-17	09-30-17	2	ABF BFR	
+3803	Xin, Chunxiao	辛春晓		2	09-27-17	09-29-17	2		
+3809	Bo, Wen Qi	卜文麒		2	09-27-17	09-29-17	2		
+3810	*Xun, Bei Bei	郇贝贝***		2	09-18-17	10-16-17	2	ABF CPC	
+3810	*hu, xu feng	胡旭峰***		0	09-24-17	10-16-17	0		
+3813	Pan, Xiang Yun	潘湘云		2	09-28-17	10-02-17	2		
+3817	Giuseppe, Raso		5	1	09-24-17	09-29-17	1	ABF CPC	
+3819	Giovanna, Bognandi		5	1	09-24-17	09-29-17	1	ABF CPC	
+3821	Ding, Ning	丁宁	9	2	08-21-17	09-30-17	2		

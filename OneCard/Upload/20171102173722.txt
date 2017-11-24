@@ -1,0 +1,335 @@
+1601	Zou, Yan Crystal	邹艳		1	03-31-17	11-01-17	1	ABF COMP	ABF COMP	
+1701	Iba, Katsumi		1	1	10-31-17	11-02-17	1		ABF VAT	
+1702	Perez Barral, Miguel Angel		1	2	10-30-17	11-05-17	2		ABF BFR	
+1703	Urgal, Pina Noelia			2	10-31-17	11-04-17	2		ABF BFR	
+1704	Jia, Lian Chwng	贾连成		1	10-30-17	11-01-17	1			
+1705	Zhao, Ning	赵宁	1	1	10-31-17	11-01-17	1		ABF 550	
+1706	Pinhassi, Anat			2	10-29-17	11-02-17	2		ABF BFR	
+1707	Zhang, Wei	张伟		2	10-30-17	11-01-17	2		ABF BFR	
+1708	Lin, Xiaoyong	林小勇		2	10-29-17	11-01-17	2		ABF BFR	
+1709	Kudo, Katsunori			1	10-31-17	11-03-17	1	ABF 550	ABF 550	
+1710	Ren, Cheng	任诚		2	10-29-17	11-01-17	2	ABF BFR,USS100	ABF BFR,USS100	
+1711	Mohammed, Shukoor Hussain			2	10-31-17	11-04-17	2		ABF BFR	
+1712	Lu, Dan	卢丹	1	1	10-31-17	11-02-17	1			
+1713	Miller, Richard		2	2	10-20-17	11-04-17	2		ABF BFR	
+1714	Sakamoto, Koichi	坂木弘一	3	1	10-30-17	11-01-17	1		ABF VAT	
+1715	Delrio, Francisco			2	10-31-17	11-04-17	2	ABF BFR,USS100	ABF BFR,USS100	
+1716	Yuan, Xiao Ben	袁晓贲		1	10-30-17	11-02-17	1			
+1717	Rodriguez, Paulo			1	10-31-17	11-05-17	1			
+1718	Yamazaki, Yosuke			1	10-31-17	11-04-17	1		ABF VAT	
+1719	Sampat, Ambrish			2	10-31-17	11-04-17	2	USI100,ABF BFR	USI100,ABF BFR	
+1720	Okimoto, Shin			1	10-31-17	11-04-17	1		ABF VAT	
+1721	Nobuyuki, Kato	加藤信行	1	1	10-31-17	11-01-17	1		ABF VAT	
+1801	Tamura, Hidekazu			2	10-30-17	11-02-17	2		ABF BFR	
+1802	Macmanus, Kirk			2	10-29-17	11-01-17	2	ABF BFR,USI100	ABF BFR,USI100	
+1803	Ziresh, Mohamed			1	10-31-17	11-03-17	1			
+1804	Lv, Qi Fan	吕琪帆	2	1	10-31-17	11-02-17	1	ABF 550	ABF 550	
+1805	Bhat, Suresh			2	10-31-17	11-03-17	2		ABF BFR	
+1806	Zhao, Jun Yi	赵俊义	2	1	10-30-17	11-02-17	1		ABF VAT	
+1807	Liu, Yong En	刘咏恩	1	1	10-31-17	11-02-17	1			
+1808	Hu, Cui	胡翠		2	10-30-17	11-02-17	2		ABF 550	
+1809	Redondo, Perez Cristina			2	10-31-17	11-04-17	2		ABF BFR	
+1810	Makin, Georgia Elizabeth			1	10-31-17	11-01-17	1		ABF VAT	
+1811	Zhu, Xiaofeng	朱晓风		1	10-31-17	11-01-17	1		ABF VAT	
+1812	He, Qian	何倩		2	10-31-17	11-01-17	2		ABF BFR	
+1813	Suzuki, Taeko		1	1	10-30-17	11-01-17	1		ABF VAT	
+1814	Anis, Rashid			1	10-31-17	11-02-17	1			
+1815	Xian, Gen Yu	缐根瑜	1	1	10-31-17	11-02-17	1			
+1816	Laursen, Henrik			2	10-30-17	11-03-17	2		ABF BFR	
+1817	Shu, Zhongming	束中明		1	10-31-17	11-02-17	1		ABF 550	
+1818	Tanaka, Yuchi	太中勇一		1	10-24-17	11-01-17	1		ABF CPC	
+1819	Zhang, Fang Dong	章方东		1	10-31-17	11-02-17	1			
+1820	Naito, Kazushi			1	10-30-17	11-01-17	1		ABF VAT	
+1821	Wang, Li tian	王理天		2	10-30-17	11-02-17	2		ABF 550	
+1901	Fierens, Kurt		2	1	10-31-17	11-02-17	1	ABF 350,USI100	ABF 350,USI100	
+1902	Mitchell, David			1	10-31-17	11-03-17	1	ABF 550	ABF 550	
+1903	Kim, Rea A			2	10-31-17	11-03-17	2	ABF 550	ABF 550	
+1904	Bok, Sunghyun			2	10-29-17	11-05-17	2			
+1905	Chen, Jian	陈建		1	10-31-17	11-03-17	1	ABF BFR,USI100	ABF BFR,USI100	
+1906	Dethlefsen, Morten			2	10-30-17	11-03-17	2		ABF BFR	
+1907	Zhou, Ye Hong	周叶红		2	10-31-17	11-02-17	2		ABF VAT	
+1908	Zhou, Jing	周靖	3	2	10-31-17	11-01-17	2		ABF BFR	
+1909	Zhu, Yue Han	朱约翰	1	1	10-27-17	11-01-17	1		ABF VAT	
+1910	Yu, Li Min	虞立敏		2	10-31-17	11-02-17	2		ABF VAT	
+1911	Chu, Guang Hao			1	10-31-17	11-03-17	1		ABF VAT	
+1912	Kim, Kwangheemr			2	10-31-17	11-03-17	2	ABF 550	ABF 550	
+1913	Zhu, Li	朱力	2	1	10-29-17	11-01-17	1			
+1914	Khan, Shahjada Mohammad Ali			2	10-31-17	11-03-17	2		ABF BFR	
+1915	Kleiman, Claudiogabriel			2	10-31-17	11-03-17	2			
+1916	Martin, Bruno			2	10-29-17	11-15-17	2	USI100	ABF 550USI100	
+1917	Lee, Jae Kyo			2	10-31-17	11-03-17	2	ABF 550	ABF 550	
+1918	Nakatake, Naoya	中武直也	1	1	10-30-17	11-01-17	1		ABF VAT	
+1919	Joo, Sung Hwan			2	10-31-17	11-03-17	2	ABF 550	ABF 550	
+1920	Ramdin, Steven			1	10-31-17	11-03-17	1	ABF 550	ABF 550	
+1921	Li, Chen	李晨	9	1	10-31-17	11-01-17	1	ABF CPC	ABF CPC	
+2001	Oguni, Koji	小国幸治		1	10-29-17	11-03-17	1		ABF CPC	
+2002	Liu, Guo Ji	刘国际		1	10-31-17	11-11-17	1		ABF 550	
+2004	Ortlieb, Gustav		2	1	10-31-17	11-04-17	1		ABF 550	
+2005	Xu, Yu Hua	徐玉华		2	10-31-17	11-02-17	2		ABF VAT	
+2006	Martin, Heloise			1	10-29-17	11-02-17	1		ABF 550	
+2007	Zhang, Lei	张磊		1	10-31-17	11-01-17	1		ABF 550	
+2008	Zhu, Chang Liang	朱长良		2	10-31-17	11-03-17	2		ABF BFR	
+2009	Murakami, Naoto			1	10-31-17	11-04-17	1		ABF VAT	
+2010	Wan, Hua Gang	万华刚		2	10-31-17	11-04-17	2	ABF 550	ABF 550	
+2011	Chubarov, Aleksei			1	10-26-17	11-03-17	1			
+2012	Gilmanova, Anna			2	10-31-17	11-04-17	2		ABF VAT	
+2013	Borzutzky, Ricardo		1	1	10-29-17	11-04-17	1			
+2014	Li, Wan Cheng	李万成		1	10-31-17	11-04-17	1	ABF 550	ABF 550	
+2015	Zhang, Yi Fei Zi	张艺斐子		2	10-31-17	11-04-17	2	ABF 550	ABF 550	
+2016	Shimazaki, Masahiro	岛崎雅宽	1	1	10-30-17	11-01-17	1		ABF VAT	
+2017	Tang, Tak Hung			2	10-30-17	11-02-17	2			
+2018	Fort, John			2	10-30-17	11-03-17	2			
+2019	Cheung, Kwok Ming	张国明		2	10-30-17	11-02-17	2			
+2020	Fang, Li Ping	方丽萍	2	1	10-30-17	11-01-17	1			
+2021	Corbeto, Marco			2	10-30-17	11-03-17	2		ABF BFR	
+2101	Masuda, Akio	增田明生	4	1	10-31-17	11-01-17	1		ABF VAT	
+2102	Song, Yi Fan	宋逸凡		1	10-31-17	11-02-17	1		ABF VAT	
+2103	Yin, Tai bai	尹太白		2	10-31-17	11-01-17	2		ABF 550	
+2104	Kuthari, Ruchika			1	10-29-17	11-03-17	1	ABF 550	ABF 550	
+2106	Norman, Benjamin Robert		1	1	10-31-17	11-03-17	1		ABF 550	
+2107	Ma, Fei	马菲		1	10-27-17	12-01-17	1		ABF 550	
+2108	Burke, John Gerard			1	10-29-17	11-04-17	1		ABF VAT	
+2109	Rhee, Jeonghoon			2	10-31-17	11-03-17	2		ABF BFR	
+2110	Yan, Zhongyang	晏中扬		2	10-28-17	11-02-17	2			
+2111	Wang, Bing	王兵		2	10-29-17	11-06-17	2			
+2112	Sun, Bin	孙斌		2	10-31-17	11-02-17	2		ABF BFR	
+2113	Wang, Zhe	王喆	3	1	10-31-17	11-01-17	1		ABF VAT	
+2114	Ivantsova, Annavladimirovna			2	10-31-17	11-02-17	2		ABF BFR	
+2115	Celestine, Augustine			2	10-31-17	11-03-17	2		ABF BFR	
+2117	*Xu, Meng Di	徐梦迪		0	10-31-17	11-03-17	0		ABF BFR	
+2117	*Xu, Na	许娜		2	10-31-17	11-03-17	2		ABF BFR	
+2118	Lu, Ji Zhou	卢季洲		1	10-31-17	11-04-17	1	ABF 550	ABF 550	
+2120	Kanekawa, Ken	兼川建	2	1	10-30-17	11-02-17	1		ABF VAT	
+2121	Lian, Chuan Peng			2	10-31-17	11-01-17	2		ABF BFR	
+2201	Hedishima, daijiro	秀岛大滋郎		1	10-31-17	11-04-17	1		ABF COR	
+2202	Gomi, Shintaro	五味愩太郎		1	10-31-17	11-04-17	1		ABF VAT	
+2203	Gan, Qirong	干启荣	2	1	10-31-17	11-01-17	1		ABF VAT	
+2204	He, Zhixun	贺稚薰		2	10-31-17	11-01-17	2			
+2205	Li, Hongxing	李宏星		1	10-31-17	11-01-17	1		ABF 550	
+2206	Tian, Ye	田野		1	10-31-17	11-04-17	1	ABF 550	ABF 550	
+2207	Zeng, Tsang Chi Hang	曾智恒	1	1	10-31-17	11-02-17	1	ABF 550	ABF 550	
+2208	Burke, Kevin Francis			1	10-29-17	11-04-17	1		ABF VAT	
+2209	Wu, Yi Long	吴一龙	3	1	10-11-17	11-17-17	1		ABF VAT	
+2210	Ganin, Robertoadrian			2	10-31-17	11-04-17	2		ABF BFR	
+2211	Zhou, Qing Gang	周晴刚		2	10-31-17	11-04-17	2		ABF BFR	
+2213	Wang, Gang	王钢		2	10-24-17	11-03-17	2		ABF 550	
+2214	*Liu, Yun Ting	刘昀庭		0	02-28-17	02-28-18	0			
+2214	*Wang, Hong Peng	王宏鹏		0	05-26-17	02-28-18	0			
+2214	*Wang, Li Xue	王立学	4	2	02-28-17	02-28-18	2	ABF CPC	ABF CPC	
+2215	Alexander, James		1	1	10-31-17	11-03-17	1		ABF 550	
+2216	Murcia, Alejandro Almagro		1	1	10-28-17	11-02-17	1		ABF CPC	
+2217	Newbery, Christopher John			1	10-31-17	11-03-17	1		ABF 550	
+2218	Wu, Ting Ting			1	10-31-17	11-04-17	1	ABF 550	ABF 550	
+2219	Kakizawa, Noburu	柿泽昇	2	1	10-30-17	11-01-17	1		ABF VAT	
+2220	Dutertre, Jean			1	10-31-17	11-03-17	1			
+2221	Stansfield, Katie Louise			1	10-31-17	11-01-17	1		ABF VAT	
+2301	Sugiyama, x			1	10-31-17	11-02-17	1		ABF VAT	
+2302	Nguyen Viet, Anh			1	10-31-17	11-01-17	1		ABF COR	
+2303	He, Fang	何方		2	10-31-17	11-02-17	2		ABF BFR	
+2304	Xu, Ai Ming	徐爱茗	2	1	10-30-17	11-27-17	1		ABF 550	
+2305	Zhang, Rui	张睿	1	2	10-30-17	11-01-17	2			
+2306	Xin, Ke tao	辛克涛		1	10-31-17	11-01-17	1			
+2307	Rafferty, Nick		1	1	10-31-17	11-04-17	1		ABF 550	
+2308	Barreno, Coba			2	10-29-17	11-01-17	2		ABF BFR	
+2309	Xiao, Yu	肖宇	3	1	10-30-17	11-01-17	1		ABF 550	
+2310	Yu, Yue	俞越	2	1	10-31-17	11-02-17	1			
+2311	Suzuki, Yasushi	铃木 祥	2	1	10-30-17	11-01-17	1		ABF CPC	
+2312	Chen, Yun xian	陈韫娴		1	10-31-17	11-01-17	1		ABF VAT	
+2313	Wang, Yu Tao	王宇涛	3	1	10-25-17	11-25-17	1		ABF 550	
+2314	Sun, Xiao Ming		1	1	10-31-17	11-03-17	1			
+2315	Song, Dan	宋丹		1	10-17-17	11-16-17	1		ABF 550	
+2316	Vizitiu, Robert Constantin		2	1	10-28-17	11-02-17	1		ABF CPC	
+2317	Krasilovsky, Sergey			2	10-29-17	11-08-17	2		ABF BFR	
+2318	Lu, Jie	鲁杰		1	10-31-17	11-01-17	1		ABF 550	
+2319	Bi, Jinghua	毕敬桦	2	2	10-29-17	11-05-17	2		ABF BFR	
+2320	Zhang, Fan	张帆	2	2	10-29-17	11-05-17	2		ABF BFR	
+2321	Guo, Kai	郭凯	2	1	10-31-17	11-04-17	1		ABF VAT	
+2401	Marino, Almudena			2	10-30-17	11-04-17	2			
+2402	Li, De Wang	李德旺	2	1	10-30-17	11-01-17	1		ABF COR	
+2403	Mittal, Divya			3	10-31-17	11-01-17	3			
+2404	Ding, Dong	丁冬	2	2	10-31-17	11-01-17	2	ABF 350,USI100	ABF 350,USI100	
+2405	Kamitani, Shinji	上谷进治		1	10-24-17	11-01-17	1		ABF CPC	
+2406	Chen, Jie	陈杰	1	1	10-31-17	11-01-17	1		ABF COR	
+2407	Bamber, Sarah claire			2	10-29-17	11-03-17	2		ABF BFR	
+2408	Barreno, Gavilanes			2	10-29-17	11-01-17	2		ABF BFR	
+2409	Zhang, Xiaogang	张晓刚	3	1	10-09-17	12-01-17	1		ABF 550	
+2410	Yu, Sheng  Zhuang	余胜壮		2	10-31-17	11-02-17	2		ABF VAT	
+2411	Liu, Ying Jia	刘颖佳		1	10-31-17	11-03-17	1	ABF 550	ABF 550	
+2412	Liu, Teng Fei	刘腾飞		1	10-31-17	11-02-17	1		ABF VAT	
+2413	Zhang, Gui Bin	张贵斌		2	10-31-17	11-02-17	2		ABF BFR	
+2414	Soo Chee Wai, Malaysia			2	10-31-17	11-03-17	2			
+2415	Zhang, Yun	张云		1	10-31-17	11-04-17	1		ABF VAT	
+2416	Andres, Manrique Vergaray			1	10-30-17	11-04-17	1	ABF 550	ABF 550	
+2417	Pimenov, Alexander			1	10-30-17	11-02-17	1	ABF 550	ABF 550	
+2418	Ng, Siu Ki Ricky	吴绍祺	2	1	10-30-17	11-02-17	1		ABF CPC	
+2419	Liu, Chun Tao	刘春涛		2	10-31-17	11-01-17	2	ABF 350,USI100	ABF 350,USI100	
+2420	Yamaguchi, Ritsuko			1	10-31-17	11-04-17	1		ABF VAT	
+2421	Mao, Liling	毛荔陵	3	1	10-31-17	11-03-17	1			
+2501	Sun, Guo Jian	孙国坚	9	1	11-01-17	01-01-18	1	ABF CPC	ABF CPC	
+2502	Matsuda, Kohei			1	10-31-17	11-04-17	1		ABF VAT	
+2503	Cai, Yan Ting	蔡言婷		1	10-30-17	11-02-17	1			
+2504	Chiu, Huangjung	邱煌荣		1	10-29-17	11-01-17	1			
+2505	Ran, Bing	冉兵		2	10-30-17	11-01-17	2	ABF BFR,USI100	ABF BFR,USI100	
+2506	Lin, Jun	林军		2	10-31-17	11-03-17	2		ABF COR	
+2507	Bailey, Kevin		2	2	10-29-17	11-03-17	2		ABF BFR	
+2508	Sato, Tomoaki	佐藤友昭		1	10-31-17	11-03-17	1		ABF COR	
+2509	Son, Hyunjoo			2	10-30-17	11-01-17	2			
+2510	Chan, Tai Kwan	陈大钧	1	2	10-31-17	11-03-17	2		ABF BFR	
+2511	Woo, Charles		1	1	10-31-17	11-02-17	1			
+2512	Fernandez, Rogelio David			2	10-31-17	11-03-17	2		ABF BFR	
+2513	Van Der Zwan, Willem			2	10-31-17	11-02-17	2		ABF BFR	
+2514	Zhong, Na Na	钟娜娜		2	10-31-17	11-02-17	2		ABF BFR	
+2515	Lei, Hai	雷海		1	10-31-17	11-03-17	1		ABF COR	
+2516	Christiansen, Jorgen Maienborg			2	10-31-17	11-04-17	2		ABF BFR	
+2517	Shatokhin, Daniil			2	10-31-17	11-03-17	2			
+2518	Colin, John			2	10-30-17	11-03-17	2		ABF BFR	
+2519	Bondareva, Olga			2	10-31-17	11-04-17	2			
+2520	Neves, Joao		1	2	10-31-17	11-04-17	2		ABF BFR	
+2521	Xuan, Xiao Min	宣晓敏	3	1	10-31-17	11-02-17	1		ABF VAT	
+2701	Nishitani, Tomoya	西谷智也		1	10-31-17	11-01-17	1		ABF VAT	
+2705	Olner, Emilyms			1	10-31-17	11-01-17	1		ABF VAT	
+2708	Wang, He Xiang	王禾湘	1	3	06-01-17	12-18-17	3			
+2710	Ruggiero, Alessandro		9	1	11-01-17	12-31-17	1	ABF CPC	ABF CPC	
+2714	Laupenmuhlen, Matthias Ronny		1	2	11-01-17	03-15-18	2		ABF VAT	
+2721	Kiuchi, Takafumi	木内隆文	5	1	11-01-17	11-19-18	1			
+2801	Fukunaga, Mamoru	福永護	5	1	11-01-17	12-22-17	1	ABF CPC	ABF CPC	
+2805	*Lee, Hyesun			0	11-01-17	12-30-17	0			
+2805	*Ryu, Minseong		9	1	11-01-17	12-30-17	1	ABF CPC	ABF CPC	
+2808	*Zhang, Wen Liang	张文良		1	10-31-17	11-01-17	1			
+2808	*Feng, Jian Yun	冯剑云		1	10-31-17	11-01-17	1			
+2810	Li, Zhen	李震	3	2	07-01-17	07-28-18	2	ABF 550,ABF VAT	ABF 550,ABF VAT	
+2812	Agrasar, Rey Juan		1	2	10-31-17	11-03-17	2	ABF CPC	ABF CPC	
+2814	Valeri, Pier Giorgio		9	1	11-01-17	01-01-18	1	ABF CPC	ABF CPC	
+2819	*Sohannam, Binti Nanang			0	11-01-17	01-06-18	0			
+2819	*Holtskog, Terje		9	2	11-01-17	01-06-18	2	ABF CPC	ABF CPC	
+2821	Hata, Shoichiro	端彰一郎	5	1	04-01-17	01-16-18	1	ABF CPC	ABF CPC	
+2903	Hu, Yu	胡榆	2	1	10-31-17	11-02-17	1		ABF VAT	
+2905	Geng, Jun	耿军		2	10-30-17	11-02-17	2		ABF BFR	
+2907	Tao, Ming	陶明		1	10-30-17	11-02-17	1			
+2908	Jimenezmartinez, Maria A			1	10-31-17	11-03-17	1	ABF BFR,USI100	ABF BFR,USI100	
+2910	Lin, Gui Feng	林桂凤		2	10-31-17	11-02-17	2		ABF BFR	
+2911	Liang, Gavin	梁雪军		1	10-31-17	11-04-17	1	ABF 550	ABF 550	
+2912	Lago Gonzalez, Rosa			2	10-31-17	11-04-17	2		ABF BFR	
+2913	Skar, Christian			2	10-30-17	11-04-17	2		ABF BFR	
+2914	Muccini, Francorodolfo		9	1	10-31-17	11-02-17	1	ABF CPC	ABF CPC	
+2915	Li, Chang Qing	李常青	1	3	10-30-17	11-06-17	3		ABF COR	
+2917	Iwasaki, Tsutomu			1	10-30-17	11-02-17	1		ABF VAT	
+2919	Lichtenberg, Hanswilhelm			2	10-31-17	11-01-17	2		ABF BFR	
+2921	Ogo, Futoshi			1	10-30-17	11-02-17	1		ABF VAT	
+3001	Cinar, Levent		3	1	10-29-17	11-04-17	1	ABF CPC	ABF CORABF CPC	
+3003	Selcuk, Akgul		3	1	10-29-17	11-04-17	1	ABF CPC	ABF CORABF CPC	
+3005	Szigat, Michael			2	10-31-17	11-01-17	2		ABF BFR	
+3007	Speca, Francesco			2	10-30-17	11-02-17	2		ABF BFR	
+3008	Shim, Junghoon			2	10-31-17	11-03-17	2		ABF BFR	
+3009	Takei, Yuki	竹井裕树	1	1	10-30-17	11-01-17	1		ABF COR	
+3010	Guan, Wei	关威		1	10-31-17	11-03-17	1			
+3011	Zhang, Hui	张慧		2	10-30-17	11-06-17	2			
+3012	Cristos, Javier			2	10-31-17	11-04-17	2		ABF BFR	
+3013	Madsen, Thomas Codiglia Engum			2	10-30-17	11-04-17	2		ABF BFR	
+3014	Tsutsui, Toru	筒井徹		1	10-17-17	11-05-17	1		ABF COR	
+3015	Man, Wai Keung	文伟强	9	1	10-31-17	11-03-17	1	ABF CPC	ABF CPC	
+3017	Sumikawa, Hideo	住川英雄	9	1	10-25-17	11-06-17	1	ABF CPC	ABF CPC	
+3019	Borgonovo, Luca			1	10-30-17	11-02-17	1			
+3021	Niu, Chang Fu	牛长富	9	1	10-31-17	11-01-17	1	ABF CPC	ABF CPC	
+3101	Wang, Li Wei	王立纬 ******	2	2	10-31-17	11-03-17	2		ABF VAT	
+3103	Novitckii, Stanislav			1	10-30-17	11-04-17	1		ABF VAT	
+3105	Sliusar, Dmitrii			1	10-30-17	11-04-17	1		ABF VAT	
+3107	Feng, Wei	冯伟		2	10-30-17	11-02-17	2		ABF BFR	
+3108	Xian, Ming Xing	咸明星		2	03-02-16	12-12-17	2	ABF CPC	ABF CPC	
+3109	Feng, Ri fang	冯日方		2	10-30-17	11-02-17	2		ABF BFR	
+3110	Ng, Chin Huat			1	10-31-17	11-01-17	1			
+3111	Iwa, Akihito			1	10-31-17	11-04-17	1		ABF VAT	
+3112	Nuka, Yoshie	怒贺良惠		1	10-31-17	11-02-17	1		ABF BFR	
+3113	Ishida, Hajime	石田一		1	10-31-17	11-03-17	1		ABF VAT	
+3114	Rowland, Chris		9	2	10-27-17	11-06-17	2	ABF CPC	ABF CORABF CPC	
+3115	Muse, Mark Raymond			1	10-31-17	11-02-17	1			
+3117	Wang, Li Jie	王丽杰	1	1	10-30-17	11-04-17	1		ABF VAT	
+3119	Tu, Zhuo Cheng	屠卓成		2	10-30-17	11-03-17	2		ABF BFR	
+3121	Nader, Aridi			2	10-30-17	11-02-17	2		ABF BFR	
+3201	Xu, Jie	徐捷	1	2	10-30-17	11-03-17	2	ABF CPC	ABF CPC	
+3203	Cai, Yong Mei	蔡咏梅		1	10-31-17	11-02-17	1			
+3205	Meng, Ling Jun	孟令军		2	10-31-17	11-02-17	2		ABF BFR	
+3207	Wang, Jun	王骏	9	1	10-31-17	11-01-17	1	ABF CPC	ABF CPC	
+3208	Leong, David		9	1	10-31-17	11-02-17	1	ABF CPC	ABF CPC	
+3209	Lee, Jongyoel			2	10-31-17	11-03-17	2		ABF BFR	
+3210	Liu, Li	刘丽		2	10-31-17	11-03-17	2		ABF BFR	
+3211	Slette, Petter			1	10-30-17	11-02-17	1			
+3212	Liu, Chen	刘琛		2	10-29-17	11-03-17	2		ABF BFR	
+3213	Yang, Yuan Bo	杨远渤	9	2	10-08-17	11-14-17	2	ABF CPC	ABF CPC	
+3214	Taylor, Rebeccamiss			1	10-31-17	11-01-17	1		ABF VAT	
+3215	Chinpeng, Ong			2	10-31-17	11-02-17	2		ABF BFR	
+3217	Gu, Nancy		9	2	10-31-17	11-01-17	2	ABF CPC	ABF CPC	
+3219	Fujita, Yuki	藤田侑希		1	11-01-17	04-21-18	1			
+3221	Yang, Kai	杨凯	9	1	10-29-17	11-03-17	1	ABF CPC	ABF CPC	
+3301	Li, Nai Shun	李乃顺	9	1	10-31-17	11-03-17	1		ABF CPC	
+3303	Han, Zhi Zhong	韩志忠		2	10-31-17	11-01-17	2			
+3305	Tentelier, Amandine Noemie			1	10-31-17	11-01-17	1		ABF VAT	
+3307	Hansford, Glenda Sarah			1	10-31-17	11-01-17	1		ABF VAT	
+3308	Sheung, Kenny		9	1	10-31-17	11-01-17	1	ABF CPC	ABF CPC	
+3309	Yu, Shi Bo	于世博		1	10-31-17	11-01-17	1			
+3310	Lago, Damian			2	10-31-17	11-04-17	2	ABF BFR,USS100	ABF BFR,USS100	
+3311	Trott, Jason			2	10-30-17	11-04-17	2		ABF BFR	
+3312	Kendzierski, Jan			2	10-31-17	11-03-17	2		ABF BFR	
+3313	Miguel Diego, Rodriguez Gomez Aller			1	10-31-17	11-03-17	1		ABF BFR	
+3314	Mead, Dimple		2	2	10-29-17	11-03-17	2		ABF BFR	
+3315	Yuji, Konno	昆野裕治	4	1	11-01-17	01-01-18	1	ABF CPC	ABF CPC	
+3317	Radziun, Jacek		9	1	10-20-17	11-07-17	1	ABF CPC	ABF CPC	
+3319	Chen, Ivan		9	1	10-31-17	11-01-17	1	ABF CPC	ABF CPC	
+3321	Skar, Edvin Andre			2	10-30-17	11-04-17	2	ABF CPC	ABF CPC	
+3403	Xiang, Hai Tao	向海涛	1	1	10-31-17	11-02-17	1		ABF COR	
+3405	Nakamura, Yoshikazu	中村善一		1	10-25-17	11-02-17	1		ABF COR	
+3407	Xian, Ming Xing	咸明兴		2	10-30-17	11-03-17	2	ABF BFR	ABF VATABF BFR	
+3408	Li, Zi Yue	李自跃		2	10-31-17	11-01-17	2		ABF BFR	
+3409	Martinez, Reboredo Xoan			2	10-31-17	11-04-17	2		ABF BFR	
+3410	Nock, Jane Marie			1	10-31-17	11-01-17	1			
+3413	Zhao, Bili	赵弼黎		2	10-31-17	11-01-17	2		ABF BFR	
+3414	Gandal, Bruce Roger			1	10-31-17	11-01-17	1		ABF VAT, TRANSPORT	
+3415	Heller, Ronald  lee			1	10-31-17	11-01-17	1		ABF VAT, TRANSPORT	
+3501	Joseph, Hezron Dishan			2	10-31-17	11-03-17	2		ABF BFR	
+3503	Li, Zhimeng	李智猛		2	10-31-17	11-01-17	2	USS150	USS150	
+3505	Wu, Chuan	吴川		1	10-31-17	11-01-17	1			
+3507	Lin, Yuan Zi	林元子		1	10-31-17	11-02-17	1			
+3508	Ding, Ning	丁宁	9	2	10-09-17	11-17-17	2		ABF VAT	
+3509	Qin, Hai Yi	秦海毅		1	10-31-17	11-01-17	1			
+3512	Mohamedi, Muslim			2	10-31-17	11-04-17	2		ABF BFR	
+3513	Su, Chuan Chin		3	2	10-30-17	11-01-17	2		ABF BFR	
+3514	Varghese, Mathews		3	2	10-30-17	11-01-17	2	ABF BFR,USI100	ABF BFR,USI100	
+3515	Tseng, Pei Jung	曾珮榕	1	2	10-19-17	11-03-17	2	ABF BFR	ABF VATABF BFR	
+3517	Lu, Zhong Yi	陆忠义		1	10-31-17	11-02-17	1			
+3519	Wu, Xin	吴欣		1	10-31-17	11-01-17	1			
+3521	Huang, Chao	黄超	2	1	10-31-17	11-01-17	1		ABF VAT	
+3603	Wang, Lihui	王立辉	9	1	10-29-17	11-17-17	1		ABF 550	
+3605	*Gu, Zhao Di	顾兆娣		2	10-31-17	12-12-17	2	ABF CPC	ABF CPC	
+3605	*Gao, Jian	高建		0	10-31-17	12-12-17	0			
+3607	Wu, Ya Xue	吴亚雪		2	10-31-17	11-02-17	2		ABF VAT	
+3608	Cheng, Hong	程鸿	9	1	10-31-17	11-01-17	1		ABF VAT	
+3610	Cui, Zhen	崔镇***		2	10-17-17	11-14-17	2	ABF CPC	ABF CPC	
+3611	*Shi, Bo	石波		0	10-04-17	11-15-17	0			
+3611	*Ning, Jing	宁静		2	10-04-17	11-15-17	2	ABF CPC	ABF CPC	
+3612	Sun, Lu Ting	孙璐婷		1	10-31-17	11-01-17	1		ABF 550	
+3613	Yoon, Hyun Yong		1	1	10-31-17	11-01-17	1		ABF CPC	
+3615	Ivashchenko, Sergei			2	10-31-17	11-05-17	2			
+3617	Fan, Ping Li	***	1	2	11-01-17	04-30-18	2			
+3619	Morton, Dniel Jeffrey			2	10-31-17	11-03-17	2		ABF COR	
+3621	Fan, Ping Li	***	1	2	11-01-17	04-30-18	2			
+3701	Negishi, Tomohiro	根孝知弘		1	10-31-17	11-04-17	1		ABF COR	
+3712	Rae, Garry		1	2	10-31-17	11-03-17	2	USI100,ABF COR	USI100,ABF COR	
+3713	Seki, Tomohisa			1	10-31-17	11-02-17	1		ABF BFR	
+3715	*Chen, Jian Miao	陈健苗		1	10-31-17	11-01-17	1			
+3715	*Zheng, Chang Zhun	郑昌准		0	10-31-17	11-01-17	0			
+3717	Zheng, Jiancong	郑建聪	2	1	10-31-17	11-02-17	1	ABF CPC	ABF CPC	
+3719	David, Beverley		1	1	10-31-17	11-02-17	1			
+3721	Morales, Rene Xavier			1	10-31-17	11-02-17	1			
+3801	Wang, Qi	王琦		1	10-31-17	11-01-17	1			
+3803	Sotofernandez, Carlos			2	10-31-17	11-03-17	2		ABF BFR	
+3809	Xiu, Wen Jiang	修文江	1	1	10-31-17	11-03-17	1	ABF 550	ABF 550	
+3810	Yang, Xuan	杨璇***		2	10-31-17	11-28-17	2	ABF CPC	ABF CPC	
+3811	*Wang, Xiao Dan	王晓丹***		2	10-29-17	12-10-17	2	ABF CPC	ABF CPC	
+3811	*Xue, Ru Cheng	薛如程		0	10-29-17	12-10-17	0			
+3812	Dovan, Binh			1	10-31-17	11-01-17	1		ABF VAT	
+3813	Lee, Changjae		1	1	10-31-17	11-01-17	1		ABF CPC	
+3814	Chen, Li	陈莉		2	10-31-17	11-02-17	2		ABF BFR	
+3815	Barfod, Thue		9	1	10-31-17	11-04-17	1	ABF 550	ABF 550	
+3817	Murciamurcia, Jose Manuel			1	10-31-17	11-03-17	1	ABF BFR,USI100	ABF BFR,USI100	
+3819	Predeek, Eric		2	1	10-31-17	11-01-17	1		ABF CPC	
+3821	Zhang, Yu	张宇	2	1	10-31-17	11-01-17	1		ABF CPC	
