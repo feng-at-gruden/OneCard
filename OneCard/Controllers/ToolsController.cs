@@ -243,7 +243,7 @@ namespace OneCard.Controllers
             return false;
         }
 
-        private static DataTable GetDataFromCVS(string filepath)
+        private DataTable GetDataFromCVS(string filepath)
         {
             DataTable dt = new DataTable();
             using (FileStream fs = new FileStream(filepath, FileMode.Open))
@@ -270,12 +270,20 @@ namespace OneCard.Controllers
                 {
                     string strTest = sr.ReadLine();
                     string[] strTestAttribute = strTest.Split('\t');
-                    DataRow dr = dt.NewRow();
-                    for (int i = 0; i < columns.Length; i++)
+                    try
                     {
-                        dr[columns[i]] = strTestAttribute[i];
+                        DataRow dr = dt.NewRow();
+                        for (int i = 0; i < columns.Length; i++)
+                        {
+                            dr[columns[i]] = strTestAttribute[i];
+                        }
+                        dt.Rows.Add(dr);
                     }
-                    dt.Rows.Add(dr);
+                    catch (Exception)
+                    {
+                        Log("格式错误：" + strTest);
+                    }
+                    
                 }
             }
             
