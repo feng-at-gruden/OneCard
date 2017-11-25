@@ -65,19 +65,26 @@ namespace OneCard.Controllers
 　　            dtFormat.ShortDatePattern = "MM/dd/yy";                
                 foreach(DataRow row in data.Rows)
                 {
-                    db.ZaoCanIn24.Add(new Models.ZaoCanIn24
+                    try{
+                        db.ZaoCanIn24.Add(new Models.ZaoCanIn24
+                        {
+                            Room = int.Parse(row["Room"].ToString()),
+                            FullName = row["Full Name"].ToString(),
+                            ChineseName = row["Chinese Name"].ToString(),
+                            StartTime = Convert.ToDateTime(row["Arrive Date"].ToString(), dtFormat),
+                            EndTime = Convert.ToDateTime(row["Depart Date"].ToString(), dtFormat),
+                            InTime = DateTime.Now,
+                            Num = int.Parse(row["Adults"].ToString()),
+                            Package = row["Pkg In Rate"].ToString(),
+                            Pax = string.IsNullOrWhiteSpace(row["Pax"].ToString()) ? 0 : int.Parse(row["Pax"].ToString()),
+                            Vip = string.IsNullOrWhiteSpace(row["VIP"].ToString()) ? "0" : row["VIP"].ToString(),
+                        }); 
+                    }
+                    catch(Exception)
                     {
-                        Room = int.Parse(row["Room"].ToString()),
-                        FullName = row["Full Name"].ToString(),
-                        ChineseName = row["Chinese Name"].ToString(),
-                        StartTime = Convert.ToDateTime(row["Arrive Date"].ToString(), dtFormat),
-                        EndTime = Convert.ToDateTime(row["Depart Date"].ToString(), dtFormat),
-                        InTime = DateTime.Now,
-                        Num = int.Parse(row["Adults"].ToString()),
-                        Package = row["Pkg In Rate"].ToString(),
-                        Pax = string.IsNullOrWhiteSpace(row["Pax"].ToString()) ? 0 : int.Parse(row["Pax"].ToString()),
-                        Vip = string.IsNullOrWhiteSpace(row["VIP"].ToString()) ? "0" : row["VIP"].ToString(),
-                    }); 
+                        string strTest = "房间号" + row["Room"].ToString();
+                        Log("格式错误:" + strTest);
+                    }
                 }
                 db.SaveChanges();
 
