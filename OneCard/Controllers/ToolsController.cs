@@ -65,19 +65,27 @@ namespace OneCard.Controllers
 　　            dtFormat.ShortDatePattern = "MM/dd/yy";                
                 foreach(DataRow row in data.Rows)
                 {
-                    db.ZaoCanIn24.Add(new Models.ZaoCanIn24
+                    try
                     {
-                        Room = int.Parse(row["Room"].ToString()),
-                        FullName = row["Full Name"].ToString(),
-                        ChineseName = row["Chinese Name"].ToString(),
-                        StartTime = Convert.ToDateTime(row["Arrive Date"].ToString(), dtFormat),
-                        EndTime = Convert.ToDateTime(row["Depart Date"].ToString(), dtFormat),
-                        InTime = DateTime.Now,
-                        Num = int.Parse(row["Adults"].ToString()),
-                        Package = row["Package"].ToString(),
-                        Pax = string.IsNullOrWhiteSpace(row["Pax"].ToString()) ? 0 : int.Parse(row["Pax"].ToString()),
-                        Vip = string.IsNullOrWhiteSpace(row["VIP"].ToString()) ? "0" : row["VIP"].ToString(),
-                    }); 
+                        db.ZaoCanIn24.Add(new Models.ZaoCanIn24
+                        {
+                            Room = int.Parse(row["Room"].ToString()),
+                            FullName = row["Full Name"].ToString(),
+                            ChineseName = row["Chinese Name"].ToString(),
+                            StartTime = Convert.ToDateTime(row["Arrive Date"].ToString(), dtFormat),
+                            EndTime = Convert.ToDateTime(row["Depart Date"].ToString(), dtFormat),
+                            InTime = DateTime.Now,
+                            Num = int.Parse(row["Adults"].ToString()),
+                            Package = row["Package"].ToString(),
+                            Pax = string.IsNullOrWhiteSpace(row["Pax"].ToString()) ? 0 : int.Parse(row["Pax"].ToString()),
+                            Vip = string.IsNullOrWhiteSpace(row["VIP"].ToString()) ? "0" : row["VIP"].ToString(),
+                        });
+                    }
+                    catch(Exception)
+                    {
+                        string strTest = "房间号" + row["Room"].ToString();
+                        Log("格式错误:" + strTest);
+                    }
                 }
                 db.SaveChanges();
 
@@ -243,7 +251,6 @@ namespace OneCard.Controllers
                         for (int i = 0; i < columns.Length; i++)
                         {
                             dr[columns[i]] = strTestAttribute[i];
-
                         }
                         dt.Rows.Add(dr);
                     }
