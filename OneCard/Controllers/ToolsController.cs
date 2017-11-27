@@ -42,22 +42,30 @@ namespace OneCard.Controllers
                 //Clean current table
                 foreach(var d in db.ZaoCanIn24)
                 {
-                    db.ZaoCanIn.Add(new Models.ZaoCanIn
+                    try
                     {
-                        Room = d.Room,
-                        ChineseName = d.ChineseName,
-                        EndTime = d.EndTime,
-                        StartTime = d.StartTime,
-                        FullName = d.FullName,
-                        InTime = d.InTime,
-                        Num = d.Num,
-                        Package = d.Package,
-                        Pax = d.Pax,
-                        Vip = d.Vip,
-                    });
-                    db.ZaoCanIn24.Remove(d);                    
+                        db.ZaoCanIn.Add(new Models.ZaoCanIn
+                        {
+                            Room = d.Room,
+                            ChineseName = d.ChineseName,
+                            EndTime = d.EndTime,
+                            StartTime = d.StartTime,
+                            FullName = d.FullName,
+                            InTime = d.InTime,
+                            Num = d.Num,
+                            Package = d.Package,
+                            Pax = d.Pax,
+                            Vip = d.Vip,
+                        });
+                        db.ZaoCanIn24.Remove(d);
+                    }
+                    catch (Exception)
+                    {
+                        
+                    }
                 }
                 db.SaveChanges();
+
 
                 //Insert to current ZaoCanIn24 table
                 var data = GetDataFromCVS(path);
@@ -86,8 +94,9 @@ namespace OneCard.Controllers
                         string strTest = "房间号" + row["Room"].ToString();
                         Log("格式错误:" + strTest);
                     }
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
+                
 
                 //Clean temp file
                 FileInfo f = new FileInfo(path);

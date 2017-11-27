@@ -1,0 +1,258 @@
+0605	Mr Jian, Lan Ping			0	11-23-17	11-25-17		R-BF	
+0605	 Cao, Wei	曹伟		2	11-23-17	11-25-17	1	R-BF	
+0622	Mr Saito, Shinya			1	11-23-17	11-25-17	1	R-BF	
+0706	Mr Peng, Zhen Xi	彭振喜		2	11-23-17	11-25-17	1	R-BF	
+0706	Mr Chen, Chang Chun			0	11-23-17	11-25-17		R-BF	
+0711	Mr Sun, Dong Hui	孙东辉		1	11-24-17	11-26-17	1	R-BF	
+0712	Mr Zhang, Xue Jun			1	11-24-17	11-26-17	1	R-BF	
+0715	Mr Li, Xiao Jin	李效进		1	11-24-17	11-26-17	1	R-BF	
+0718	Mr Oi, Masaru		1	1	11-22-17	11-25-17	1	R-BF	
+0719	Mr Wang, Xin Yao			0	11-23-17	11-25-17		R-BF	
+0719	Mr Zhou, Song Bo	周松柏		2	11-23-17	11-25-17	1	R-BF	
+0720	Mr Zhang, Jian Guo		1	1	11-22-17	11-26-17	1	R-BF	
+0721	Mr Zheng, Li			0	11-23-17	11-25-17		R-BF	
+0721	Mr Liu, Cong Ping	刘聪平		2	11-23-17	11-25-17	1	R-BF	
+0802	Mr Wan, Li Peng	万里鹏		1	11-24-17	11-25-17	1	R-BF	
+0802	Mr Shao, Huan Shi			0	11-24-17	11-25-17		R-BF	
+0803	Mr Gao, Shi Jun	高世军		1	11-24-17	11-26-17	1	R-BF	
+0808	Mr Li, Gang			1	11-24-17	11-26-17	1	R-BF	
+0809	Mr Lian, Mao Bo	连茂柏		1	11-22-17	11-25-17	1	R-BF	
+0810	 Liu, Jian	刘健	1	1	11-24-17	11-27-17	1	R-BF	
+0811	Mr Wang, Shi Qin			1	11-22-17	11-25-17	1	R-BF	
+0812	Mr Wang, Ya Nan	王桠南		1	11-24-17	11-26-17	1	R-BF	
+0815	Mr Yuan, Yuan			1	11-23-17	11-25-17	1	R-BF	
+0816	Mr Shen, Xing Ming		2	1	11-23-17	11-25-17	1	R-BF	
+0817	Mr *Zhu, Zhi Hao			0	11-24-17	11-26-17		R-BF	
+0817	Mr *Lv, Da	吕大		2	11-24-17	11-26-17	1	R-BF	
+0818	Mr Ma, Li Bo	马历博		1	11-24-17	11-26-17	1	R-BF	
+0820	Mr Liu, Xiang Gang	刘象刚		1	11-24-17	11-26-17	1	R-BF	
+0821	Ms Xie, Jin Xia			1	11-24-17	11-25-17	1	R-BF	
+0902	Mr *Ding, Xue Wei	丁学伟	H	2	11-23-17	11-26-17	1	R-BF	
+0902	Mr *Ding, Xue Chao		H	0	11-23-17	11-26-17		R-BF	
+0905	Ms Chen, Shu		1	1	11-24-17	11-25-17	1	R-BF	
+0907	Mr Zhang, Shuo	张铄		1	11-24-17	11-26-17	1	R-BF	
+0908	 Ogita, Hiroto			1	11-22-17	11-25-17	1	R-BF	
+0909	Mr Wu, Li Xing	吴立星		2	11-23-17	11-26-17	1	R-BF	
+0910	Mr Ren, Ji Jun	任继军		1	11-24-17	11-26-17	1	R-BF	
+0911	Mr An, Junggeun			1	11-19-17	11-25-17	1	R-BF	
+0912	Mr Soares Teixeira, Abilio Henrique		1	1	11-23-17	11-25-17	1	R-BF	
+0916	Ms Zhao, Jia			1	11-23-17	11-25-17	1	R-BF	
+0917	Mr *Chen, Wei	陈伟	H	2	11-23-17	11-26-17	1	R-BF	
+0917	Mr *Wu, Ming Hai		H	0	11-23-17	11-26-17		R-BF	
+0918	Ms Ma, Ning	马宁		1	11-24-17	11-26-17	1	R-BF	
+0919	Ms *Wang, Ying			0	11-22-17	11-26-17		R-BF	
+0919	Ms *Wang, Xiao			2	11-22-17	11-26-17	1	R-BF	
+0920	Mr Chen, Zhi Min		2	1	11-20-17	11-26-17	1	R-BF	
+0921	Mr *Sun, Kai Feng			0	11-24-17	11-26-17		R-BF	
+0921	Mr *Yu, Chao	余超		2	11-24-17	11-26-17	1	R-BF	
+1001	Mr Wong, Ho Yin		1	1	11-23-17	11-25-17	1	R-BF	
+1002	Ms *Zhang, Hong			0	11-23-17	11-25-17		R-BF	
+1002	Ms Zhang, Hong	张红		2	11-23-17	11-26-17	1	R-BF	
+1005	Ms *Lan, Min Yuan	蓝敏源		2	11-23-17	11-26-17	1	R-BF	
+1005	Ms *Zhu, Li Xiang			0	11-23-17	11-26-17		R-BF	
+1007	Ms Sheng, Yue Qing			0	11-22-17	11-25-17		R-BF	
+1007	 Zhang, Shengwen		1	2	11-22-17	11-25-17	1	R-BF	
+1016	Mr Chong, Chin Kiong		4	1	11-21-17	11-30-17	1	R-BF	
+1017	Ms *Sun, Juan			0	11-24-17	11-26-17		R-BF	
+1017	Ms *Han, Fang	韩芳		2	11-24-17	11-26-17	1	R-BF	
+1018	Mr Wang, Rui Qun	王锐群		2	11-23-17	11-26-17	1	R-BF	
+1019	Ms *Huang, Qing		1	0	11-24-17	11-26-17		R-BF	
+1019	Ms *Liu, Wei			2	11-24-17	11-26-17	1	R-BF	
+1020	Ms Loy Teik Gan, Teik Gan		2	1	11-21-17	12-01-17	1	R-BF	
+1021	Ms 0, 0		1	2	11-19-17	11-25-17	1	R-BF	
+1021	Mr Kim, Dae Cheol			0	11-22-17	11-25-17		R-BF	
+1102	Mr *Wan, Peng	万鹏		2	11-24-17	11-26-17	1	R-BF	
+1102	Mr *Wang, Ling De			0	11-24-17	11-26-17		R-BF	
+1103	Mr *Duan, Li Guo			0	11-24-17	11-27-17		R-BF	
+1103	Ms *Zhang, Chen-Ying		3	1	11-23-17	11-27-17	1	R-BF	
+1103	Ms *Zhang, Chen-Ying		3	1	11-23-17	11-27-17	1	R-BF	
+1105	Mr *Chen, Peng			2	11-23-17	11-26-17	1	R-BF	
+1105	Mr *Wu, Ming Jun		H	0	11-23-17	11-26-17		R-BF	
+1107	Mr *Jing, Fan	敬凡		2	11-23-17	11-26-17	1	R-BF	
+1107	Mr *Fang, Pei Cheng		H	0	11-23-17	11-26-17		R-BF	
+1108	Ms MagallAnabellaon Morineau, MagallAnabellaon Morineau			1	11-23-17	11-25-17	1	R-BF	
+1117	Ms *Cheng, Jievivian		2	2	11-24-17	11-26-17	1	R-BF	
+1117	Ms *Li, Shan Shan			0	11-24-17	11-26-17		R-BF	
+1118	Mr Zhao, Jun		1	1	11-23-17	11-25-17	1	R-BF	
+1118	Mr Zhao, Jun		1	1	11-23-17	11-25-17	1	R-BF	
+1121	Ms Xiao, Jin Hong			0	11-23-17	11-25-17		R-BF	
+1121	Ms Ning, Lin			2	11-23-17	11-25-17	1	R-BF	
+1122	Mr HernPablo Isaacandez Lima, HernPablo Isaacandez Lima		1	1	11-23-17	11-25-17	1	R-BF	
+1202	Ms *Wang, Qin			0	11-23-17	11-26-17		R-BF	
+1202	Ms *Wang, Yan	王燕	H	2	11-23-17	11-26-17	1	R-BF	
+1203	Mr Wang, Yu	王宇		1	11-24-17	11-25-17	1	R-BF	
+1205	Mr Hu, Ke Hua			0	11-24-17	11-25-17		R-BF	
+1205	Mr Di, Yun Peng			1	11-22-17	11-25-17	1	R-BF	
+1206	Ms Boiocchi, Laura			1	10-21-17	12-02-17	1	R-BF	
+1207	Ms Zhang, Juan		1	2	11-22-17	11-25-17	1	R-BF	
+1207	Ms Liu, Hui			0	11-22-17	11-25-17		R-BF	
+1217	Mr *Huang, Hong Chuan	黄洪川	H	2	11-23-17	11-26-17	1	R-BF	
+1217	Mr *Fang, Qiang		H	0	11-23-17	11-26-17		R-BF	
+1218	Mr Wong, Johnny		1	1	11-19-17	11-25-17	1	R-BF	
+1219	Mr Zhang, Tao			1	11-22-17	11-25-17	1	R-BF	
+1220	Mr Zhu, Xinghuo		1	1	11-24-17	11-25-17	1	R-BF	
+1221	Ms Oh, Yuha			0	11-24-17	11-25-17		R-BF	
+1221	Mr Jung, Chanwoong			2	11-24-17	11-25-17	1	R-BF	
+1502	Mr *Yang, Li Qiang		1	2	11-24-17	11-26-17	1	R-BF	
+1502	Ms *Li, Yan Hua			0	11-24-17	11-26-17		R-BF	
+1507	Ms *Zhang, Yi Chi			0	11-24-17	11-26-17		R-BF	
+1507	Ms *Li, Xiao Yan			2	11-24-17	11-26-17	1	R-BF	
+1508	Mr Ling, Xiong		8	1	11-21-17	11-25-17	1	R-BF	
+1510	Ms Yin, Ya Wen		1	1	11-23-17	11-26-17	1	R-BF	
+1517	Mr Liu, Hai Long		1	1	11-24-17	11-25-17	1	R-BF	
+1518	Mr Ying, Da Wei	应大伟		1	11-24-17	11-25-17	1	R-BF	
+1519	Mr Gao, Yuan			0	11-24-17	11-25-17		R-BF	
+1519	Mr Du, Xian Liang	高源		2	11-24-17	11-25-17	1	R-BF	
+1522	Ms Jia, Lei		1	1	11-24-17	11-26-17	1	R-BF	
+1601	Mr Tsukada, Yoshihiro			1	11-23-17	11-25-17	1	R-BF	
+1602	Mr Yang, Chun Hai			0	11-24-17	11-25-17		R-BF	
+1602	Mr Yang, Xin Wei	杨新伟		2	11-24-17	11-25-17	1	R-BF	
+1603	Mr Zhang, Gen Ming			1	11-24-17	11-25-17	1	R-BF	
+1606	Mr Zhao, Hong Tao			1	11-23-17	11-25-17	1	F-BF	
+1606	Mr Zhao, Hong Tao			1	11-23-17	11-25-17	1	F-BF	
+1606	Mr Pan, Xiao Han		1	0	11-24-17	11-24-17		R-BF	
+1607	Mr Liang, Li Guo			0	11-22-17	11-25-17		R-BF	
+1607	Mr Liu, Yu Bo			2	11-22-17	11-25-17	1	R-BF	
+1608	Mr Sachdeva, Gautam			1	11-23-17	11-26-17	1	R-BF	
+1615	Mr Zang, Jian Ping	臧建平		2	11-22-17	11-25-17	1	R-BF	
+1615	Ms Lv, Hua			0	11-22-17	11-25-17		R-BF	
+1616	Mr Huang, Wen Hui			1	11-21-17	11-25-17	1	R-BF	
+1617	Mr Jin, Hai			2	11-22-17	11-25-17	1	R-BF	
+1617	Mr Li, Yong Gang			0	11-22-17	11-25-17		R-BF	
+1619	Mr Cai, Jian Hui		H	2	11-22-17	11-25-17	1	R-BF	
+1619	Mr Zhou, Wen Zhong			0	11-22-17	11-25-17		R-BF	
+1620	Mr Shumiya, Masanori		2	1	11-23-17	11-29-17	1	R-BF	
+1621	Mr Gong, Wang	宫旺		1	11-24-17	11-25-17	1	R-BF	
+1621	Ms Li, Yan Hui			0	11-24-17	11-25-17		R-BF	
+1701	Ms Qin, XiaoHui			1	11-23-17	11-29-17	1	R-BF	
+1705	Ms Zhao, Li Xin			2	11-24-17	11-25-17	1	R-BF	
+1705	Ms Li, Shu Cui			0	11-24-17	11-25-17		R-BF	
+1706	Mr Yang, Peng	杨鹏		1	11-24-17	11-25-17	1	R-BF	
+1709	Mr Wang, Ming Xin	王明信		1	11-24-17	11-26-17	1	R-BF	
+1710	Mr Cui, Zhi Yong		1	1	11-24-17	11-25-17	1	R-BF	
+1711	Mr Yuan, Shi Peng	袁世鹏	1	1	11-24-17	11-25-17	1	R-BF	
+1712	Mr Zhao, Chun Sheng	赵春生		1	11-24-17	11-25-17	1	R-BF	
+1716	Ms Chen, Ling An		2	1	11-20-17	11-26-17	1	R-BF	
+1717	Mr Cui, Chao	崔超	H	2	11-23-17	11-26-17	1	R-BF	
+1718	Mr Wang, Tao		1	1	11-24-17	11-25-17	1	R-BF	
+1719	Mr *Zhao, Jian Kang	赵建康		2	11-23-17	11-26-17	1	R-BF	
+1719	Mr *Sun, Wen Ming		H	0	11-23-17	11-26-17		R-BF	
+1720	Mr Wei, Zhen Qing			1	11-24-17	11-25-17	1	R-BF	
+1721	Mr *Kang, Zhao	康昭	H	2	11-23-17	11-26-17	1	R-BF	
+1721	Mr *Zhao, Guo Feng		H	0	11-23-17	11-26-17		R-BF	
+1722	Ms Xu, Jing			1	11-23-17	11-29-17	1	R-BF	
+1802	Ms *Wang, Wei		H	0	11-23-17	11-26-17		R-BF	
+1802	Ms *Hu, Xiang Hua	胡祥华	H	2	11-23-17	11-26-17	1	R-BF	
+1803	Mr Qiu, Tao	邱涛		1	11-24-17	11-26-17	1	R-BF	
+1805	Mr *Dai, Hai Jun		H	0	11-23-17	11-26-17		R-BF	
+1805	Mr *Zuo, Long Gang	左龙刚	H	2	11-23-17	11-26-17	1	R-BF	
+1806	Mr Schneider, Bernd Max			1	11-24-17	11-26-17	1	R-BF	
+1807	Mr *Liu, Jiong		H	0	11-23-17	11-26-17		R-BF	
+1807	 *Cai, Cong	蔡聪		2	11-23-17	11-26-17	1	R-BF	
+1809	Ms Hagemann Schmidt, Anja Luise			1	11-24-17	11-26-17	1	R-BF	
+1811	Mr Chen, Hao Fei		1	1	11-22-17	11-25-17	1	R-BF	
+1815	Mr Doerr, Andre			1	11-24-17	11-26-17	1	R-BF	
+1816	Mr Li, Chen	李晨		1	11-24-17	11-25-17	1	R-BF	
+1817	Ms *Lee, Hee Kyoung			2	11-24-17	11-26-17	1	R-BF	
+1817	Ms *Lee, Yeonju			0	11-24-17	11-26-17		R-BF	
+1818	Mr Zhao, Tong		2	1	11-23-17	11-25-17	1	R-BF	
+1819	Ms Zheng, Jian		1	2	11-23-17	11-25-17	1	R-BF	
+1819	Ms Yan, Yan			0	11-24-17	11-25-17		R-BF	
+1821	Mr *Lee, Sanghyeok			0	11-24-17	11-26-17		R-BF	
+1821	 *Kim, Ho Nam		1	2	11-24-17	11-26-17	1	R-BF	
+1901	Ms *Pei, Tan			0	11-13-17	12-01-17		R-BF	
+1901	Mr *Han, Yin		8	2	11-13-17	12-01-17	1	R-BF	
+1902	Mr *Liu, Yuan		H	0	11-23-17	11-26-17		R-BF	
+1902	 *Zhang, Lin Jun	张林军	H	2	11-23-17	11-26-17	1	R-BF	
+1903	Ms Zhang, Yan		1	1	11-21-17	11-27-17	1	R-BF	
+1905	Mr Du, Yong Qiang		H	2	11-23-17	11-26-17	1	R-BF	
+1906	Ms Yan, Wen		1	1	11-20-17	12-08-17	1	R-BF	
+1908	Ms *Sun, Shumeng		4	1	11-14-17	12-09-17	1	R-BF	
+1908	Ms *Xu, Qing Xin			0	11-23-17	12-09-17		R-BF	
+1908	Ms *Xu, Dong Xin			0	11-23-17	12-09-17		R-BF	
+1910	 Anselmo, Stefano			1	11-11-17	12-19-17	1	R-BF	
+1911	Mr Liu, Dong Yi			1	11-24-17	11-26-17	1	R-BF	
+1912	Ms Jardine, Vicki		1	2	11-24-17	11-25-17	1	R-BF	
+1912	Mr Krause, Mattew			0	11-24-17	11-25-17		R-BF	
+1917	Mr Peng, Qi		1	2	11-24-17	11-25-17	1	R-BF	
+1917	Mr Wang, Jun			0	11-24-17	11-25-17		R-BF	
+1918	Ms Lin, Yu Yang			1	11-24-17	11-25-17	1	R-BF	
+1919	Mr *He, Wei		H	0	11-23-17	11-26-17		R-BF	
+1919	Mr *Wu, Bo	毋博	H	2	11-23-17	11-26-17	1	R-BF	
+1921	Ms Kim, Yuri			0	11-24-17	11-25-17		R-BF	
+1921	Ms Jeon, Kyung Yoon			2	11-24-17	11-25-17	1	R-BF	
+2001	Mr Fujita, Makoto		1	1	11-21-17	11-29-17	1	R-BF	
+2002	Mr Ding Chew Keat, .			3	11-21-17	11-25-17	1	R-BF	
+2002	Mr Hosoo, Cherng			0	11-21-17	11-25-17		R-BF	
+2002	Mr Tan Jun Khai, .			0	11-21-17	11-25-17		R-BF	
+2006	Ms Jin, Xueying		1	1	11-22-17	11-25-17	1	R-BF	
+2011	Mr Guan, Guang Yu		1	1	11-24-17	11-25-17	1	R-BF	
+2012	 Qin, Rui Ping		1	1	11-23-17	11-25-17	1	R-BF	
+2012	 Qin, Rui Ping		1	1	11-23-17	11-25-17	1	R-BF	
+2015	Mr Gu, Jiang He		1	1	11-22-17	11-25-17	1	R-BF	
+2018	Ms Hu, Lei		1	1	11-23-17	11-26-17	1	R-BF	
+2019	Mr Wang, Jian Bin			0	11-23-17	11-25-17		R-BF	
+2019	Mr Su, Zhi Jia	粟志佳		2	11-23-17	11-25-17	1	R-BF	
+2020	Mr Yang, Chun Lei		1	2	11-23-17	11-25-17	1	R-BF	
+2021	Mr Zeng, Xin Hua	曾新华		2	11-23-17	11-25-17	1	R-BF	
+2021	Mr Zhang, Zheng Jie			0	11-23-17	11-25-17		R-BF	
+2022	Mr Hou, Yunchao		8	1	11-18-17	12-13-17	1	R-BF	
+2103	Ms Suzuki, Miwako			1	11-24-17	11-25-17	1	R-BF	
+2106	Mr Uchida, Masaru			1	11-24-17	11-25-17	1	R-BF	
+2108	Mr Guan, Yan Bo			1	11-24-17	11-25-17	1	R-BF	
+2109	Mr Quast, Frank		4	1	11-23-17	11-25-17	1	R-BF	
+2110	Mr Wang, Peng Xiang			1	11-23-17	11-25-17	1	R-BF	193	
+2111	Mr Wu, Yong		1	1	11-23-17	11-25-17	1	R-BF	193	
+2111	Mr Wu, Yong		1	1	11-23-17	11-25-17	1	R-BF	193	
+2112	Mr Ge, Wei		1	1	11-24-17	11-25-17	1	R-BF	193	
+2115	Ms *Kim, Dongin			0	11-24-17	11-27-17		R-BF	193	
+2115	 *Lee, Seung Hun		1	2	11-24-17	11-27-17	1	R-BF	193	
+2117	Mr Zou, Min			0	11-23-17	11-25-17		R-BF	193	
+2117	Mr Tang, Hui	唐慧		2	11-23-17	11-25-17	1	R-BF	193	
+2118	Mr Zhang, Yao		1	1	11-24-17	11-25-17	1	R-BF	193	
+2119	Mr Zeng, Jian Yun			0	11-23-17	11-25-17		R-BF	193	
+2119	Mr Yuan, Zhang Qing	袁长青		2	11-23-17	11-25-17	1	R-BF	193	
+2121	Mr Xiao, Jian Fei	肖建飞		2	11-23-17	11-25-17	1	R-BF	193	
+2121	Mr Li, Ying Jun			0	11-23-17	11-25-17		R-BF	193	
+2203	Mr Dobson, Andrew		3	1	11-22-17	12-02-17	1	R-BF	193	
+2206	Mr Xie, Hui		1	1	11-24-17	11-25-17	1	R-BF	193	
+2207	Mr Wan, Ze Ping	万泽平		2	11-23-17	11-25-17	1	R-BF	193	
+2208	Mr Sasportas, Gili		2	1	11-23-17	11-26-17	1	R-BF	193	
+2210	Mr Ghedini, Roberto			1	11-24-17	11-27-17	1	R-BF	193	
+2211	Mr Moo, Kah Way		8	1	11-07-17	12-01-17	1	R-BF	193	
+2216	Mr Shigeru, Yamashita		8	1	09-20-17	03-21-18	1	R-BF	193	
+2218	Mr Alberto, Hugo Gatto			1	11-24-17	11-27-17	1	R-BF	193	
+2220	Mr Mao, Yao		2	1	11-21-17	11-25-17	1	R-BF	193	
+2301	Mr *Zhang, Jia Fu		1	2	11-23-17	11-26-17	1	R-BF	193	
+2301	Ms *Liu, Lan Qing			0	11-23-17	11-26-17		R-BF	193	
+2303	Ms Xiao, Jing		1	1	11-23-17	11-26-17	1	R-BF	193	
+2306	Mr Shimo, Takashi		3	2	11-22-17	12-02-17	1	R-BF	193	
+2307	Ms *Ning, Hui zhi			1	11-23-17	11-27-17	1	F-BF	193	
+2308	Mr Shibuya, Makoto		1	1	11-19-17	11-25-17	1	R-BF	193	
+2308	Mr Wang, Gang		2	1	11-23-17	11-27-17	1	F-BF	193	
+2309	Mr *Jo, Minki			0	11-24-17	11-26-17		R-BF	193	
+2309	Ms *Kim, Mi Jung			2	11-24-17	11-26-17	1	R-BF	193	
+2312	 Clark, Michael		2	1	11-22-17	12-06-17	1	R-BF	193	
+2315	Mr Botog, Dorin Gheorghe			2	11-22-17	11-26-17	1	R-BF	193	
+2316	Mr Komoto, Isao		1	1	11-23-17	11-25-17	1	R-BF	193	
+2317	Mr Sui, Peng			0	11-24-17	11-25-17		R-BF	193	
+2317	Mr Li, Tao			2	11-24-17	11-25-17	1	R-BF	193	
+2318	Mr Cazacu, Stefan Florin			2	11-22-17	11-26-17	1	R-BF	193	
+2320	Mr Hayes, Nicholas David		2	1	11-14-17	11-30-17	1	R-BF	193	
+2501	 Li, Qing Hai		1	1	11-23-17	11-25-17	1	R-BF	193	
+2501	 Li, Qing Hai		1	1	11-23-17	11-25-17	1	R-BF	193	
+2502	Mr Xu, Xiu Jun			1	11-24-17	11-25-17	1	R-BF	193	
+2503	Mr Wu, Mauris		3	1	11-20-17	12-13-17	1	R-BF	193	
+2505	Mr Sun, Shao Feng		1	1	11-24-17	11-25-17	1	R-BF	193	
+2506	Mr Yoon, Yermin			1	11-24-17	11-25-17	1	R-BF	193	
+2509	Mr Wang, Bing			1	11-24-17	11-25-17	1	R-BF	193	
+2520	Mr Zhang, Yi		3	1	11-22-17	11-25-17	1	R-BF	193	
+2601	Mr Li, Zhi		1	1	11-22-17	11-25-17	1	R-BF	193	
+2602	Mr Lan, Hai		4	1	11-23-17	12-07-17	1	R-BF	193	
+2603	Mr Fukuhara, Akihiro		1	1	11-23-17	11-25-17	1	R-BF	193	
+2605	Ms Ji, Huanhuan		1	1	11-24-17	11-25-17	1	R-BF	193	
+2606	Mr *Zhang, Xiao Ming			1	11-24-17	11-26-17	1	R-BF	193	
+2611	Mr Carini, Simone			1	11-04-17	12-19-17	1	R-BF	193	
+2619	Mr Hzizi, Reda			1	11-04-17	12-19-17	1	R-BF	193	
+2620	Mr Xu, Feng			1	11-24-17	11-25-17	1	R-BF	193	
+9000	 He Yi Int Travel Service Qingdao Co Ltd, 			0	11-24-17	11-27-17	1	R-BF	193	
