@@ -469,7 +469,7 @@ namespace OneCard.Controllers
                 ViewBag.ErrorMessage = "对不起，暂无当日入住信息。";
                 return View(model);
             }
-            ViewBag.Date = db.ZaoCanIn24.FirstOrDefault().InTime.Value.ToString("yyyy-MM-dd");
+            ViewBag.Date = db.ZaoCanIn24.FirstOrDefault().InTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
             model = filterGuestName(model);
             if (exportCSV)
             {

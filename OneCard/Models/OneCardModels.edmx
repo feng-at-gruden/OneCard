@@ -384,11 +384,11 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="Num" Type="Int32" />
           <Property Name="InTime" Type="DateTime" Precision="3" />
-          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Vip" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
           <Property Name="Pax" Type="Int32" />
           <Property Name="Package" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="ChineseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChineseName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ZaoCanIn24">
           <Key>
@@ -400,11 +400,11 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           <Property Name="EndTime" Type="DateTime" Precision="3" />
           <Property Name="Num" Type="Int32" />
           <Property Name="InTime" Type="DateTime" Precision="3" />
-          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Vip" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
           <Property Name="Pax" Type="Int32" />
           <Property Name="Package" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="ChineseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChineseName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="onecardEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CardRecord" EntityType="Self.CardRecord" />
