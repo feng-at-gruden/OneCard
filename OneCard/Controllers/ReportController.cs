@@ -347,7 +347,7 @@ namespace OneCard.Controllers
                                              .GroupBy(m => m.ChkTime.Value.Month)
                                              .OrderBy(m=>m.Key)
                                              .Select(m => new MonthlyCosumptionViewModel {
-                                                 Month = SqlFunctions.StringConvert((double)m.Key, 2) + "月",  //SqlFunctions.StringConvert((double)mYear, 4) + "-" +
+                                                 Month = SqlFunctions.StringConvert((double)m.Key, 2) + "",  //SqlFunctions.StringConvert((double)mYear, 4) + "-" +
                                                  Count1 = m.Sum(i => i.time1), 
                                                  Count2 = m.Sum(i => i.time2), 
                                                  Count3 = m.Sum(i => i.time3), 
@@ -471,7 +471,7 @@ namespace OneCard.Controllers
                 ViewBag.ErrorMessage = "对不起，暂无当日入住信息。";
                 return View(model);
             }
-            ViewBag.Date = db.ZaoCanIn24.FirstOrDefault().InTime.Value.ToString("yyyy-MM-dd");
+            ViewBag.Date = db.ZaoCanIn24.FirstOrDefault().InTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
             model = filterGuestName(model);
             if (exportCSV)
             {

@@ -25,7 +25,6 @@
           <Property Name="package2" Type="int" />
           <Property Name="yes" Type="int" />
           <Property Name="no" Type="int" />
-          <Property Name="Pkg" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“OneCard.dbo.CardRecord_His”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -47,7 +46,6 @@
           <Property Name="package2" Type="int" />
           <Property Name="yes" Type="int" />
           <Property Name="no" Type="int" />
-          <Property Name="Pkg" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Configuration">
           <Key>
@@ -255,8 +253,7 @@
 [CardRecord].[Package1] AS [Package1], 
 [CardRecord].[package2] AS [package2], 
 [CardRecord].[yes] AS [yes], 
-[CardRecord].[no] AS [no], 
-[CardRecord].[Pkg] AS [Pkg]
+[CardRecord].[no] AS [no]
 FROM [dbo].[CardRecord] AS [CardRecord]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="CardRecord_His" EntityType="Self.CardRecord_His" store:Type="Tables" store:Schema="dbo">
@@ -274,8 +271,7 @@ FROM [dbo].[CardRecord] AS [CardRecord]</DefiningQuery>
 [CardRecord_His].[package1] AS [package1], 
 [CardRecord_His].[package2] AS [package2], 
 [CardRecord_His].[yes] AS [yes], 
-[CardRecord_His].[no] AS [no], 
-[CardRecord_His].[Pkg] AS [Pkg]
+[CardRecord_His].[no] AS [no]
 FROM [dbo].[CardRecord_His] AS [CardRecord_His]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ExFloor_Record" EntityType="Self.ExFloor_Record" store:Type="Tables" store:Schema="dbo">
@@ -349,7 +345,6 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           <Property Name="package2" Type="Int32" />
           <Property Name="yes" Type="Int32" />
           <Property Name="no" Type="Int32" />
-          <Property Name="Pkg" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CardRecord_His">
           <Key>
@@ -369,7 +364,6 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           <Property Name="package2" Type="Int32" />
           <Property Name="yes" Type="Int32" />
           <Property Name="no" Type="Int32" />
-          <Property Name="Pkg" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ExFloor_Record">
           <Key>
@@ -582,7 +576,6 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           <EntitySetMapping Name="CardRecord">
             <EntityTypeMapping TypeName="onecardModel.CardRecord">
               <MappingFragment StoreEntitySet="CardRecord">
-                <ScalarProperty Name="Pkg" ColumnName="Pkg" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="StationID" ColumnName="StationID" />
                 <ScalarProperty Name="Room" ColumnName="Room" />
@@ -603,7 +596,6 @@ FROM [dbo].[Fitness24] AS [Fitness24]</DefiningQuery>
           <EntitySetMapping Name="CardRecord_His">
             <EntityTypeMapping TypeName="onecardModel.CardRecord_His">
               <MappingFragment StoreEntitySet="CardRecord_His">
-                <ScalarProperty Name="Pkg" ColumnName="Pkg" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="StationID" ColumnName="StationID" />
                 <ScalarProperty Name="Room" ColumnName="Room" />

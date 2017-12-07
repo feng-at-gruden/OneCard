@@ -28,6 +28,5 @@ namespace OneCard.Models
         public Nullable<int> package2 { get; set; }
         public Nullable<int> yes { get; set; }
         public Nullable<int> no { get; set; }
-        public string Pkg { get; set; }
     }
 }
