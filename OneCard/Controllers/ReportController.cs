@@ -345,7 +345,7 @@ namespace OneCard.Controllers
                                              .GroupBy(m => m.ChkTime.Value.Month)
                                              .OrderBy(m=>m.Key)
                                              .Select(m => new MonthlyCosumptionViewModel {
-                                                 Month = SqlFunctions.StringConvert((double)m.Key, 2) + "月",  //SqlFunctions.StringConvert((double)mYear, 4) + "-" +
+                                                 Month = SqlFunctions.StringConvert((double)m.Key, 2) + "",  //SqlFunctions.StringConvert((double)mYear, 4) + "-" +
                                                  Count1 = m.Sum(i => i.time1), 
                                                  Count2 = m.Sum(i => i.time2), 
                                                  Count3 = m.Sum(i => i.time3), 
