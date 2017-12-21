@@ -241,7 +241,7 @@ namespace OneCard.Controllers
             + Constants.Roles.ROLE_DIET)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ConsumptionHistory(string StartDate, string EndDate, string StartTime, string EndTime, int? room, bool exportCSV = false, bool mail = false)
+        public ActionResult ConsumptionHistory(string StartDate, string EndDate, string StartTime, string EndTime, string package, int? room, bool exportCSV = false, bool mail = false)
         {
             if (string.IsNullOrWhiteSpace(StartDate) || string.IsNullOrWhiteSpace(EndDate))
             {
@@ -261,20 +261,27 @@ namespace OneCard.Controllers
                                                        Count2 = row.time2,
                                                        Count3 = row.time3,
                                                        Count4 = row.time4,
-                                                       Package = row.Pkg,
+                                                       Package = row.Pkg.Trim(),
                                                        DeviceID = row.StationID,
                                                        CheckInTime = row.ChkTime,
                                                        IncludeBreakfast = row.yes == 1 ? "Yes" : "No",
                                                    };
             ViewBag.Date = stTime.ToString("yyyy-M-d") + "至" + edTime.ToString("yyyy-M-d");
-            //Display Pkg summary
-            ViewBag.PackageData = CalculatePkgSummary(model);
-
+            
             if (room.HasValue)
             {
                 model = model.Where(m => m.RoomNumber == room);
                 //ViewBag.Date = room + "房间" + ViewBag.Date;
             }
+            if (package!=null && package.Trim()!="")
+            {
+                model = model.Where(m => m.Package.Contains(package.Trim()));
+            }
+
+            //Display Pkg summary
+            ViewBag.PackageData = CalculatePkgSummary(model);
+
+
             List<RoomCosumptionDataViewModel> filteredModel = new List<RoomCosumptionDataViewModel>();
             if (!string.IsNullOrWhiteSpace(StartTime) && !string.IsNullOrWhiteSpace(EndTime))
             {
@@ -339,6 +346,7 @@ namespace OneCard.Controllers
             ViewBag.StartDate = StartDate;
             ViewBag.EndDate = EndDate;
             ViewBag.room = room;
+            ViewBag.package = package;
 
             return View(filteredModel);
         }

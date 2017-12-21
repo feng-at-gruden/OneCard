@@ -71,6 +71,15 @@
 
                     <div class="form-group">
                         <div class='input-group'>
+                            <input type='text' class="form-control" name="package" placeholder="Package" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-briefcase"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class='input-group'>
                             <input type='text' class="form-control" name="room" placeholder="房间号" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-user"></span>
@@ -226,6 +235,7 @@ else
                         <input type="hidden" name="EndDate" value="@ViewBag.EndDate" />
                         <input type="hidden" name="StartTime" value="@ViewBag.StartTime" />
                         <input type="hidden" name="EndTime" value="@ViewBag.EndTime" />
+                        <input type="hidden" name="package" value="@ViewBag.package" />
                         <input type="hidden" name="room" value="@ViewBag.room" />
                         <input type="hidden" name="exportCSV" value="true" />
                         <button type="submit" class="btn btn-success" style="float: left; margin-top: -42px; margin-left: 65px;">
@@ -239,6 +249,7 @@ else
                         <input type="hidden" name="EndDate" value="@ViewBag.EndDate" />
                         <input type="hidden" name="StartTime" value="@ViewBag.StartTime" />
                         <input type="hidden" name="EndTime" value="@ViewBag.EndTime" />
+                        <input type="hidden" name="package" value="@ViewBag.package" />
                         <input type="hidden" name="room" value="@ViewBag.room" />
                         <input type="hidden" name="mail" value="true" />
                         <button type="submit" class="btn btn-success" style="float: left; margin-top: -42px; margin-left: 130px;">
