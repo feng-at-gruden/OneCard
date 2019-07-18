@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "当日健身中心数据汇总";
     int total = Model.Sum(m => m.Count);
+    int roomCount = Model.GroupBy(m => m.RoomNumber).Count();
 }
 
 @section featured {
@@ -35,7 +36,7 @@
         }
         <div class="dataTable_wrapper" style="margin:auto auto;">
             <div style="text-align: right; float: right; margin: 10px 10px 0 0;">
-                <span>共<b>@Model.Count()</b>间客房 打卡<b>@total</b>次    日期:<b>@ViewBag.Date</b></span>
+                <span>共<b>@roomCount</b>间客房 打卡<b>@total</b>次    日期:<b>@ViewBag.Date</b></span>
             </div>
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>

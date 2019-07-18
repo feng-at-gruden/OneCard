@@ -22,7 +22,7 @@ namespace OneCard.Models
         public Nullable<System.DateTime> InTime { get; set; }
         public string FullName { get; set; }
         public string Vip { get; set; }
-        public Nullable<int> Pax { get; set; }
+        public string RateCode { get; set; }
         public string Package { get; set; }
         public string ChineseName { get; set; }
     }

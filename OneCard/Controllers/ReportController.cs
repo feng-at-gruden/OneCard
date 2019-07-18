@@ -462,7 +462,7 @@ namespace OneCard.Controllers
                                                                 ChineseName = row.ChineseName, 
                                                                 GuestName = row.FullName, 
                                                                 Package = row.Package, 
-                                                                Pax = row.Pax,
+                                                                RateCode = row.RateCode,
                                                              };
             if (db.ZaoCanIn24.Count() <= 0)
             {
@@ -473,7 +473,7 @@ namespace OneCard.Controllers
             model = filterGuestName(model);
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "客人姓名", "中文名", "入住时间", "退房时间", "Adults", "VIP", "Pax", "Package", "录入时间" }), "text/comma-separated-values", ViewBag.Date + "客房数据.csv");
+                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "客人姓名", "中文名", "入住时间", "退房时间", "Adults", "VIP", "RateCode", "Package", "录入时间" }), "text/comma-separated-values", ViewBag.Date + "客房数据.csv");
             }
             if (mail)
             {
@@ -486,7 +486,7 @@ namespace OneCard.Controllers
                     MailHelper.SendMail(
                         ViewBag.Date + "客房数据",
                         CurrentUser.Email,
-                        CSVHelper.ExportCSV(model, new string[] { "房间号", "客人姓名", "中文名", "入住时间", "退房时间", "Adults", "VIP", "Pax", "Package", "录入时间" }),
+                        CSVHelper.ExportCSV(model, new string[] { "房间号", "客人姓名", "中文名", "入住时间", "退房时间", "Adults", "VIP", "RateCode", "Package", "录入时间" }),
                         ViewBag.Date + "客房数据.csv");
 
                     ViewBag.SuccessMessage = "邮件发送成功";
@@ -538,7 +538,7 @@ namespace OneCard.Controllers
                                                               ChineseName = row.ChineseName,
                                                               GuestName = row.FullName,
                                                               Package = row.Package,
-                                                              Pax = row.Pax,
+                                                              RateCode = row.RateCode,
                                                           };
 
             if (room.HasValue)
@@ -556,7 +556,7 @@ namespace OneCard.Controllers
 
             if (exportCSV)
             {
-                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "客人姓名", "中文名", "入住时间", "退房时间", "Adults", "VIP", "Pax", "Package", "录入时间" }), "text/comma-separated-values", ViewBag.Date + "客房数据.csv");
+                return File(CSVHelper.ExportCSV(model, new string[] { "房间号", "客人姓名", "中文名", "入住时间", "退房时间", "Adults", "VIP", "RateCode", "Package", "录入时间" }), "text/comma-separated-values", ViewBag.Date + "客房数据.csv");
             }
             if (mail)
             {
@@ -569,7 +569,7 @@ namespace OneCard.Controllers
                     MailHelper.SendMail(
                         ViewBag.Date + "客房数据",
                         CurrentUser.Email,
-                        CSVHelper.ExportCSV(model, new string[] { "房间号", "客人姓名", "中文名", "入住时间", "退房时间", "Adults", "VIP", "Pax", "Package", "录入时间" }),
+                        CSVHelper.ExportCSV(model, new string[] { "房间号", "客人姓名", "中文名", "入住时间", "退房时间", "Adults", "VIP", "RateCode", "Package", "录入时间" }),
                         ViewBag.Date + "客房数据.csv");
 
                     ViewBag.SuccessMessage = "邮件发送成功";
@@ -593,7 +593,7 @@ namespace OneCard.Controllers
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
             + Constants.Roles.ROLE_IT + ","
             + Constants.Roles.ROLE_FINANCE + ","
-            + Constants.Roles.ROLE_LOBBY)]
+            + Constants.Roles.ROLE_HEALTHY)]
         public ActionResult DailyFitness(bool exportCSV = false, bool mail = false)
         {
             IEnumerable<FitnessDataViewModel> model = from row in db.Fitness24
@@ -637,7 +637,7 @@ namespace OneCard.Controllers
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
             + Constants.Roles.ROLE_IT + ","
             + Constants.Roles.ROLE_FINANCE + ","
-            + Constants.Roles.ROLE_LOBBY)]
+            + Constants.Roles.ROLE_HEALTHY)]
         public ActionResult FitnessHistory()
         {
             return View();
@@ -646,7 +646,7 @@ namespace OneCard.Controllers
         [OneCardAuth(Roles = Constants.Roles.ROLE_ADMIN + "," 
             + Constants.Roles.ROLE_IT + ","
             + Constants.Roles.ROLE_FINANCE + ","
-            + Constants.Roles.ROLE_LOBBY)]
+            + Constants.Roles.ROLE_HEALTHY )]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult FitnessHistory(string StartTime, string EndTime, int? room, bool exportCSV = false, bool mail = false)

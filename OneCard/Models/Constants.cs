@@ -13,6 +13,7 @@ namespace OneCard.Models
             public const string ROLE_FINANCE = "财务部";
             public const string ROLE_DIET = "餐饮部";
             public const string ROLE_LOBBY = "前厅部";
+            public const string ROLE_HEALTHY = "康体部";
         }
 
 

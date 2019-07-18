@@ -1,0 +1,6 @@
+﻿1206	Xu, Zuogang	陈磊	VIP1	1	08-13-18	08-16-18	INCMP	ABF	11	
+1517	*Wang, Guixiang	 		2	08-13-18	08-14-18	IKB0G		11	
+1605	Zhao, Jiawei	 		2	08-12-18	08-14-18	IGBBB		11	
+1507	Du, Jianming	 		2	08-13-18	08-14-18	IGBBB		11	
+1508	Du, Jianming	 		2	08-13-18	08-14-18	IGBBB		11	
+1202	*Wang, Yuanlun	 		2	08-13-18	08-16-18	INCMP		11	

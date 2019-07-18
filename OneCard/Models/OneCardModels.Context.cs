@@ -31,11 +31,11 @@ namespace OneCard.Models
         public DbSet<ExFloor_Record24> ExFloor_Record24 { get; set; }
         public DbSet<Fitness> Fitness { get; set; }
         public DbSet<Fitness24> Fitness24 { get; set; }
-        public DbSet<ZaoCanIn> ZaoCanIn { get; set; }
-        public DbSet<ZaoCanIn24> ZaoCanIn24 { get; set; }
         public DbSet<UserRole> UserRole { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Log> Log { get; set; }
         public DbSet<Configuration> Configuration { get; set; }
+        public DbSet<ZaoCanIn> ZaoCanIn { get; set; }
+        public DbSet<ZaoCanIn24> ZaoCanIn24 { get; set; }
     }
 }

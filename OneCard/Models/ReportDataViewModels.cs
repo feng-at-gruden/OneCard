@@ -171,7 +171,7 @@ namespace OneCard.Models
         public string VIP { get; set; }
 
         [Display(Name = "Pax")]
-        public int? Pax { get; set; }
+        public String RateCode { get; set; }
 
         [Display(Name = "Package")]
         public String Package { get; set; }

@@ -7,6 +7,7 @@ using System.Text;
 using System.IO;
 using System.Data;
 using System.Globalization;
+using System.Data.OleDb;
 using OneCard.Filters;
 using OneCard.Models;
 
@@ -52,7 +53,7 @@ namespace OneCard.Controllers
                         InTime = d.InTime,
                         Num = d.Num,
                         Package = d.Package,
-                        Pax = d.Pax,
+                        RateCode = d.RateCode,
                         Vip = d.Vip,
                     });
                     db.ZaoCanIn24.Remove(d);                    
@@ -60,7 +61,7 @@ namespace OneCard.Controllers
                 db.SaveChanges();
 
                 //Insert to current ZaoCanIn24 table
-                var data = GetDataFromCVS(path);
+                var data = GetDataFromFile(path);
                 DateTimeFormatInfo dtFormat = new System.Globalization.DateTimeFormatInfo();
 　　            dtFormat.ShortDatePattern = "MM/dd/yy";                
                 foreach(DataRow row in data.Rows)
@@ -75,7 +76,7 @@ namespace OneCard.Controllers
                         InTime = DateTime.Now,
                         Num = int.Parse(row["Adults"].ToString()),
                         Package = row["Package"].ToString(),
-                        Pax = string.IsNullOrWhiteSpace(row["Pax"].ToString()) ? 0 : int.Parse(row["Pax"].ToString()),
+                        RateCode = row["RateCode"].ToString(),
                         Vip = string.IsNullOrWhiteSpace(row["VIP"].ToString()) ? "0" : row["VIP"].ToString(),
                     }); 
                 }
@@ -93,6 +94,7 @@ namespace OneCard.Controllers
             }
             else
             {
+                //预览
                 var fileName = (new FileInfo(request.Files[0].FileName)).Name;
                 if (!IsValidaDataFile(fileName))
                 {
@@ -102,7 +104,7 @@ namespace OneCard.Controllers
                 string fileSavedName = DateTime.Now.ToString("yyyyMMddHHmmss") + "" + fileName.Substring(fileName.LastIndexOf("."));
                 var filePath = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/" + UploadFolder), fileSavedName);
                 request.Files[0].SaveAs(filePath);
-                var data = GetDataFromCVS(filePath);
+                var data = GetDataFromFile(filePath);
 
                 ViewBag.path = filePath;
                 return View(data);
@@ -167,7 +169,7 @@ namespace OneCard.Controllers
         private bool IsValidaDataFile(string filename)
         {
             var ext = Path.GetExtension(filename);
-            var imageExtensions = new string[] { "txt", "csv"};
+            var imageExtensions = new string[] { "txt", "csv", "xls", "xlsx" };
             if (string.IsNullOrWhiteSpace(ext))
             {
                 return false;
@@ -182,14 +184,59 @@ namespace OneCard.Controllers
         }
 
 
+        private static DataTable GetDataFromFile(string fPath)
+        {
+            if (String.IsNullOrWhiteSpace(fPath))
+            {
+                throw new Exception("Please upload file");
+            }
+            else
+            {
+                var filepath = fPath.ToLower();
+                if (filepath.IndexOf(".xls") > 0 || filepath.IndexOf(".xlsx") > 0)
+                {
+                    return GetDataFromExcel(filepath);
+                }
+                else
+                {
+                    return GetDataFromCVS(filepath);
+                }
+            }
+        }
+
+
+        private static DataTable GetDataFromExcel(string filepath)
+        {
+            DataTable dt = new DataTable();
+            string[] columns = new string[] { "Room", "Full Name", "Chinese Name", "VIP", "Adults", "Arrive Date", "Depart Date", "RateCode", "Package" };
+            for (int i = 0; i < columns.Length; i++)
+            {
+                dt.Columns.Add(columns[i]);
+            }
+
+            string strConn;
+            strConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filepath + ";Extended Properties=Excel 8.0;";
+            OleDbConnection conn = new OleDbConnection(strConn);
+            conn.Open();
+            dt = conn.GetOleDbSchemaTable (System.Data.OleDb.OleDbSchemaGuid.Tables, null);
+            var sheetName = dt.Rows[0][2].ToString().Trim();
+            string strExcel = "select * from ["+ sheetName + "]";
+            OleDbDataAdapter myCommand = new OleDbDataAdapter(strExcel, strConn);
+            DataSet ds = new DataSet(); myCommand.Fill(ds);
+
+            conn.Close();
+            
+            return dt;
+        }
+
         private static DataTable GetDataFromCVS(string filepath)
         {
             DataTable dt = new DataTable();
             using (FileStream fs = new FileStream(filepath, FileMode.Open))
             {
                 StreamReader sr = new StreamReader(fs, Encoding.UTF8);
-                string strTitle = sr.ReadLine();
-                string[] strColumTitle = strTitle.Split('\t');   //CVS 文件默认以逗号隔开
+                //string strTitle = sr.ReadLine();
+                //string[] strColumTitle = strTitle.Split('\t');   //CVS 文件默认以逗号隔开
                 
                 /*
                 //Read columns name from first line
@@ -198,7 +245,7 @@ namespace OneCard.Controllers
                     dt.Columns.Add(strColumTitle[i]);
                 }*/
 
-                string[] columns = new string[]{"Room", "Full Name", "Chinese Name", "VIP", "Adults", "Arrive Date", "Depart Date", "Pax", "Package"};
+                string[] columns = new string[]{"Room", "Full Name", "Chinese Name", "VIP", "Adults", "Arrive Date", "Depart Date", "RateCode", "Package"};
                 for (int i = 0; i < columns.Length; i++)
                 {
                     dt.Columns.Add(columns[i]);
